@@ -263,6 +263,8 @@ Your application should have a clean, intuitive interface and handle edge cases 
   const handleGetHint = async () => {
     if (!challenge) return;
     
+    setOutput("🤔 Generating hint...");
+    
     try {
       const response = await fetch('/api/challenges/hints', {
         method: 'POST',
@@ -286,23 +288,39 @@ Your application should have a clean, intuitive interface and handle edge cases 
         setOutput(`💡 AI Hint ${data.hintsUsed}: ${data.hint}`);
         setHintsUsed(data.hintsUsed);
       } else {
-        // Fallback to static hints if AI fails
+        // Enhanced fallback hints for the todo app
         const fallbackHints = [
-          "Start by implementing the add functionality. Get the input value and create a new todo object.",
-          "Use an array to store your todos and update the DOM whenever the array changes.",
-          "For the checkbox functionality, add an event listener that toggles the completed status.",
-          "Implement the filter functionality by showing/hiding todos based on their completed status."
+          "🚀 Start by implementing the add functionality. Focus on getting the input value when Enter is pressed or a button is clicked, then create a new todo object with an ID, text, and completed status.",
+          "📝 Create an array to store your todos and a function to render them. Each time the todos array changes, clear the existing list and re-render all todos with their checkboxes and delete buttons.",
+          "✅ For the checkbox functionality, add an event listener that toggles the completed status. When checked, add a 'completed' class to style the text with strikethrough.",
+          "🔍 Implement the filter functionality by creating functions that show/hide todos based on their completed status. Update the active filter button styling to show which filter is currently selected.",
+          "🎨 Polish the user experience by handling edge cases: what happens when the todo list is empty? How do you prevent adding empty todos? Consider adding a todo counter."
         ];
         
         if (hintsUsed < fallbackHints.length) {
           setOutput(`💡 Hint ${hintsUsed + 1}: ${fallbackHints[hintsUsed]}`);
           setHintsUsed(hintsUsed + 1);
         } else {
-          setOutput("You've used all available hints! Keep working on the solution.");
+          setOutput("🎯 You've used all available hints! You have all the guidance you need. Remember: break the problem into small steps, test frequently, and don't be afraid to experiment. You've got this!");
         }
       }
-    } catch {
-      setOutput("Unable to fetch hint at the moment. Try analyzing your code structure first.");
+    } catch (error) {
+      console.error('Hint generation error:', error);
+      // Better fallback with immediate hint
+      const fallbackHints = [
+        "🚀 Start by implementing the add functionality. Focus on getting the input value when Enter is pressed or a button is clicked, then create a new todo object with an ID, text, and completed status.",
+        "📝 Create an array to store your todos and a function to render them. Each time the todos array changes, clear the existing list and re-render all todos with their checkboxes and delete buttons.",
+        "✅ For the checkbox functionality, add an event listener that toggles the completed status. When checked, add a 'completed' class to style the text with strikethrough.",
+        "🔍 Implement the filter functionality by creating functions that show/hide todos based on their completed status. Update the active filter button styling to show which filter is currently selected.",
+        "🎨 Polish the user experience by handling edge cases: what happens when the todo list is empty? How do you prevent adding empty todos? Consider adding a todo counter."
+      ];
+      
+      if (hintsUsed < fallbackHints.length) {
+        setOutput(`💡 Hint ${hintsUsed + 1}: ${fallbackHints[hintsUsed]}`);
+        setHintsUsed(hintsUsed + 1);
+      } else {
+        setOutput("🎯 You've used all available hints! You have all the guidance you need. Remember: break the problem into small steps, test frequently, and don't be afraid to experiment. You've got this!");
+      }
     }
   };
 

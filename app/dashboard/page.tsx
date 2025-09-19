@@ -11,33 +11,67 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
-              <Link href="/dashboard" className="flex items-center">
-                <h1 className="text-2xl font-bold text-gray-900">Percept</h1>
-                <span className="ml-2 text-sm text-gray-500">Dashboard</span>
+              <Link href="/dashboard" className="flex items-center group">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Percept
+                </h1>
+                <span className="ml-3 px-3 py-1 text-xs font-semibold bg-blue-100 text-blue-700 rounded-full">
+                  Dashboard
+                </span>
               </Link>
-              <nav className="hidden md:flex space-x-6">
-                <Link href="/challenges" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
-                  Challenges
+              <nav className="hidden md:flex space-x-1">
+                <Link 
+                  href="/challenges" 
+                  className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 font-medium transition-all duration-200 rounded-lg group"
+                >
+                  <span className="flex items-center">
+                    🚀 Challenges
+                  </span>
                 </Link>
-                <Link href="/profile" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
-                  Profile
+                <Link 
+                  href="/profile" 
+                  className="px-4 py-2 text-gray-600 hover:text-green-600 hover:bg-green-50 font-medium transition-all duration-200 rounded-lg group"
+                >
+                  <span className="flex items-center">
+                    👤 Profile
+                  </span>
                 </Link>
-                <Link href="/analytics" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
-                  Analytics
+                <Link 
+                  href="/analytics" 
+                  className="px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 font-medium transition-all duration-200 rounded-lg group"
+                >
+                  <span className="flex items-center">
+                    📊 Analytics
+                  </span>
+                </Link>
+                <Link 
+                  href="/" 
+                  className="px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 font-medium transition-all duration-200 rounded-lg group"
+                >
+                  <span className="flex items-center">
+                    🏠 Home
+                  </span>
                 </Link>
               </nav>
             </div>
             <div className="flex items-center space-x-4">
+              <div className="hidden sm:flex items-center px-3 py-1 bg-gradient-to-r from-green-100 to-blue-100 rounded-full">
+                <span className="text-sm font-medium text-gray-700">
+                  🏆 Level 5 • 2,450 XP
+                </span>
+              </div>
               <UserButton 
                 appearance={{
                   elements: {
-                    avatarBox: "w-10 h-10"
+                    avatarBox: "w-10 h-10 ring-2 ring-blue-200 hover:ring-blue-300 transition-all",
+                    userButtonPopoverCard: "shadow-xl border-0",
+                    userButtonPopoverActions: "border-t border-gray-100"
                   }
                 }}
               />
@@ -59,58 +93,62 @@ export default async function DashboardPage() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-blue-600 font-semibold text-xl">🎯</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center">
+                  <span className="text-blue-600 font-semibold text-2xl">🎯</span>
                 </div>
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Challenges Completed</p>
-                <p className="text-2xl font-bold text-gray-900">12</p>
+                <p className="text-sm font-medium text-gray-500">Challenges Completed</p>
+                <p className="text-3xl font-bold text-gray-900">12</p>
+                <p className="text-xs text-green-600 font-medium">+3 this week</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                  <span className="text-green-600 font-semibold text-xl">⭐</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center">
+                  <span className="text-green-600 font-semibold text-2xl">⭐</span>
                 </div>
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total Points</p>
-                <p className="text-2xl font-bold text-gray-900">1,420</p>
+                <p className="text-sm font-medium text-gray-500">Total Points</p>
+                <p className="text-3xl font-bold text-gray-900">2,450</p>
+                <p className="text-xs text-green-600 font-medium">+350 this week</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <span className="text-purple-600 font-semibold text-xl">🏆</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center">
+                  <span className="text-purple-600 font-semibold text-2xl">🏆</span>
                 </div>
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Current Streak</p>
-                <p className="text-2xl font-bold text-gray-900">7 days</p>
+                <p className="text-sm font-medium text-gray-500">Current Streak</p>
+                <p className="text-3xl font-bold text-gray-900">7 days</p>
+                <p className="text-xs text-purple-600 font-medium">Personal best!</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                  <span className="text-orange-600 font-semibold text-xl">⚡</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center">
+                  <span className="text-orange-600 font-semibold text-2xl">⚡</span>
                 </div>
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Skills Mastered</p>
-                <p className="text-2xl font-bold text-gray-900">5</p>
+                <p className="text-sm font-medium text-gray-500">Skills Mastered</p>
+                <p className="text-3xl font-bold text-gray-900">5</p>
+                <p className="text-xs text-orange-600 font-medium">JavaScript, CSS, React...</p>
               </div>
             </div>
           </div>

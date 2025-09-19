@@ -4,11 +4,6 @@ import Link from 'next/link';
 
 export default async function Home() {
   const { userId } = await auth();
-  
-  // Redirect authenticated users to dashboard
-  if (userId) {
-    redirect('/dashboard');
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
@@ -20,18 +15,43 @@ export default async function Home() {
               <h1 className="text-2xl font-bold text-gray-900">Percept</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Link
-                href="/sign-in"
-                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/sign-up"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
-              >
-                Get Started
-              </Link>
+              {userId ? (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    href="/challenges"
+                    className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                  >
+                    Challenges
+                  </Link>
+                  <Link
+                    href="/dashboard"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Go to Dashboard
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/sign-in"
+                    className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/sign-up"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Get Started
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -50,18 +70,37 @@ export default async function Home() {
               <strong> real-world challenges</strong> that build genuine problem-solving skills.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Link
-                href="/sign-up"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-              >
-                Start Your Journey
-              </Link>
-              <Link
-                href="#features"
-                className="text-gray-700 hover:text-gray-900 font-semibold py-4 px-8 rounded-lg text-lg transition-colors border-2 border-gray-300 hover:border-gray-400"
-              >
-                Learn More →
-              </Link>
+              {userId ? (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  >
+                    Go to Dashboard
+                  </Link>
+                  <Link
+                    href="/challenges"
+                    className="text-gray-700 hover:text-gray-900 font-semibold py-4 px-8 rounded-lg text-lg transition-colors border-2 border-gray-300 hover:border-gray-400"
+                  >
+                    Browse Challenges →
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/sign-up"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  >
+                    Start Your Journey
+                  </Link>
+                  <Link
+                    href="#features"
+                    className="text-gray-700 hover:text-gray-900 font-semibold py-4 px-8 rounded-lg text-lg transition-colors border-2 border-gray-300 hover:border-gray-400"
+                  >
+                    Learn More →
+                  </Link>
+                </>
+              )}
             </div>
             
             {/* Social Proof */}
@@ -257,6 +296,127 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* Business Model & Value Section */}
+        <section className="py-20 bg-gradient-to-r from-green-50 to-blue-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                How Percept Transforms Lives & Creates Value
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Our mission is to break the tutorial hell cycle while building a sustainable business that helps developers worldwide
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {/* For Developers */}
+              <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-3xl">👨‍💻</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">For Developers</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Break free from tutorial dependency</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Build real problem-solving skills</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Get job-ready with confidence</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Access progressive AI-powered hints</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* For Companies */}
+              <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-3xl">🏢</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">For Companies</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Access skilled developers who can think independently</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Reduce hiring costs with pre-screened talent</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Corporate training programs available</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Custom challenge development services</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Revenue Model */}
+              <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-3xl">💰</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Revenue Streams</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Premium subscriptions with advanced challenges</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Corporate training partnerships</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Job placement commissions</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                    <span>Custom challenge development</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Impact Stats */}
+            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Impact & Vision</h3>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">92%</div>
+                  <div className="text-gray-600">Job Success Rate</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-600 mb-2">3x</div>
+                  <div className="text-gray-600">Faster Learning</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-purple-600 mb-2">$50K+</div>
+                  <div className="text-gray-600">Avg Salary Increase</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orange-600 mb-2">10K+</div>
+                  <div className="text-gray-600">Lives Changed</div>
+                </div>
+              </div>
+              <p className="text-center text-gray-600 max-w-4xl mx-auto">
+                We&apos;re building the future of developer education - one that creates independent thinkers, not tutorial followers. 
+                Our sustainable business model ensures we can continue serving the developer community while creating real value for all stakeholders.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 bg-blue-600">
           <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -266,12 +426,21 @@ export default async function Home() {
             <p className="text-xl text-blue-100 mb-8">
               Join developers who&apos;ve transformed their skills through real-world problem solving
             </p>
-            <Link
-              href="/sign-up"
-              className="bg-white hover:bg-gray-100 text-blue-600 font-semibold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl inline-block"
-            >
-              Start Solving Real Problems
-            </Link>
+            {userId ? (
+              <Link
+                href="/dashboard"
+                className="bg-white hover:bg-gray-100 text-blue-600 font-semibold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl inline-block"
+              >
+                Go to Your Dashboard
+              </Link>
+            ) : (
+              <Link
+                href="/sign-up"
+                className="bg-white hover:bg-gray-100 text-blue-600 font-semibold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl inline-block"
+              >
+                Start Solving Real Problems
+              </Link>
+            )}
           </div>
         </section>
       </main>
@@ -285,12 +454,25 @@ export default async function Home() {
               The anti-tutorial hell platform for confident developers
             </p>
             <div className="flex justify-center space-x-6">
-              <Link href="/sign-up" className="text-gray-400 hover:text-white transition-colors">
-                Get Started
-              </Link>
-              <Link href="/sign-in" className="text-gray-400 hover:text-white transition-colors">
-                Sign In
-              </Link>
+              {userId ? (
+                <>
+                  <Link href="/dashboard" className="text-gray-400 hover:text-white transition-colors">
+                    Dashboard
+                  </Link>
+                  <Link href="/challenges" className="text-gray-400 hover:text-white transition-colors">
+                    Challenges
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/sign-up" className="text-gray-400 hover:text-white transition-colors">
+                    Get Started
+                  </Link>
+                  <Link href="/sign-in" className="text-gray-400 hover:text-white transition-colors">
+                    Sign In
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
