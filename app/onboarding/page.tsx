@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/shared/Button';
-import { Card, CardContent, CardHeader } from '@/components/shared/Card';
+import { Card, CardContent } from '@/components/shared/Card';
 import { Badge } from '@/components/shared/Badge';
 import { CookieConfetti } from '@/components/shared/CookieConfetti';
 
@@ -49,7 +49,7 @@ export default function OnboardingPage() {
     }
   };
 
-  const updateFormData = (field: keyof OnboardingData, value: any) => {
+  const updateFormData = (field: keyof OnboardingData, value: string | string[]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
@@ -72,7 +72,7 @@ export default function OnboardingPage() {
             Ready to escape tutorial hell?
           </h3>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            We'll ask you a few questions to create a personalized learning experience 
+            We&apos;ll ask you a few questions to create a personalized learning experience 
             that matches your goals, interests, and current skill level.
           </p>
           <div className="bg-blue-50 p-6 rounded-lg max-w-lg mx-auto">
@@ -93,10 +93,10 @@ export default function OnboardingPage() {
       component: (
         <div className="space-y-4">
           {[
-            { value: 'complete-beginner', label: 'Complete Beginner', desc: 'I\'ve never written code before' },
-            { value: 'some-experience', label: 'Some Experience', desc: 'I\'ve done tutorials and basic projects' },
+            { value: 'complete-beginner', label: 'Complete Beginner', desc: 'I&apos;ve never written code before' },
+            { value: 'some-experience', label: 'Some Experience', desc: 'I&apos;ve done tutorials and basic projects' },
             { value: 'intermediate', label: 'Intermediate', desc: 'I can build projects but want to improve' },
-            { value: 'advanced', label: 'Advanced', desc: 'I\'m experienced but want new challenges' }
+            { value: 'advanced', label: 'Advanced', desc: 'I&apos;m experienced but want new challenges' }
           ].map((option) => (
             <Card 
               key={option.value}
@@ -201,7 +201,7 @@ export default function OnboardingPage() {
             { value: '1-hour', label: '1 hour per day', desc: 'Great for steady progress' },
             { value: '2-hours', label: '2+ hours per day', desc: 'Accelerated learning pace' },
             { value: 'weekends', label: 'Weekends only', desc: 'Intensive weekend sessions' },
-            { value: 'flexible', label: 'Flexible schedule', desc: 'I\'ll learn when I can' }
+            { value: 'flexible', label: 'Flexible schedule', desc: 'I&apos;ll learn when I can' }
           ].map((option) => (
             <Card 
               key={option.value}
@@ -240,8 +240,8 @@ export default function OnboardingPage() {
             Welcome to your coding journey!
           </h3>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Based on your preferences, we've curated a personalized learning path. 
-            You'll start with challenges that match your experience level and interests.
+            Based on your preferences, we&apos;ve curated a personalized learning path. 
+            You&apos;ll start with challenges that match your experience level and interests.
           </p>
           
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg max-w-2xl mx-auto mb-8">
