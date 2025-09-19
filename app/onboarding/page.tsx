@@ -63,7 +63,7 @@ export default function OnboardingPage() {
 
   const steps = [
     {
-      title: "Welcome to Anti-Tutorial Hell! 🎉",
+      title: "Welcome to Percept! 🎉",
       subtitle: "Let's personalize your learning journey",
       component: (
         <div className="text-center">
@@ -296,7 +296,7 @@ export default function OnboardingPage() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Anti-Tutorial Hell
+                Percept
               </h1>
             </div>
             <div className="text-sm text-gray-600">

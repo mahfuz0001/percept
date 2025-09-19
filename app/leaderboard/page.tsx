@@ -144,7 +144,7 @@ export default async function LeaderboardPage() {
             <div className="flex items-center space-x-8">
               <Link href="/dashboard" className="flex items-center">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Anti-Tutorial Hell
+                  Percept
                 </h1>
                 <span className="ml-2 text-sm text-gray-500">Leaderboard</span>
               </Link>

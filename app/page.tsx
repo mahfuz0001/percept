@@ -15,7 +15,7 @@ export default async function Home() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Anti-Tutorial Hell
+                Percept
               </h1>
             </div>
             
@@ -347,7 +347,7 @@ export default async function Home() {
                     ⭐⭐⭐⭐⭐
                   </div>
                   <p className="text-gray-700 italic">
-                    &quot;Anti-Tutorial Hell changed how I learn. Instead of copying code, I now solve real problems and understand the why behind every solution.&quot;
+                    &quot;Percept changed how I learn. Instead of copying code, I now solve real problems and understand the why behind every solution.&quot;
                   </p>
                 </div>
                 <div className="flex items-center">
@@ -415,7 +415,7 @@ export default async function Home() {
                 Frequently Asked Questions
               </p>
               <p className="text-lg text-gray-600 mt-2">
-                Everything you need to know about Anti-Tutorial Hell
+                Everything you need to know about Percept
               </p>
             </div>
             
@@ -545,10 +545,10 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-              Anti-Tutorial Hell
+              Percept
             </h3>
             <p className="text-gray-600 mb-8">
-              © 2024 Anti-Tutorial Hell. Learn by Doing, Not Following.
+              © 2024 Percept. Learn by Doing, Not Following.
             </p>
             
             <div className="flex justify-center space-x-8 mb-8">
