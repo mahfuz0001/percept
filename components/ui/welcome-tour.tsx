@@ -1,8 +1,8 @@
 "useclient";
 
 importReact,{useState,useEffect}from"react";
-import{motion,AnimatePresence}from"framer-motion";
-import{
+import { motion,AnimatePresence } from"framer-motion";
+import { 
 X,
 ArrowRight,
 ArrowLeft,
@@ -14,10 +14,10 @@ Trophy,
 Users,
 BookOpen,
 Code2,
-}from"lucide-react";
-import{Button}from"@/components/ui/button";
-import{Card,CardContent}from"@/components/ui/card";
-import{Badge}from"@/components/ui/badge";
+ } from"lucide-react";
+import { Button } from"@/components/ui/button";
+import { Card,CardContent } from"@/components/ui/card";
+import { Badge } from"@/components/ui/badge";
 
 interfaceTourStep{
 id:string;
@@ -92,17 +92,17 @@ highlight:true,
 },
 ];
 
-exportfunctionWelcomeTour(){
+export function WelcomeTour() {
 const[isOpen,setIsOpen]=useState(false);
 const[currentStep,setCurrentStep]=useState(0);
 const[hasSeenTour,setHasSeenTour]=useState(false);
 
 useEffect(()=>{
 //Checkifuserhasseenthetourbefore
-consttourCompleted=localStorage.getItem("welcome-tour-completed");
-if(!tourCompleted){
+const tourComplet ed =  localStorage.getItem("welcome-tour-completed");
+if (!tourCompleted) {
 //Showtourafterabriefdelay
-consttimer=setTimeout(()=>{
+const timer = setTimeout(()=>{
 setIsOpen(true);
 },2000);
 return()=>clearTimeout(timer);
@@ -111,33 +111,33 @@ setHasSeenTour(true);
 }
 },[]);
 
-constnextStep=()=>{
-if(currentStep<tourSteps.length-1){
+const nextStep = ()=>{
+if (currentStep<tourSteps.length-1) {
 setCurrentStep(currentStep+1);
 }
 };
 
-constprevStep=()=>{
-if(currentStep>0){
+const prevStep = ()=>{
+if (currentStep>0) {
 setCurrentStep(currentStep-1);
 }
 };
 
-constcloseTour=()=>{
+const closeTour = ()=>{
 setIsOpen(false);
 localStorage.setItem("welcome-tour-completed","true");
 setHasSeenTour(true);
 };
 
-constrestartTour=()=>{
+const restartTour = ()=>{
 setCurrentStep(0);
 setIsOpen(true);
 };
 
-constcurrentTourStep=tourSteps[currentStep];
-constprogress=((currentStep+1)/tourSteps.length)*100;
+const currentTourStep = tourSteps[currentStep];
+const progress = ((currentStep+1)/tourSteps.length)*100;
 
-if(hasSeenTour&&!isOpen){
+if (hasSeenTour&&!isOpen) {
 return(
 <motion.div
 initial={{opacity:0,scale:0.8}}
@@ -148,9 +148,9 @@ className="fixedbottom-6left-6z-40"
 onClick={restartTour}
 variant="outline"
 size="sm"
-className="bg-white/90backdrop-blur-smshadow-lghover:shadow-xltransition-allduration-200"
+className="bg-white/90backdrop-blur-smshadow-lghover:shadow-xltransition-all duration-200"
 >
-<BookOpenclassName="w-4h-4mr-2"/>
+<BookOpen className="w-4 h-4mr-2"/>
 TourGuide
 </Button>
 </motion.div>
@@ -166,7 +166,7 @@ return(
 initial={{opacity:0}}
 animate={{opacity:1}}
 exit={{opacity:0}}
-className="fixedinset-0bg-black/60backdrop-blur-smz-50"
+className="fixedinset-0 bg-black/60backdrop-blur-smz-50"
 onClick={closeTour}
 />
 
@@ -176,34 +176,34 @@ initial={{opacity:0,scale:0.8,y:50}}
 animate={{opacity:1,scale:1,y:0}}
 exit={{opacity:0,scale:0.8,y:50}}
 transition={{type:"spring",duration:0.5}}
-className="fixedtop-1/2left-1/2transform-translate-x-1/2-translate-y-1/2z-50w-fullmax-w-mdmx-4"
+className="fixedtop-1/2left-1/2transform-translate-x-1/2-translate-y-1/2z-50w-fullmax-w-md mx-4"
 >
-<CardclassName="shadow-2xlborder-0overflow-hidden">
+<Card className="shadow-2xlborder-0overflow-hidden">
 {/*ProgressBar*/}
-<divclassName="h-2bg-gray-100dark:bg-gray-800">
+<div className="h-2bg-gray-100dark:bg-gray-800">
 <motion.div
 initial={{width:0}}
 animate={{width:`${progress}%`}}
 transition={{duration:0.3}}
-className="h-fullbg-gradient-to-rfrom-blue-500to-purple-500"
+className="h-fullbg-gradient-to-rfrom-blue-500 to-purple-500"
 />
 </div>
 
-<CardContentclassName="p-6">
+<CardContent className="p-6">
 {/*Header*/}
-<divclassName="flexitems-centerjustify-betweenmb-4">
-<divclassName="flexitems-centergap-2">
+<div className="flex items-centerjustify-betweenmb-4">
+<div className="flex items-centergap-2">
 <div
 className={`
 p-2rounded-lg${
 currentTourStep.highlight
-?"bg-gradient-to-rfrom-blue-500to-purple-500"
+?"bg-gradient-to-rfrom-blue-500 to-purple-500"
 :"bg-blue-100dark:bg-blue-900"
 }
 `}
 >
 <currentTourStep.icon
-className={`w-5h-5${
+className={`w-5 h-5${
 currentTourStep.highlight
 ?"text-white"
 :"text-blue-600dark:text-blue-400"
@@ -220,7 +220,7 @@ size="sm"
 onClick={closeTour}
 className="h-8w-8p-0"
 >
-<XclassName="w-4h-4"/>
+<X className="w-4 h-4"/>
 </Button>
 </div>
 
@@ -232,10 +232,10 @@ animate={{opacity:1,x:0}}
 exit={{opacity:0,x:-20}}
 transition={{duration:0.3}}
 >
-<h3className="text-xlfont-boldmb-3text-gray-900dark:text-white">
+<h3 className="text-xl font-boldmb-3text-gray-900dark:text-white">
 {currentTourStep.title}
 </h3>
-<pclassName="text-gray-600dark:text-gray-300mb-6leading-relaxed">
+<p className="text-gray-600dark:text-gray-300 mb-6leading-relaxed">
 {currentTourStep.description}
 </p>
 </motion.div>
@@ -250,36 +250,36 @@ className="mb-6"
 >
 <Button
 asChild
-className="w-fullbg-gradient-to-rfrom-blue-600to-purple-600hover:from-blue-700hover:to-purple-700"
+className="w-fullbg-gradient-to-rfrom-blue-600 to-purple-600hover:from-blue-700hover:to-purple-700"
 >
-<ahref={currentTourStep.action.href}onClick={closeTour}>
+<a href={currentTourStep.action.href}onClick={closeTour}>
 {currentTourStep.action.text}
-<ArrowRightclassName="w-4h-4ml-2"/>
+<ArrowRight className="w-4 h-4ml-2"/>
 </a>
 </Button>
 </motion.div>
 )}
 
 {/*Navigation*/}
-<divclassName="flexitems-centerjustify-between">
+<div className="flex items-centerjustify-between">
 <Button
 variant="outline"
 size="sm"
 onClick={prevStep}
 disabled={currentStep===0}
-className="flexitems-centergap-2"
+className="flex items-centergap-2"
 >
-<ArrowLeftclassName="w-4h-4"/>
+<ArrowLeft className="w-4 h-4"/>
 Previous
 </Button>
 
-<divclassName="flexgap-1">
+<div className="flexgap-1">
 {tourSteps.map((_,index)=>(
 <button
 key={index}
 onClick={()=>setCurrentStep(index)}
 className={`
-w-2h-2rounded-fulltransition-allduration-200
+w-2 h-2rounded-fulltransition-all duration-200
 ${
 index===currentStep
 ?"bg-blue-600scale-125"
@@ -296,28 +296,28 @@ index===currentStep
 <Button
 size="sm"
 onClick={closeTour}
-className="flexitems-centergap-2bg-green-600hover:bg-green-700"
+className="flex items-centergap-2bg-green-600hover:bg-green-700"
 >
-<CheckCircleclassName="w-4h-4"/>
+<CheckCircle className="w-4 h-4"/>
 GetStarted!
 </Button>
 ):(
 <Button
 size="sm"
 onClick={nextStep}
-className="flexitems-centergap-2"
+className="flex items-centergap-2"
 >
 Next
-<ArrowRightclassName="w-4h-4"/>
+<ArrowRight className="w-4 h-4"/>
 </Button>
 )}
 </div>
 
 {/*SkipOption*/}
-<divclassName="mt-4text-center">
+<div className="mt-4text-center">
 <button
 onClick={closeTour}
-className="text-smtext-gray-500hover:text-gray-700dark:text-gray-400dark:hover:text-gray-200transition-colors"
+className="text-smtext-gray-500 hover:text-gray-700dark:text-gray-400dark:hover:text-gray-200transition-colors"
 >
 Skiptour
 </button>

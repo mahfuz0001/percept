@@ -1,8 +1,8 @@
 "useclient";
 
 importReact,{useState,useEffect}from"react";
-import{motion,AnimatePresence}from"framer-motion";
-import{
+import { motion,AnimatePresence } from"framer-motion";
+import { 
 Plus,
 X,
 BookOpen,
@@ -15,16 +15,16 @@ Settings,
 Home,
 Code2,
 Rocket,
-}from"lucide-react";
-importLinkfrom"next/link";
-import{Button}from"@/components/ui/button";
-import{Badge}from"@/components/ui/badge";
-import{
+ } from"lucide-react";
+import Link from"next/link";
+import { Button } from"@/components/ui/button";
+import { Badge } from"@/components/ui/badge";
+import { 
 Tooltip,
 TooltipContent,
 TooltipProvider,
 TooltipTrigger,
-}from"@/components/ui/tooltip";
+ } from"@/components/ui/tooltip";
 
 interfaceQuickAction{
 id:string;
@@ -93,17 +93,17 @@ description:"Connectwithotherlearners",
 },
 ];
 
-exportfunctionFloatingActionButton(){
+export function FloatingActionButton() {
 const[isOpen,setIsOpen]=useState(false);
 const[isVisible,setIsVisible]=useState(true);
 const[lastScrollY,setLastScrollY]=useState(0);
 
 useEffect(()=>{
-consthandleScroll=()=>{
-constcurrentScrollY=window.scrollY;
+const handleScroll = ()=>{
+const currentScrollY = window.scrollY;
 
 //HideFABwhenscrollingdown,showwhenscrollingup
-if(currentScrollY>lastScrollY&&currentScrollY>100){
+if (currentScrollY>lastScrollY&&currentScrollY>100) {
 setIsVisible(false);
 setIsOpen(false);
 }else{
@@ -117,13 +117,13 @@ window.addEventListener("scroll",handleScroll,{passive:true});
 return()=>window.removeEventListener("scroll",handleScroll);
 },[lastScrollY]);
 
-consttoggleMenu=()=>{
+const toggleMenu = ()=>{
 setIsOpen(!isOpen);
 };
 
 return(
 <TooltipProvider>
-<divclassName="fixedbottom-6right-6z-50">
+<div className="fixedbottom-6right-6z-50">
 <AnimatePresence>
 {isVisible&&(
 <motion.div
@@ -135,7 +135,7 @@ transition={{duration:0.3}}
 {/*ActionItems*/}
 <AnimatePresence>
 {isOpen&&(
-<divclassName="mb-4space-y-3">
+<div className="mb-4space-y-3">
 {/*PrimaryActions*/}
 {quickActions.map((action,index)=>(
 <motion.div
@@ -152,23 +152,23 @@ stiffness:400,
 >
 <Tooltip>
 <TooltipTriggerasChild>
-<Linkhref={action.href}>
+<Link href={action.href}>
 <Button
 size="lg"
 className={`
-relativeh-14w-14rounded-fullshadow-lg
+relative h-14w-14rounded-fullshadow-lg
 ${action.color}
-text-whitetransition-allduration-200
+text-whitetransition-all duration-200
 hover:shadow-xlhover:scale-110
 border-2border-white/20
 `}
 onClick={()=>setIsOpen(false)}
 >
-<action.iconclassName="w-6h-6"/>
+<action.iconclassName="w-6 h-6"/>
 {action.badge&&(
 <Badge
 variant="secondary"
-className="absolute-top-2-right-2text-xspx-1.5py-0.5bg-red-500text-whiteborder-white"
+className="absolute-top-2-right-2text-xspx-1.5py-0.5bg-red-500 text-whiteborder-white"
 >
 {action.badge}
 </Badge>
@@ -177,9 +177,9 @@ className="absolute-top-2-right-2text-xspx-1.5py-0.5bg-red-500text-whiteborder-w
 </Link>
 </TooltipTrigger>
 <TooltipContentside="left"className="max-w-xs">
-<divclassName="text-center">
-<pclassName="font-medium">{action.label}</p>
-<pclassName="text-xstext-gray-500mt-1">
+<div className="text-center">
+<p className="font-medium">{action.label}</p>
+<p className="text-xstext-gray-500mt-1">
 {action.description}
 </p>
 </div>
@@ -216,23 +216,23 @@ stiffness:400,
 >
 <Tooltip>
 <TooltipTriggerasChild>
-<Linkhref={action.href}>
+<Link href={action.href}>
 <Button
 size="lg"
 variant="outline"
 className={`
-relativeh-12w-12rounded-fullshadow-lg
+relative h-12w-12rounded-fullshadow-lg
 bg-whitedark:bg-gray-800hover:bg-gray-50dark:hover:bg-gray-700
 border-2border-gray-200dark:border-gray-600
-transition-allduration-200hover:shadow-xlhover:scale-110
+transition-all duration-200hover:shadow-xlhover:scale-110
 `}
 onClick={()=>setIsOpen(false)}
 >
-<action.iconclassName="w-5h-5"/>
+<action.iconclassName="w-5 h-5"/>
 {action.badge&&(
 <Badge
 variant="secondary"
-className="absolute-top-2-right-2text-xspx-1.5py-0.5bg-yellow-500text-whiteborder-white"
+className="absolute-top-2-right-2text-xspx-1.5py-0.5bg-yellow-500 text-whiteborder-white"
 >
 {action.badge}
 </Badge>
@@ -241,9 +241,9 @@ className="absolute-top-2-right-2text-xspx-1.5py-0.5bg-yellow-500text-whiteborde
 </Link>
 </TooltipTrigger>
 <TooltipContentside="left"className="max-w-xs">
-<divclassName="text-center">
-<pclassName="font-medium">{action.label}</p>
-<pclassName="text-xstext-gray-500mt-1">
+<div className="text-center">
+<p className="font-medium">{action.label}</p>
+<p className="text-xstext-gray-500mt-1">
 {action.description}
 </p>
 </div>
@@ -263,19 +263,19 @@ size="lg"
 onClick={toggleMenu}
 className={`
 h-16w-16rounded-fullshadow-xl
-bg-gradient-to-rfrom-blue-600to-purple-600
+bg-gradient-to-rfrom-blue-600 to-purple-600
 hover:from-blue-700hover:to-purple-700
-text-whitetransition-allduration-300
+text-whitetransition-all duration-300
 hover:shadow-2xlhover:scale-110
 border-4border-white/20
 ${isOpen?"rotate-45":"rotate-0"}
 `}
 >
 {isOpen?(
-<XclassName="w-8h-8"/>
+<X className="w-8 h-8"/>
 ):(
-<divclassName="relative">
-<PlusclassName="w-8h-8"/>
+<div className="relative">
+<Plus className="w-8 h-8"/>
 <motion.div
 animate={{
 scale:[1,1.2,1],
@@ -286,16 +286,16 @@ duration:2,
 repeat:Infinity,
 ease:"easeInOut",
 }}
-className="absoluteinset-0bg-white/20rounded-full"
+className="absolute inset-0 bg-white/20rounded-full"
 />
 </div>
 )}
 </Button>
 </TooltipTrigger>
 <TooltipContentside="left">
-<divclassName="text-center">
-<pclassName="font-medium">QuickActions</p>
-<pclassName="text-xstext-gray-500mt-1">
+<div className="text-center">
+<p className="font-medium">QuickActions</p>
+<p className="text-xstext-gray-500mt-1">
 {isOpen?"Closemenu":"Accesslearningtools"}
 </p>
 </div>

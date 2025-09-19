@@ -1,11 +1,11 @@
 //components/sections/TestimonialsSection.tsx
 "useclient";
 
-import{motion}from"framer-motion";
-import{Star}from"lucide-react";
-import{Card,CardContent,CardDescription}from"@/components/ui/card";
-import{Avatar,AvatarFallback,AvatarImage}from"@/components/ui/avatar";
-import{Badge}from"@/components/ui/badge";
+import { motion } from"framer-motion";
+import { Star } from"lucide-react";
+import { Card,CardContent,CardDescription } from"@/components/ui/card";
+import { Avatar,AvatarFallback,AvatarImage } from"@/components/ui/avatar";
+import { Badge } from"@/components/ui/badge";
 
 const testimonials = [
  {
@@ -33,32 +33,32 @@ const testimonials = [
 
 export default function TestimonialsSection() {
  return(
-  <sectionclassName="py-20bg-whitedark:bg-gray-900">
-   <divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
+  <section className="py-20bg-whitedark:bg-gray-900">
+   <div className="max-w-7xl mx-autopx-4sm:px-6lg:px-8">
     <motion.divinitial={{opacity:0,y:30}}whileInView={{opacity:1,y:0}}transition={{duration:0.8}}viewport={{once:true}}className="text-centermb-16">
      <Badgevariant="secondary"className="mb-4">SuccessStories</Badge>
-     <h2className="text-4xlfont-boldtext-gray-900dark:text-whitemb-4">LovedbyDevelopersWorldwide</h2>
-     <pclassName="text-xltext-gray-600dark:text-gray-400max-w-3xlmx-auto">Seehowdeveloperstransformedtheircareersbyescapingtutorialhell</p>
+     <h2 className="text-4xlfont-bold text-gray-900dark:text-whitemb-4">LovedbyDevelopersWorldwide</h2>
+     <p className="text-xltext-gray-600dark:text-gray-400max-w-3xl mx-auto">Seehowdeveloperstransformedtheircareersbyescapingtutorialhell</p>
     </motion.div>
 
-    <divclassName="gridmd:grid-cols-3gap-8">
+    <div className="gridmd:grid-cols-3gap-8">
      {testimonials.map((testimonial,index)=>(
       <motion.divkey={index}initial={{opacity:0,scale:0.9}}whileInView={{opacity:1,scale:1}}transition={{duration:0.5,delay:index*0.1}}viewport={{once:true}}>
-       <CardclassName="p-6h-fullshadow-lg">
-        <CardContentclassName="p-0">
-         <divclassName="flexitems-centermb-4">
-          <AvatarclassName="h-12w-12mr-4">
+       <Card className="p-6h-fullshadow-lg">
+        <CardContent className="p-0">
+         <div className="flex items-centermb-4">
+          <Avatar className="h-12w-12mr-4">
            <AvatarImagesrc={testimonial.avatar}alt={testimonial.name}/>
            <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
           </Avatar>
           <div>
-           <h3className="font-boldtext-gray-900dark:text-white">{testimonial.name}</h3>
-           <pclassName="text-smtext-gray-600dark:text-gray-400">
+           <h3 className="font-bold text-gray-900dark:text-white">{testimonial.name}</h3>
+           <p className="text-smtext-gray-600dark:text-gray-400">
             {testimonial.role},{testimonial.company}
            </p>
           </div>
          </div>
-         <CardDescriptionclassName="text-lgitalictext-gray-700dark:text-gray-300">
+         <CardDescription className="text-lgitalictext-gray-700dark:text-gray-300">
           {testimonial.content}
          </CardDescription>
        </CardContent>

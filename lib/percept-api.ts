@@ -1,4 +1,4 @@
-import{supabase}from'./supabase';
+import { supabase } from './supabase';
 
 exportinterfaceUserProfile{
 id:string;
@@ -69,7 +69,7 @@ fullName?:string;
 imageUrl?:string;
 }):Promise<UserProfile|null>{
 try{
-constuserData={
+const userData = {
 clerk_user_id:clerkUser.id,
 email:clerkUser.emailAddresses[0]?.emailAddress,
 username:clerkUser.username,
@@ -78,7 +78,7 @@ avatar_url:clerkUser.imageUrl,
 last_seen_at:newDate().toISOString(),
 };
 
-const{data,error}=awaitsupabase
+const{data,error}=await supabase
 .from('users')
 .upsert(userData,{
 onConflict:'clerk_user_id',
@@ -87,7 +87,7 @@ ignoreDuplicates:false,
 .select()
 .single();
 
-if(error){
+if (error) {
 console.error('Errorcreating/updatinguser:',error);
 returnnull;
 }
@@ -104,13 +104,13 @@ returnnull;
 */
 staticasyncgetUserByClerkId(clerkUserId:string):Promise<UserProfile|null>{
 try{
-const{data,error}=awaitsupabase
+const{data,error}=await supabase
 .from('users')
 .select('*')
 .eq('clerk_user_id',clerkUserId)
 .single();
 
-if(error){
+if (error) {
 console.error('Errorfetchinguser:',error);
 returnnull;
 }
@@ -127,13 +127,13 @@ returnnull;
 */
 staticasyncgetTechnologies(){
 try{
-const{data,error}=awaitsupabase
+const{data,error}=await supabase
 .from('technologies')
 .select('*')
 .eq('is_active',true)
 .order('difficulty_level',{ascending:true});
 
-if(error){
+if (error) {
 console.error('Errorfetchingtechnologies:',error);
 return[];
 }
@@ -150,7 +150,7 @@ return[];
 */
 staticasyncgetChallengesByTechnology(technologyId:string,difficulty?:number){
 try{
-letquery=supabase
+let query = supabase
 .from('challenges')
 .select(`
 *,
@@ -160,13 +160,13 @@ challenge_categories(name,slug)
 .eq('technology_id',technologyId)
 .eq('is_published',true);
 
-if(difficulty){
+if (difficulty) {
 query=query.eq('difficulty_level',difficulty);
 }
 
-const{data,error}=awaitquery.order('created_at',{ascending:false});
+const{data,error}=await query.order('created_at',{ascending:false});
 
-if(error){
+if (error) {
 console.error('Errorfetchingchallenges:',error);
 return[];
 }
@@ -183,7 +183,7 @@ return[];
 */
 staticasyncgetUserProgress(userId:string,challengeId?:string){
 try{
-letquery=supabase
+let query = supabase
 .from('user_challenge_progress')
 .select(`
 *,
@@ -191,13 +191,13 @@ challenges(title,slug,difficulty_level,points)
 `)
 .eq('user_id',userId);
 
-if(challengeId){
+if (challengeId) {
 query=query.eq('challenge_id',challengeId);
 }
 
-const{data,error}=awaitquery.order('updated_at',{ascending:false});
+const{data,error}=await query.order('updated_at',{ascending:false});
 
-if(error){
+if (error) {
 console.error('Errorfetchinguserprogress:',error);
 return[];
 }
@@ -218,7 +218,7 @@ challengeId:string,
 updates:Partial<UserProgress>
 ){
 try{
-const{data,error}=awaitsupabase
+const{data,error}=await supabase
 .from('user_challenge_progress')
 .upsert({
 user_id:userId,
@@ -232,7 +232,7 @@ ignoreDuplicates:false,
 .select()
 .single();
 
-if(error){
+if (error) {
 console.error('Errorupdatingchallengeprogress:',error);
 returnnull;
 }
@@ -254,7 +254,7 @@ code:string,
 language:string
 ){
 try{
-const{data,error}=awaitsupabase
+const{data,error}=await supabase
 .from('code_submissions')
 .insert({
 user_id:userId,
@@ -266,7 +266,7 @@ submitted_at:newDate().toISOString(),
 .select()
 .single();
 
-if(error){
+if (error) {
 console.error('Errorsubmittingcode:',error);
 returnnull;
 }
@@ -284,43 +284,43 @@ returnnull;
 staticasyncgetUserStats(userId:string){
 try{
 //Getbasicprogressstats
-const{data:progressData,error:progressError}=awaitsupabase
+const{data:progressData,error:progressError}=await supabase
 .from('user_challenge_progress')
 .select('status,best_score,time_spent_minutes,challenge_id')
 .eq('user_id',userId);
 
-if(progressError){
+if (progressError) {
 console.error('Errorfetchingprogressstats:',progressError);
 returnnull;
 }
 
 //Calculatestats
-consttotalChallenges=progressData?.length||0;
-constcompletedChallenges=progressData?.filter(p=>p.status==='completed').length||0;
-consttotalPoints=progressData?.reduce((sum,p)=>sum+(p.best_score||0),0)||0;
-consttotalTimeMinutes=progressData?.reduce((sum,p)=>sum+(p.time_spent_minutes||0),0)||0;
+const totalChallenges = progressData?.length||0;
+const complet edChallenges =  progressData?.filter(p=>p.status==='completed').length||0;
+const totalPoints = progressData?.reduce((sum,p)=>sum+(p.best_score||0),0)||0;
+const totalTimeMinutes = progressData?.reduce((sum,p)=>sum+(p.time_spent_minutes||0),0)||0;
 
 //Getrecentactivityforstreakcalculation
-const{data:analyticsData}=awaitsupabase
+const{data:analyticsData}=await supabase
 .from('user_analytics')
 .select('date,challenges_completed')
 .eq('user_id',userId)
 .gte('date',newDate(Date.now()-30*24*60*60*1000).toISOString().split('T')[0])
 .order('date',{ascending:false});
 
-letcurrentStreak=0;
-if(analyticsData&&analyticsData.length>0){
+let currentStreak = 0;
+if (analyticsData&&analyticsData.length>0) {
 //Calculatestreakfromrecentdays
-consttoday=newDate().toISOString().split('T')[0];
-constcheckDate=newDate();
+const today = newDate().toISOString().split('T')[0];
+const checkDate = newDate();
 
-for(leti=0;i<30;i++){
-constdateStr=checkDate.toISOString().split('T')[0];
-constdayData=analyticsData.find(d=>d.date===dateStr);
+for(let i = 0;i<30;i++){
+const dateStr = checkDate.toISOString().split('T')[0];
+const dayData = analyticsData.find(d=>d.date===dateStr);
 
-if(dayData&&dayData.challenges_completed>0){
+if (dayData&&dayData.challenges_completed>0) {
 currentStreak++;
-}elseif(dateStr!==today){
+}elseif (dateStr!==today) {
 //Ifnoactivityandnottoday,breakstreak
 break;
 }

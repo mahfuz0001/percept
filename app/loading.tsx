@@ -1,10 +1,10 @@
 export default function Loading() {
 return(
-<divclassName="min-h-screenbg-gradient-to-brfrom-blue-50to-indigo-100flexitems-centerjustify-center">
-<divclassName="text-center">
-<divclassName="inline-blockanimate-spinrounded-fullh-12w-12border-b-2border-blue-600mb-4"></div>
-<h2className="text-xlfont-semiboldtext-gray-900">Loading...</h2>
-<pclassName="text-gray-600mt-2">Pleasewaitwhileweprepareyourexperience</p>
+<div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-centerjustify-center">
+<div className="text-center">
+<div className="inline-block animate-spin rounded-fullh-12w-12border-b-2 border-blue-600mb-4"></div>
+<h2 className="text-xl font-semibold text-gray-900">Loading...</h2>
+<p className="text-gray-600mt-2">Pleasewaitwhileweprepareyourexperience</p>
 </div>
 </div>
 );

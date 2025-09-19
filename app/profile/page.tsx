@@ -1,46 +1,46 @@
-import{auth}from'@clerk/nextjs/server';
-import{redirect}from'next/navigation';
-import{UserButton}from'@clerk/nextjs';
-importLinkfrom'next/link';
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+import { UserButton } from '@clerk/nextjs';
+import Link from 'next/link';
 
-exportdefaultasyncfunctionProfilePage(){
-const{userId}=awaitauth();
+export default async function ProfilePage() {
+  const { userId } = await auth();
 
 if(!userId){
 redirect('/sign-in');
 }
 
 return(
-<divclassName="min-h-screenbg-gray-50">
+<div className="min-h-screen bg-gray-50">
 {/*Header*/}
-<headerclassName="bg-whiteshadow-smborder-bborder-gray-200">
-<divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
-<divclassName="flexjustify-betweenitems-centerh-16">
-<divclassName="flexitems-centerspace-x-8">
-<Linkhref="/dashboard"className="flexitems-center">
-<h1className="text-2xlfont-boldtext-gray-900">Percept</h1>
-<spanclassName="ml-2text-smtext-gray-500">Profile</span>
+<header className="bg-whiteshadow-sm border-b border-gray-200">
+<div className="max-w-7xl mx-autopx-4sm:px-6lg:px-8">
+<div className="flex justify-betweenitems-centerh-16">
+<div className="flex items-centerspace-x-8">
+<Link href="/dashboard"className="flex items-center">
+<h1 className="text-2xlfont-bold text-gray-900">Percept</h1>
+<span className="ml-2text-smtext-gray-500">Profile</span>
 </Link>
-<navclassName="hiddenmd:flexspace-x-6">
-<Linkhref="/dashboard"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
+<nav className="hidden md:flex space-x-6">
+<Link href="/dashboard"className="text-gray-600 hover:text-gray-900font-mediumtransition-colors">
 Dashboard
 </Link>
-<Linkhref="/challenges"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
+<Link href="/challenges"className="text-gray-600 hover:text-gray-900font-mediumtransition-colors">
 Challenges
 </Link>
-<Linkhref="/profile"className="text-blue-600font-medium">
+<Link href="/profile"className="text-blue-600font-medium">
 Profile
 </Link>
-<Linkhref="/analytics"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
+<Link href="/analytics"className="text-gray-600 hover:text-gray-900font-mediumtransition-colors">
 Analytics
 </Link>
 </nav>
 </div>
-<divclassName="flexitems-centerspace-x-4">
+<div className="flex items-centerspace-x-4">
 <UserButton
 appearance={{
 elements:{
-avatarBox:"w-10h-10"
+avatarBox:"w-10 h-10"
 }
 }}
 />
@@ -50,61 +50,61 @@ avatarBox:"w-10h-10"
 </header>
 
 {/*MainContent*/}
-<mainclassName="max-w-4xlmx-autopx-4sm:px-6lg:px-8py-8">
-<divclassName="mb-8">
-<h2className="text-3xlfont-boldtext-gray-900mb-2">
+<main className="max-w-4xl mx-autopx-4sm:px-6lg:px-8py-8">
+<div className="mb-8">
+<h2 className="text-3xlfont-bold text-gray-900 mb-2">
 YourProfile⚙️
 </h2>
-<pclassName="text-lgtext-gray-600">
+<p className="text-lgtext-gray-600">
 Customizeyourlearningexperienceandtrackyourdevelopmentjourney.
 </p>
 </div>
 
 {/*ProfileOverview*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6mb-8">
-<divclassName="flexitems-centerspace-x-6">
-<divclassName="w-20h-20bg-blue-100rounded-fullflexitems-centerjustify-center">
-<spanclassName="text-3xl">👨‍💻</span>
+<div className="bg-whiterounded-lgshadow-sm border border-gray-200p-6mb-8">
+<div className="flex items-centerspace-x-6">
+<div className="w-20 h-20bg-blue-100 rounded-fullflex items-centerjustify-center">
+<span className="text-3xl">👨‍💻</span>
 </div>
-<divclassName="flex-1">
-<h3className="text-xlfont-semiboldtext-gray-900">DeveloperProfile</h3>
-<pclassName="text-gray-600mb-2">MembersinceDecember2024</p>
-<divclassName="flexitems-centerspace-x-4">
-<spanclassName="bg-blue-100text-blue-800text-smfont-mediumpx-3py-1rounded-full">
+<div className="flex-1">
+<h3 className="text-xl font-semibold text-gray-900">DeveloperProfile</h3>
+<p className="text-gray-600 mb-2">MembersinceDecember2024</p>
+<div className="flex items-centerspace-x-4">
+<span className="bg-blue-100 text-blue-800text-sm font-mediumpx-3py-1rounded-full">
 Level3Developer
 </span>
-<spanclassName="text-smtext-gray-600">1,420XP</span>
+<span className="text-smtext-gray-600">1,420XP</span>
 </div>
 </div>
 </div>
 </div>
 
 {/*QuickStats*/}
-<divclassName="gridgrid-cols-1md:grid-cols-3gap-6mb-8">
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6text-center">
-<divclassName="text-3xlfont-boldtext-blue-600mb-2">12</div>
-<divclassName="text-gray-600">ChallengesCompleted</div>
+<div className="grid grid-cols-1md:grid-cols-3gap-6mb-8">
+<div className="bg-whiterounded-lgshadow-sm border border-gray-200p-6text-center">
+<div className="text-3xlfont-bold text-blue-600 mb-2">12</div>
+<div className="text-gray-600">ChallengesCompleted</div>
 </div>
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6text-center">
-<divclassName="text-3xlfont-boldtext-green-600mb-2">7</div>
-<divclassName="text-gray-600">DayStreak</div>
+<div className="bg-whiterounded-lgshadow-sm border border-gray-200p-6text-center">
+<div className="text-3xlfont-bold text-green-600 mb-2">7</div>
+<div className="text-gray-600">DayStreak</div>
 </div>
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6text-center">
-<divclassName="text-3xlfont-boldtext-purple-600mb-2">5</div>
-<divclassName="text-gray-600">SkillsMastered</div>
+<div className="bg-whiterounded-lgshadow-sm border border-gray-200p-6text-center">
+<div className="text-3xlfont-bold text-purple-600 mb-2">5</div>
+<div className="text-gray-600">SkillsMastered</div>
 </div>
 </div>
 
-<divclassName="gridgrid-cols-1lg:grid-cols-2gap-8">
+<div className="grid grid-cols-1lg:grid-cols-2gap-8">
 {/*LearningPreferences*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">LearningPreferences</h3>
-<divclassName="space-y-4">
+<div className="bg-whiterounded-lgshadow-sm border border-gray-200p-6">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">LearningPreferences</h3>
+<div className="space-y-4">
 <div>
-<labelclassName="blocktext-smfont-mediumtext-gray-700mb-2">
+<label className="block text-sm font-medium text-gray-700 mb-2">
 PreferredDifficultyLevel
 </label>
-<selectclassName="w-fullborderborder-gray-300rounded-lgpx-3py-2focus:outline-nonefocus:ring-2focus:ring-blue-500">
+<select className="w-fullborder border-gray-300rounded-lgpx-3py-2focus:outline-none focus:ring-2 focus:ring-blue-500">
 <option>Beginner</option>
 <optionselected>Intermediate</option>
 <option>Advanced</option>
@@ -113,33 +113,33 @@ PreferredDifficultyLevel
 </div>
 
 <div>
-<labelclassName="blocktext-smfont-mediumtext-gray-700mb-2">
+<label className="block text-sm font-medium text-gray-700 mb-2">
 FocusAreas
 </label>
-<divclassName="space-y-2">
+<div className="space-y-2">
 {[
 {name:'FrontendDevelopment',checked:true},
 {name:'BackendDevelopment',checked:false},
 {name:'FullStack',checked:true},
 {name:'MobileDevelopment',checked:false}
 ].map((area,index)=>(
-<labelkey={index}className="flexitems-center">
+<label key={index}className="flex items-center">
 <input
 type="checkbox"
 checked={area.checked}
 className="roundedborder-gray-300text-blue-600focus:ring-blue-500"
 />
-<spanclassName="ml-2text-smtext-gray-700">{area.name}</span>
+<span className="ml-2text-smtext-gray-700">{area.name}</span>
 </label>
 ))}
 </div>
 </div>
 
 <div>
-<labelclassName="blocktext-smfont-mediumtext-gray-700mb-2">
+<label className="block text-sm font-medium text-gray-700 mb-2">
 DailyLearningGoal
 </label>
-<selectclassName="w-fullborderborder-gray-300rounded-lgpx-3py-2focus:outline-nonefocus:ring-2focus:ring-blue-500">
+<select className="w-fullborder border-gray-300rounded-lgpx-3py-2focus:outline-none focus:ring-2 focus:ring-blue-500">
 <option>30minutes</option>
 <optionselected>1hour</option>
 <option>2hours</option>
@@ -150,9 +150,9 @@ DailyLearningGoal
 </div>
 
 {/*Achievements*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">Achievements🏆</h3>
-<divclassName="space-y-4">
+<div className="bg-whiterounded-lgshadow-sm border border-gray-200p-6">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">Achievements🏆</h3>
+<div className="space-y-4">
 {[
 {
 title:"FirstSteps",
@@ -190,24 +190,24 @@ icon:"🌟",
 date:null
 }
 ].map((achievement,index)=>(
-<divkey={index}className={`flexitems-centerp-3rounded-lgborder-2${
+<div key={index}className={`flex items-centerp-3rounded-lg border-2${
 achievement.earned?'border-green-200bg-green-50':'border-gray-200bg-gray-50'
 }`}>
-<divclassName="text-2xlmr-3">{achievement.icon}</div>
-<divclassName="flex-1">
-<h4className={`font-medium${achievement.earned?'text-green-900':'text-gray-500'}`}>
+<div className="text-2xlmr-3">{achievement.icon}</div>
+<div className="flex-1">
+<h4 className={`font-medium${achievement.earned?'text-green-900':'text-gray-500'}`}>
 {achievement.title}
 </h4>
-<pclassName={`text-sm${achievement.earned?'text-green-700':'text-gray-500'}`}>
+<p className={`text-sm${achievement.earned?'text-green-700':'text-gray-500'}`}>
 {achievement.description}
 </p>
 {achievement.date&&(
-<pclassName="text-xstext-green-600mt-1">Earnedon{achievement.date}</p>
+<p className="text-xstext-green-600mt-1">Earnedon{achievement.date}</p>
 )}
 </div>
 {achievement.earned&&(
-<divclassName="text-green-600">
-<svgclassName="w-5h-5"fill="currentColor"viewBox="002020">
+<div className="text-green-600">
+<svg className="w-5 h-5"fill="currentColor"viewBox="002020">
 <pathfillRule="evenodd"d="M16.7075.293a1100101.414l-88a11001-1.4140l-4-4a110011.414-1.414L812.586l7.293-7.293a110011.4140z"clipRule="evenodd"/>
 </svg>
 </div>
@@ -219,9 +219,9 @@ achievement.earned?'border-green-200bg-green-50':'border-gray-200bg-gray-50'
 </div>
 
 {/*NotificationSettings*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6mt-8">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">NotificationSettings</h3>
-<divclassName="space-y-4">
+<div className="bg-whiterounded-lgshadow-sm border border-gray-200p-6mt-8">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">NotificationSettings</h3>
+<div className="space-y-4">
 {[
 {name:'Dailylearningreminders',description:'Getremindedtopracticecodingdaily',enabled:true},
 {name:'Newchallengenotifications',description:'Benotifiedwhennewchallengesareadded',enabled:true},
@@ -229,14 +229,14 @@ achievement.earned?'border-green-200bg-green-50':'border-gray-200bg-gray-50'
 {name:'Weeklyprogressreports',description:'Receiveweeklysummariesofyourprogress',enabled:false},
 {name:'Communityupdates',description:'Updatesaboutnewfeaturesandcommunityevents',enabled:false}
 ].map((setting,index)=>(
-<divkey={index}className="flexitems-centerjustify-betweenp-3borderborder-gray-200rounded-lg">
-<divclassName="flex-1">
-<h4className="font-mediumtext-gray-900">{setting.name}</h4>
-<pclassName="text-smtext-gray-600">{setting.description}</p>
+<div key={index}className="flex items-centerjustify-betweenp-3border border-gray-200rounded-lg">
+<div className="flex-1">
+<h4 className="font-medium text-gray-900">{setting.name}</h4>
+<p className="text-smtext-gray-600">{setting.description}</p>
 </div>
-<labelclassName="relativeinline-flexitems-centercursor-pointer">
-<inputtype="checkbox"className="sr-onlypeer"checked={setting.enabled}/>
-<divclassName="w-11h-6bg-gray-200peer-focus:outline-nonepeer-focus:ring-4peer-focus:ring-blue-300rounded-fullpeerpeer-checked:after:translate-x-fullpeer-checked:after:border-whiteafter:content-['']after:absoluteafter:top-[2px]after:left-[2px]after:bg-whiteafter:border-gray-300after:borderafter:rounded-fullafter:h-5after:w-5after:transition-allpeer-checked:bg-blue-600"></div>
+<label className="relative inline-flex items-centercursor-pointer">
+<input type="checkbox"className="sr-onlypeer"checked={setting.enabled}/>
+<div className="w-11 h-6bg-gray-200peer-focus:outline-nonepeer-focus:ring-4peer-focus:ring-blue-300rounded-fullpeerpeer-checked:after:translate-x-fullpeer-checked:after:border-whiteafter:content-['']after:absolute after:top-[2px]after:left-[2px]after:bg-whiteafter:border-gray-300after:border after:rounded-fullafter:h-5after:w-5after:transition-allpeer-checked:bg-blue-600"></div>
 </label>
 </div>
 ))}
@@ -244,16 +244,16 @@ achievement.earned?'border-green-200bg-green-50':'border-gray-200bg-gray-50'
 </div>
 
 {/*AccountActions*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6mt-8">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">AccountActions</h3>
-<divclassName="space-y-4">
-<buttonclassName="w-fullbg-blue-600hover:bg-blue-700text-whitefont-mediumpy-3px-4rounded-lgtransition-colors">
+<div className="bg-whiterounded-lgshadow-sm border border-gray-200p-6mt-8">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">AccountActions</h3>
+<div className="space-y-4">
+<button className="w-fullbg-blue-600hover:bg-blue-700 text-white font-mediumpy-3px-4rounded-lg transition-colors">
 SaveChanges
 </button>
-<buttonclassName="w-fullbg-gray-100hover:bg-gray-200text-gray-700font-mediumpy-3px-4rounded-lgtransition-colors">
+<button className="w-fullbg-gray-100hover:bg-gray-200 text-gray-700font-mediumpy-3px-4rounded-lg transition-colors">
 ExportProgressData
 </button>
-<buttonclassName="w-fullbg-red-50hover:bg-red-100text-red-600font-mediumpy-3px-4rounded-lgtransition-colors">
+<button className="w-fullbg-red-50hover:bg-red-100 text-red-600font-mediumpy-3px-4rounded-lg transition-colors">
 ResetAllProgress
 </button>
 </div>

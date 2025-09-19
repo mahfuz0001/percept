@@ -1,25 +1,25 @@
-importLinkfrom'next/link';
+import Link from 'next/link';
 
-exportdefaultfunctionDemoPage(){
+export default function DemoPage() {
 return(
-<divclassName="min-h-screenbg-gradient-to-brfrom-blue-50via-whiteto-indigo-50">
+<div className="min-h-screen bg-gradient-to-br from-blue-50via-whiteto-indigo-50">
 {/*Header*/}
-<headerclassName="relativez-10">
-<divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
-<divclassName="flexjustify-betweenitems-centerpy-6">
-<divclassName="flexitems-center">
-<h1className="text-2xlfont-boldtext-gray-900">Percept</h1>
+<header className="relative z-10">
+<div className="max-w-7xl mx-autopx-4sm:px-6lg:px-8">
+<div className="flex justify-betweenitems-centerpy-6">
+<div className="flex items-center">
+<h1 className="text-2xlfont-bold text-gray-900">Percept</h1>
 </div>
-<divclassName="flexitems-centerspace-x-4">
+<div className="flex items-centerspace-x-4">
 <Link
 href="#demo"
-className="text-gray-700hover:text-gray-900font-mediumtransition-colors"
+className="text-gray-700 hover:text-gray-900font-mediumtransition-colors"
 >
 SignIn
 </Link>
 <Link
 href="#demo"
-className="bg-blue-600hover:bg-blue-700text-whitefont-mediumpy-2px-4rounded-lgtransition-colors"
+className="bg-blue-600hover:bg-blue-700 text-white font-mediumpy-2px-4rounded-lg transition-colors"
 >
 GetStarted
 </Link>
@@ -29,62 +29,62 @@ GetStarted
 </header>
 
 {/*HeroSection*/}
-<mainclassName="relative">
-<divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8pt-20pb-32">
-<divclassName="text-center">
-<h1className="text-5xlmd:text-6xlfont-boldtext-gray-900mb-6">
+<main className="relative">
+<div className="max-w-7xl mx-autopx-4sm:px-6lg:px-8pt-20pb-32">
+<div className="text-center">
+<h1 className="text-5xlmd:text-6xlfont-bold text-gray-900 mb-6">
 Escape
-<spanclassName="text-blue-600">TutorialHell</span>
+<span className="text-blue-600">TutorialHell</span>
 </h1>
-<pclassName="text-xlmd:text-2xltext-gray-600mb-8max-w-3xlmx-auto">
+<p className="text-xlmd:text-2xltext-gray-600 mb-8max-w-3xl mx-auto">
 Transformfrompassivelearnertoconfidentdeveloperthrough
 <strong>real-worldchallenges</strong>thatbuildgenuineproblem-solvingskills.
 </p>
-<divclassName="flexflex-colsm:flex-rowgap-4justify-centeritems-centermb-12">
+<div className="flex flex-colsm:flex-rowgap-4justify-centeritems-centermb-12">
 <Link
 href="#demo"
-className="bg-blue-600hover:bg-blue-700text-whitefont-semiboldpy-4px-8rounded-lgtext-lgtransition-allduration-300shadow-lghover:shadow-xltransformhover:-translate-y-1"
+className="bg-blue-600hover:bg-blue-700 text-white font-semiboldpy-4px-8rounded-lgtext-lgtransition-all duration-300shadow-lghover:shadow-xltransformhover:-translate-y-1"
 >
 StartYourJourney
 </Link>
 <Link
 href="#features"
-className="text-gray-700hover:text-gray-900font-semiboldpy-4px-8rounded-lgtext-lgtransition-colorsborder-2border-gray-300hover:border-gray-400"
+className="text-gray-700 hover:text-gray-900font-semiboldpy-4px-8rounded-lgtext-lgtransition-colorsborder-2border-gray-300hover:border-gray-400"
 >
 LearnMore→
 </Link>
 </div>
 
 {/*SocialProof*/}
-<divclassName="flexflex-colsm:flex-rowitems-centerjustify-centergap-8text-gray-600">
-<divclassName="flexitems-center">
-<spanclassName="text-2xlmr-2">⚡</span>
-<spanclassName="font-medium">500+Challenges</span>
+<div className="flex flex-colsm:flex-rowitems-centerjustify-centergap-8text-gray-600">
+<div className="flex items-center">
+<span className="text-2xlmr-2">⚡</span>
+<span className="font-medium">500+Challenges</span>
 </div>
-<divclassName="flexitems-center">
-<spanclassName="text-2xlmr-2">👥</span>
-<spanclassName="font-medium">10,000+Developers</span>
+<div className="flex items-center">
+<span className="text-2xlmr-2">👥</span>
+<span className="font-medium">10,000+Developers</span>
 </div>
-<divclassName="flexitems-center">
-<spanclassName="text-2xlmr-2">🏆</span>
-<spanclassName="font-medium">95%SuccessRate</span>
+<div className="flex items-center">
+<span className="text-2xlmr-2">🏆</span>
+<span className="font-medium">95%SuccessRate</span>
 </div>
 </div>
 </div>
 </div>
 
 {/*DemoAlert*/}
-<sectionclassName="py-12bg-blue-600">
-<divclassName="max-w-4xlmx-autotext-centerpx-4sm:px-6lg:px-8">
-<h2className="text-2xlmd:text-3xlfont-boldtext-whitemb-4">
+<section className="py-12bg-blue-600">
+<div className="max-w-4xl mx-autotext-centerpx-4sm:px-6lg:px-8">
+<h2 className="text-2xlmd:text-3xlfont-bold text-whitemb-4">
 🚀EnhancedUIShowcase
 </h2>
-<pclassName="text-lgtext-blue-100mb-6">
+<p className="text-lgtext-blue-100 mb-6">
 ProfessionalUIimprovementsforthePerceptplatform
 </p>
-<divclassName="bg-white/10rounded-lgp-6text-leftmax-w-2xlmx-auto">
-<h3className="font-semiboldtext-whitemb-3">✅ImplementedFeatures:</h3>
-<ulclassName="text-blue-100space-y-1text-sm">
+<div className="bg-white/10rounded-lgp-6text-leftmax-w-2xl mx-auto">
+<h3 className="font-semibold text-whitemb-3">✅ImplementedFeatures:</h3>
+<ul className="text-blue-100space-y-1text-sm">
 <li>•Fixedauthentication404errors</li>
 <li>•Enhancedlandingpagedesign</li>
 <li>•Addederrorhandling&ratelimiting</li>
@@ -97,50 +97,50 @@ ProfessionalUIimprovementsforthePerceptplatform
 </section>
 
 {/*FeaturesSection*/}
-<sectionid="features"className="py-20bg-white">
-<divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
-<divclassName="text-centermb-16">
-<h2className="text-3xlmd:text-4xlfont-boldtext-gray-900mb-4">
+<section id="features"className="py-20bg-white">
+<div className="max-w-7xl mx-autopx-4sm:px-6lg:px-8">
+<div className="text-centermb-16">
+<h2 className="text-3xlmd:text-4xlfont-bold text-gray-900 mb-4">
 WhyPerceptWorks
 </h2>
-<pclassName="text-xltext-gray-600max-w-2xlmx-auto">
+<p className="text-xltext-gray-600max-w-2xl mx-auto">
 Ouranti-tutorialapproachbuildsrealdeveloperskills
 </p>
 </div>
 
-<divclassName="gridgrid-cols-1md:grid-cols-3gap-8">
-<divclassName="text-centerp-6">
-<divclassName="w-16h-16bg-blue-100rounded-fullflexitems-centerjustify-centermx-automb-4">
-<spanclassName="text-2xl">🎯</span>
+<div className="grid grid-cols-1md:grid-cols-3gap-8">
+<div className="text-centerp-6">
+<div className="w-16 h-16bg-blue-100 rounded-fullflex items-centerjustify-centermx-automb-4">
+<span className="text-2xl">🎯</span>
 </div>
-<h3className="text-xlfont-semiboldtext-gray-900mb-2">
+<h3 className="text-xl font-semibold text-gray-900 mb-2">
 NoHand-Holding
 </h3>
-<pclassName="text-gray-600">
+<p className="text-gray-600">
 Getproblems,notsolutions.Learntoresearchandbuildindependently.
 </p>
 </div>
 
-<divclassName="text-centerp-6">
-<divclassName="w-16h-16bg-green-100rounded-fullflexitems-centerjustify-centermx-automb-4">
-<spanclassName="text-2xl">🏗️</span>
+<div className="text-centerp-6">
+<div className="w-16 h-16bg-green-100 rounded-fullflex items-centerjustify-centermx-automb-4">
+<span className="text-2xl">🏗️</span>
 </div>
-<h3className="text-xlfont-semiboldtext-gray-900mb-2">
+<h3 className="text-xl font-semibold text-gray-900 mb-2">
 RealChallenges
 </h3>
-<pclassName="text-gray-600">
+<p className="text-gray-600">
 SolveactualproblemsacrossHTML,CSS,JavaScript,React,andAPIs.
 </p>
 </div>
 
-<divclassName="text-centerp-6">
-<divclassName="w-16h-16bg-purple-100rounded-fullflexitems-centerjustify-centermx-automb-4">
-<spanclassName="text-2xl">🤖</span>
+<div className="text-centerp-6">
+<div className="w-16 h-16bg-purple-100 rounded-fullflex items-centerjustify-centermx-automb-4">
+<span className="text-2xl">🤖</span>
 </div>
-<h3className="text-xlfont-semiboldtext-gray-900mb-2">
+<h3 className="text-xl font-semibold text-gray-900 mb-2">
 AI-PoweredHints
 </h3>
-<pclassName="text-gray-600">
+<p className="text-gray-600">
 Getprogressivenudgeswithoutspoilingsolutions.
 </p>
 </div>
@@ -149,17 +149,17 @@ Getprogressivenudgeswithoutspoilingsolutions.
 </section>
 
 {/*CTASection*/}
-<sectionclassName="py-20bg-blue-600">
-<divclassName="max-w-4xlmx-autotext-centerpx-4sm:px-6lg:px-8">
-<h2className="text-3xlmd:text-4xlfont-boldtext-whitemb-4">
+<section className="py-20bg-blue-600">
+<div className="max-w-4xl mx-autotext-centerpx-4sm:px-6lg:px-8">
+<h2 className="text-3xlmd:text-4xlfont-bold text-whitemb-4">
 ReadytoBreakFreefromTutorialHell?
 </h2>
-<pclassName="text-xltext-blue-100mb-8">
+<p className="text-xltext-blue-100 mb-8">
 Joindeveloperstransformingtheirskillsthroughrealproblemsolving
 </p>
 <Link
 href="#demo"
-className="bg-whitehover:bg-gray-100text-blue-600font-semiboldpy-4px-8rounded-lgtext-lgtransition-colorsshadow-lghover:shadow-xlinline-block"
+className="bg-whitehover:bg-gray-100 text-blue-600font-semiboldpy-4px-8rounded-lgtext-lgtransition-colorsshadow-lghover:shadow-xlinline-block"
 >
 StartSolvingRealProblems
 </Link>
@@ -168,11 +168,11 @@ StartSolvingRealProblems
 </main>
 
 {/*Footer*/}
-<footerclassName="bg-gray-900text-whitepy-12">
-<divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
-<divclassName="text-center">
-<h3className="text-2xlfont-boldmb-4">Percept</h3>
-<pclassName="text-gray-400mb-4">
+<footer className="bg-gray-900 text-whitepy-12">
+<div className="max-w-7xl mx-autopx-4sm:px-6lg:px-8">
+<div className="text-center">
+<h3 className="text-2xlfont-boldmb-4">Percept</h3>
+<p className="text-gray-400 mb-4">
 Theanti-tutorialhellplatformforconfidentdevelopers
 </p>
 </div>

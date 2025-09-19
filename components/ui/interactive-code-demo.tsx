@@ -1,13 +1,13 @@
 "useclient";
 
 importReact,{useState,useEffect,useRef}from"react";
-import{motion,AnimatePresence}from"framer-motion";
-import{Play,RotateCcw,Code2,Eye,Sparkles,Check}from"lucide-react";
-import{Button}from"@/components/ui/button";
-import{Card,CardContent,CardHeader,CardTitle}from"@/components/ui/card";
-import{Badge}from"@/components/ui/badge";
+import { motion,AnimatePresence } from"framer-motion";
+import { Play,RotateCcw,Code2,Eye,Sparkles,Check } from"lucide-react";
+import { Button } from"@/components/ui/button";
+import { Card,CardContent,CardHeader,CardTitle } from"@/components/ui/card";
+import { Badge } from"@/components/ui/badge";
 
-constcodeExamples=[
+const codeExamples = [
 {
 id:"html",
 title:"HTMLBasics",
@@ -17,7 +17,7 @@ code:`<divclass="welcome-card">
 <p>Welcometocoding!</p>
 <button>GetStarted</button>
 </div>`,
-preview:`<divstyle="
+preview:`<div style="
 background:linear-gradient(135deg,#667eea0%,#764ba2100%);
 padding:2rem;
 border-radius:12px;
@@ -25,9 +25,9 @@ color:white;
 text-align:center;
 font-family:system-ui;
 ">
-<h1style="margin:001rem0;font-size:2rem;">Hello,World!</h1>
-<pstyle="margin:001.5rem0;opacity:0.9;">Welcometocoding!</p>
-<buttonstyle="
+<h1 style="margin:001rem0;font-size:2rem;">Hello,World!</h1>
+<p style="margin:001.5rem0;opacity:0.9;">Welcometocoding!</p>
+<button style="
 background:white;
 color:#667eea;
 border:none;
@@ -54,8 +54,8 @@ animation:bounce2sinfinite;
 0%,100%{transform:translateY(0);}
 50%{transform:translateY(-30px);}
 }`,
-preview:`<divstyle="padding:2rem;background:#f8f9fa;border-radius:12px;text-align:center;">
-<divstyle="
+preview:`<div style="padding:2rem;background:#f8f9fa;border-radius:12px;text-align:center;">
+<div style="
 width:50px;
 height:50px;
 background:#ff6b6b;
@@ -75,11 +75,11 @@ animation:bounce2sinfinite;
 id:"javascript",
 title:"JavaScriptMagic",
 description:"Addinteractivity",
-code:`functioncreateConfetti(){
-constcolors=['#ff6b6b','#4ecdc4','#45b7d1','#f9ca24'];
+code:`function createConfetti() {
+const colors = ['#ff6b6b','#4ecdc4','#45b7d1','#f9ca24'];
 
-for(leti=0;i<50;i++){
-constconfetti=document.createElement('div');
+for(let i = 0;i<50;i++){
+const confetti = document.createElement('div');
 confetti.style.cssText=\`
 position:fixed;
 width:10px;
@@ -93,7 +93,7 @@ border-radius:50%;
 document.body.appendChild(confetti);
 }
 }`,
-preview:`<divstyle="padding:2rem;background:#2d3748;color:white;border-radius:12px;text-align:center;">
+preview:`<div style="padding:2rem;background:#2d3748;color:white;border-radius:12px;text-align:center;">
 <buttononclick="createConfetti()"style="
 background:linear-gradient(45deg,#ff6b6b,#4ecdc4);
 color:white;
@@ -105,10 +105,10 @@ cursor:pointer;
 font-size:1.1rem;
 ">🎉CreateConfetti!</button>
 <script>
-functioncreateConfetti(){
-constcolors=['#ff6b6b','#4ecdc4','#45b7d1','#f9ca24'];
-for(leti=0;i<30;i++){
-constconfetti=document.createElement('div');
+function createConfetti() {
+const colors = ['#ff6b6b','#4ecdc4','#45b7d1','#f9ca24'];
+for(let i = 0;i<30;i++){
+const confetti = document.createElement('div');
 confetti.style.cssText=\`
 position:fixed;
 width:8px;
@@ -137,16 +137,16 @@ opacity:0;
 },
 ];
 
-exportfunctionInteractiveCodeDemo(){
+export function InteractiveCodeDemo() {
 const[currentExample,setCurrentExample]=useState(0);
 const[isPlaying,setIsPlaying]=useState(false);
 const[showPreview,setShowPreview]=useState(false);
 const[typedCode,setTypedCode]=useState("");
 const[completedSteps,setCompletedSteps]=useState<number[]>([]);
 const[hasMounted,setHasMounted]=useState(false);
-constdemoRef=useRef<HTMLDivElement>(null);
+const demoRef = useRef<HTMLDivElement>(null);
 
-constexample=codeExamples[currentExample];
+const example = codeExamples[currentExample];
 
 useEffect(()=>{
 setTypedCode("");
@@ -155,21 +155,21 @@ setIsPlaying(false);
 },[currentExample]);
 
 useEffect(()=>{
-if(!hasMounted){
+if (!hasMounted) {
 typeCode();
 setHasMounted(true);
 }
 },[hasMounted]);
 
-consttypeCode=async()=>{
+const typeCode = async()=>{
 if(isPlaying)return;
 setIsPlaying(true);
 setTypedCode("");
 
-constcode=example.code;
-for(leti=0;i<=code.length;i++){
+const code = example.code;
+for(let i = 0;i<=code.length;i++){
 setTypedCode(code.slice(0,i));
-awaitnewPromise((resolve)=>setTimeout(resolve,30));
+await newPromise((resolve)=>setTimeout(resolve,30));
 }
 
 setIsPlaying(false);
@@ -180,30 +180,30 @@ setCompletedSteps((prev)=>[...prev,currentExample]);
 }
 };
 
-constresetDemo=()=>{
+const resetDemo = ()=>{
 setTypedCode("");
 setShowPreview(false);
 setIsPlaying(false);
 };
 
 return(
-<divref={demoRef}className="w-fullmax-w-4xlmx-auto">
+<divref={demoRef}className="w-fullmax-w-4xl mx-auto">
 <motion.div
 initial={{opacity:0,y:20}}
 animate={{opacity:1,y:0}}
 className="text-centermb-8"
 >
-<divclassName="flexitems-centerjustify-centergap-2mb-4">
-<SparklesclassName="w-6h-6text-purple-500"/>
-<h3className="text-2xlfont-bold">TryitYourself!</h3>
-<SparklesclassName="w-6h-6text-blue-500"/>
+<div className="flex items-centerjustify-centergap-2mb-4">
+<Sparkles className="w-6 h-6text-purple-500"/>
+<h3 className="text-2xlfont-bold">TryitYourself!</h3>
+<Sparkles className="w-6 h-6text-blue-500"/>
 </div>
-<pclassName="text-gray-600dark:text-gray-400">
+<p className="text-gray-600dark:text-gray-400">
 Watchcodecometolifeasyoutypeit
 </p>
 </motion.div>
 
-<divclassName="flexflex-wrapjustify-centergap-2mb-6">
+<div className="flex flex-wrapjustify-centergap-2mb-6">
 {codeExamples.map((ex,index)=>(
 <Button
 key={ex.id}
@@ -213,49 +213,49 @@ className="relative"
 size="sm"
 >
 {completedSteps.includes(index)&&(
-<CheckclassName="w-4h-4mr-1text-green-500"/>
+<Check className="w-4 h-4mr-1text-green-500"/>
 )}
 {ex.title}
 </Button>
 ))}
 </div>
 
-<divclassName="gridmd:grid-cols-2gap-6">
-<CardclassName="relativeoverflow-hidden">
-<CardHeaderclassName="pb-3">
-<divclassName="flexitems-centerjustify-between">
+<div className="gridmd:grid-cols-2gap-6">
+<Card className="relative overflow-hidden">
+<CardHeader className="pb-3">
+<div className="flex items-centerjustify-between">
 <div>
-<CardTitleclassName="text-lg">{example.title}</CardTitle>
-<pclassName="text-smtext-gray-600dark:text-gray-400">
+<CardTitle className="text-lg">{example.title}</CardTitle>
+<p className="text-smtext-gray-600dark:text-gray-400">
 {example.description}
 </p>
 </div>
-<divclassName="flexgap-2">
+<div className="flexgap-2">
 <Button
 size="sm"
 onClick={typeCode}
 disabled={isPlaying}
 className="bg-green-600hover:bg-green-700"
 >
-<PlayclassName="w-4h-4mr-1"/>
+<Play className="w-4 h-4mr-1"/>
 {isPlaying?"Typing...":"Run"}
 </Button>
 <Buttonsize="sm"variant="outline"onClick={resetDemo}>
-<RotateCcwclassName="w-4h-4"/>
+<RotateCcw className="w-4 h-4"/>
 </Button>
 </div>
 </div>
 </CardHeader>
 <CardContent>
-<divclassName="relative">
-<divclassName="bg-gray-900rounded-lgp-4font-monotext-sm">
-<preclassName="text-green-400whitespace-pre-wrapoverflow-hidden">
+<div className="relative">
+<div className="bg-gray-900 rounded-lgp-4font-mono text-sm">
+<pre className="text-green-400whitespace-pre-wrapoverflow-hidden">
 {typedCode}
 {isPlaying&&(
 <motion.span
 animate={{opacity:[1,0]}}
 transition={{duration:0.8,repeat:Infinity}}
-className="bg-green-400inline-blockw-2h-5ml-1"
+className="bg-green-400inline-blockw-2 h-5ml-1"
 />
 )}
 </pre>
@@ -264,14 +264,14 @@ className="bg-green-400inline-blockw-2h-5ml-1"
 </CardContent>
 </Card>
 
-<CardclassName="relativeoverflow-hidden">
-<CardHeaderclassName="pb-3">
-<divclassName="flexitems-centergap-2">
-<EyeclassName="w-5h-5"/>
-<CardTitleclassName="text-lg">LivePreview</CardTitle>
+<Card className="relative overflow-hidden">
+<CardHeader className="pb-3">
+<div className="flex items-centergap-2">
+<Eye className="w-5 h-5"/>
+<CardTitle className="text-lg">LivePreview</CardTitle>
 {showPreview&&(
 <Badgevariant="secondary"className="text-xs">
-<SparklesclassName="w-3h-3mr-1"/>
+<Sparkles className="w-3 h-3mr-1"/>
 Live
 </Badge>
 )}
@@ -286,7 +286,7 @@ initial={{opacity:0,scale:0.9}}
 animate={{opacity:1,scale:1}}
 exit={{opacity:0,scale:0.9}}
 transition={{duration:0.3}}
-className="borderrounded-lgoverflow-hiddenbg-whitedark:bg-gray-800"
+className="border rounded-lgoverflow-hiddenbg-whitedark:bg-gray-800"
 dangerouslySetInnerHTML={{__html:example.preview}}
 />
 ):(
@@ -295,11 +295,11 @@ key="placeholder"
 initial={{opacity:0}}
 animate={{opacity:1}}
 exit={{opacity:0}}
-className="h-32bg-gray-100dark:bg-gray-800rounded-lgflexitems-centerjustify-centertext-gray-500dark:text-gray-400"
+className="h-32bg-gray-100dark:bg-gray-800 rounded-lgflex items-centerjustify-centertext-gray-500dark:text-gray-400"
 >
-<divclassName="text-center">
-<Code2className="w-8h-8mx-automb-2opacity-50"/>
-<pclassName="text-sm">Runthecodetoseethemagic!</p>
+<div className="text-center">
+<Code2 className="w-8 h-8mx-automb-2opacity-50"/>
+<p className="text-sm">Runthecodetoseethemagic!</p>
 </div>
 </motion.div>
 )}
@@ -314,9 +314,9 @@ initial={{opacity:0,y:10}}
 animate={{opacity:1,y:0}}
 className="mt-6text-center"
 >
-<divclassName="inline-flexitems-centergap-2px-4py-2bg-green-100dark:bg-green-900rounded-fulltext-green-800dark:text-green-200">
-<CheckclassName="w-4h-4"/>
-<spanclassName="text-smfont-medium">
+<div className="inline-flex items-centergap-2px-4py-2bg-green-100dark:bg-green-900 rounded-fulltext-green-800dark:text-green-200">
+<Check className="w-4 h-4"/>
+<span className="text-sm font-medium">
 {completedSteps.length}of{codeExamples.length}examples
 completed!
 </span>

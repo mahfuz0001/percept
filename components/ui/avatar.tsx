@@ -3,7 +3,7 @@
 import*asReactfrom"react"
 import*asAvatarPrimitivefrom"@radix-ui/react-avatar"
 
-import{cn}from"@/lib/utils"
+import { cn } from"@/lib/utils"
 
 function Avatar({
 className,
@@ -13,7 +13,7 @@ return(
 <AvatarPrimitive.Root
 data-slot="avatar"
 className={cn(
-"relativeflexsize-8shrink-0overflow-hiddenrounded-full",
+"relative flexsize-8shrink-0overflow-hiddenrounded-full",
 className
 )}
 {...props}
