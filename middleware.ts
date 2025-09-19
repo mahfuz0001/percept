@@ -18,7 +18,7 @@ function getClientIP(request: NextRequest): string {
   const xForwardedFor = request.headers.get('x-forwarded-for');
   const xRealIp = request.headers.get('x-real-ip');
   const cfConnectingIp = request.headers.get('cf-connecting-ip');
-
+  
   if (xForwardedFor) {
     return xForwardedFor.split(',')[0].trim();
   }
@@ -28,28 +28,29 @@ function getClientIP(request: NextRequest): string {
   if (cfConnectingIp) {
     return cfConnectingIp;
   }
-
-  return 'unknown';
+  
+  return request.ip || 'unknown';
 }
 
 export default clerkMiddleware(async (auth, req) => {
   try {
     const ip = getClientIP(req);
     const url = req.nextUrl.pathname;
-
+    
+    // Apply rate limiting to API routes and auth routes
     if (url.startsWith('/api') || url.startsWith('/sign-') || isPublicApiRoute(req)) {
       const identifier = `${ip}:${url}`;
-      const limit = url.startsWith('/api') ? 60 : 30;
-
+      const limit = url.startsWith('/api') ? 60 : 30; // 60 requests per 15min for API, 30 for auth
+      
       if (!rateLimit(identifier, limit)) {
         const headers = getRateLimitHeaders(identifier, limit);
         return new NextResponse(
-          JSON.stringify({
-            error: 'Too many requests',
-            message: 'Rate limit exceeded. Please try again later.'
+          JSON.stringify({ 
+            error: 'Too many requests', 
+            message: 'Rate limit exceeded. Please try again later.' 
           }),
-          {
-            status: 429,
+          { 
+            status: 429, 
             headers: {
               'Content-Type': 'application/json',
               ...headers,
@@ -57,7 +58,8 @@ export default clerkMiddleware(async (auth, req) => {
           }
         );
       }
-
+      
+      // Add rate limit headers to successful responses
       const response = NextResponse.next();
       const headers = getRateLimitHeaders(identifier, limit);
       Object.entries(headers).forEach(([key, value]) => {
@@ -65,26 +67,24 @@ export default clerkMiddleware(async (auth, req) => {
       });
     }
 
+    // Protect routes that require authentication
     if (isProtectedRoute(req)) {
       await auth.protect();
     }
 
     return NextResponse.next();
   } catch (error) {
-    if (error instanceof Error && error.message.includes('NEXT_REDIRECT')) {
-      // Re-throw the redirect error to let Next.js handle it
-      throw error;
-    }
     console.error('Middleware error:', error);
-
+    
+    // Return a generic error response
     return new NextResponse(
-      JSON.stringify({
-        error: 'Internal server error',
-        message: 'Something went wrong. Please try again.'
+      JSON.stringify({ 
+        error: 'Internal server error', 
+        message: 'Something went wrong. Please try again.' 
       }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
+      { 
+        status: 500, 
+        headers: { 'Content-Type': 'application/json' } 
       }
     );
   }
@@ -92,7 +92,9 @@ export default clerkMiddleware(async (auth, req) => {
 
 export const config = {
   matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
     '/(api|trpc)(.*)',
   ],
 };

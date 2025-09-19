@@ -1,255 +1,255 @@
---PerceptPlatformDatabaseSchema
---Thisschemasupportstheanti-tutorialhellplatformwithchallenge-basedlearning
+-- Percept Platform Database Schema
+-- This schema supports the anti-tutorial hell platform with challenge-based learning
 
---Enablenecessaryextensions
-CREATEEXTENSIONIFNOTEXISTS"uuid-ossp";
-CREATEEXTENSIONIFNOTEXISTS"pgcrypto";
+-- Enable necessary extensions
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
---Userstable(extendsClerkuserdata)
-CREATETABLEIFNOTEXISTSusers(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-clerk_user_idTEXTUNIQUENOTNULL,
-emailTEXTUNIQUENOTNULL,
-usernameTEXTUNIQUE,
-full_nameTEXT,
-avatar_urlTEXT,
-created_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-updated_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-last_seen_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-is_activeBOOLEANDEFAULTTRUE,
-preferencesJSONBDEFAULT'{}'::JSONB
+-- Users table (extends Clerk user data)
+CREATE TABLE IF NOT EXISTS users (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  clerk_user_id TEXT UNIQUE NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  username TEXT UNIQUE,
+  full_name TEXT,
+  avatar_url TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  last_seen_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  is_active BOOLEAN DEFAULT TRUE,
+  preferences JSONB DEFAULT '{}'::JSONB
 );
 
---Technologiestable(HTML,CSS,JavaScript,TypeScript,React,etc.)
-CREATETABLEIFNOTEXISTStechnologies(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-nameTEXTUNIQUENOTNULL,
-slugTEXTUNIQUENOTNULL,
-descriptionTEXT,
-icon_urlTEXT,
-colorTEXT,
-difficulty_levelINTEGERDEFAULT1,--1=Beginner,2=Intermediate,3=Advanced
-is_activeBOOLEANDEFAULTTRUE,
-created_atTIMESTAMPWITHTIMEZONEDEFAULTNOW()
+-- Technologies table (HTML, CSS, JavaScript, TypeScript, React, etc.)
+CREATE TABLE IF NOT EXISTS technologies (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT UNIQUE NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  description TEXT,
+  icon_url TEXT,
+  color TEXT,
+  difficulty_level INTEGER DEFAULT 1, -- 1 = Beginner, 2 = Intermediate, 3 = Advanced
+  is_active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
---Challengecategories
-CREATETABLEIFNOTEXISTSchallenge_categories(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-nameTEXTUNIQUENOTNULL,
-slugTEXTUNIQUENOTNULL,
-descriptionTEXT,
-iconTEXT,
-sort_orderINTEGERDEFAULT0,
-is_activeBOOLEANDEFAULTTRUE,
-created_atTIMESTAMPWITHTIMEZONEDEFAULTNOW()
+-- Challenge categories
+CREATE TABLE IF NOT EXISTS challenge_categories (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT UNIQUE NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  description TEXT,
+  icon TEXT,
+  sort_order INTEGER DEFAULT 0,
+  is_active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
---Challengestable
-CREATETABLEIFNOTEXISTSchallenges(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-titleTEXTNOTNULL,
-slugTEXTUNIQUENOTNULL,
-descriptionTEXTNOTNULL,
-difficulty_levelINTEGERNOTNULLDEFAULT1,--1=Beginner,2=Intermediate,3=Advanced
-category_idUUIDREFERENCESchallenge_categories(id)ONDELETECASCADE,
-technology_idUUIDREFERENCEStechnologies(id)ONDELETECASCADE,
-
---Challengecontent
-problem_statementTEXTNOTNULL,
-requirementsTEXT[],--Arrayofrequirements
-starter_codeTEXT,
-solution_templateTEXT,
-test_casesJSONBDEFAULT'[]'::JSONB,
-
---Validationandhints
-validation_criteriaJSONBDEFAULT'{}'::JSONB,
-hint_systemJSONBDEFAULT'[]'::JSONB,--Progressivehints
-
---Metadata
-estimated_time_minutesINTEGER,
-pointsINTEGERDEFAULT100,
-tagsTEXT[],
-prerequisitesUUID[],--ArrayofprerequisitechallengeIDs
-
---Statusandtiming
-is_publishedBOOLEANDEFAULTFALSE,
-created_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-updated_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-created_byUUIDREFERENCESusers(id)ONDELETESETNULL
+-- Challenges table
+CREATE TABLE IF NOT EXISTS challenges (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  description TEXT NOT NULL,
+  difficulty_level INTEGER NOT NULL DEFAULT 1, -- 1 = Beginner, 2 = Intermediate, 3 = Advanced
+  category_id UUID REFERENCES challenge_categories(id) ON DELETE CASCADE,
+  technology_id UUID REFERENCES technologies(id) ON DELETE CASCADE,
+  
+  -- Challenge content
+  problem_statement TEXT NOT NULL,
+  requirements TEXT[], -- Array of requirements
+  starter_code TEXT,
+  solution_template TEXT,
+  test_cases JSONB DEFAULT '[]'::JSONB,
+  
+  -- Validation and hints
+  validation_criteria JSONB DEFAULT '{}'::JSONB,
+  hint_system JSONB DEFAULT '[]'::JSONB, -- Progressive hints
+  
+  -- Metadata
+  estimated_time_minutes INTEGER,
+  points INTEGER DEFAULT 100,
+  tags TEXT[],
+  prerequisites UUID[], -- Array of prerequisite challenge IDs
+  
+  -- Status and timing
+  is_published BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  created_by UUID REFERENCES users(id) ON DELETE SET NULL
 );
 
---Userchallengeprogress
-CREATETABLEIFNOTEXISTSuser_challenge_progress(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-user_idUUIDREFERENCESusers(id)ONDELETECASCADE,
-challenge_idUUIDREFERENCESchallenges(id)ONDELETECASCADE,
-
---Progresstracking
-statusTEXTNOTNULLDEFAULT'not_started',--not_started,in_progress,completed,submitted
-current_codeTEXT,
-completion_percentageDECIMAL(5,2)DEFAULT0,
-
---Timingdata
-started_atTIMESTAMPWITHTIMEZONE,
-completed_atTIMESTAMPWITHTIMEZONE,
-time_spent_minutesINTEGERDEFAULT0,
-
---Submissiondata
-submission_countINTEGERDEFAULT0,
-last_submission_atTIMESTAMPWITHTIMEZONE,
-best_scoreINTEGERDEFAULT0,
-
---AIinteraction
-hints_usedINTEGERDEFAULT0,
-ai_interactionsJSONBDEFAULT'[]'::JSONB,
-
-created_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-updated_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-
-UNIQUE(user_id,challenge_id)
+-- User challenge progress
+CREATE TABLE IF NOT EXISTS user_challenge_progress (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  challenge_id UUID REFERENCES challenges(id) ON DELETE CASCADE,
+  
+  -- Progress tracking
+  status TEXT NOT NULL DEFAULT 'not_started', -- not_started, in_progress, completed, submitted
+  current_code TEXT,
+  completion_percentage DECIMAL(5,2) DEFAULT 0,
+  
+  -- Timing data
+  started_at TIMESTAMP WITH TIME ZONE,
+  completed_at TIMESTAMP WITH TIME ZONE,
+  time_spent_minutes INTEGER DEFAULT 0,
+  
+  -- Submission data
+  submission_count INTEGER DEFAULT 0,
+  last_submission_at TIMESTAMP WITH TIME ZONE,
+  best_score INTEGER DEFAULT 0,
+  
+  -- AI interaction
+  hints_used INTEGER DEFAULT 0,
+  ai_interactions JSONB DEFAULT '[]'::JSONB,
+  
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  
+  UNIQUE(user_id, challenge_id)
 );
 
---Userachievements
-CREATETABLEIFNOTEXISTSachievements(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-nameTEXTUNIQUENOTNULL,
-descriptionTEXTNOTNULL,
-iconTEXT,
-badge_colorTEXT,
-pointsINTEGERDEFAULT0,
-criteriaJSONBNOTNULL,--Conditionsforearningachievement
-is_activeBOOLEANDEFAULTTRUE,
-created_atTIMESTAMPWITHTIMEZONEDEFAULTNOW()
+-- User achievements
+CREATE TABLE IF NOT EXISTS achievements (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT UNIQUE NOT NULL,
+  description TEXT NOT NULL,
+  icon TEXT,
+  badge_color TEXT,
+  points INTEGER DEFAULT 0,
+  criteria JSONB NOT NULL, -- Conditions for earning achievement
+  is_active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
---Userearnedachievements
-CREATETABLEIFNOTEXISTSuser_achievements(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-user_idUUIDREFERENCESusers(id)ONDELETECASCADE,
-achievement_idUUIDREFERENCESachievements(id)ONDELETECASCADE,
-earned_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-progress_dataJSONBDEFAULT'{}'::JSONB,
-
-UNIQUE(user_id,achievement_id)
+-- User earned achievements
+CREATE TABLE IF NOT EXISTS user_achievements (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  achievement_id UUID REFERENCES achievements(id) ON DELETE CASCADE,
+  earned_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  progress_data JSONB DEFAULT '{}'::JSONB,
+  
+  UNIQUE(user_id, achievement_id)
 );
 
---Useranalyticsandlearningpath
-CREATETABLEIFNOTEXISTSuser_analytics(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-user_idUUIDREFERENCESusers(id)ONDELETECASCADE,
-
---Daily/Weeklystats
-dateDATENOTNULL,
-challenges_attemptedINTEGERDEFAULT0,
-challenges_completedINTEGERDEFAULT0,
-time_spent_minutesINTEGERDEFAULT0,
-hints_usedINTEGERDEFAULT0,
-points_earnedINTEGERDEFAULT0,
-
---Technologyfocus
-technologies_practicedTEXT[],
-primary_technologyTEXT,
-
-created_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-
-UNIQUE(user_id,date)
+-- User analytics and learning path
+CREATE TABLE IF NOT EXISTS user_analytics (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  
+  -- Daily/Weekly stats
+  date DATE NOT NULL,
+  challenges_attempted INTEGER DEFAULT 0,
+  challenges_completed INTEGER DEFAULT 0,
+  time_spent_minutes INTEGER DEFAULT 0,
+  hints_used INTEGER DEFAULT 0,
+  points_earned INTEGER DEFAULT 0,
+  
+  -- Technology focus
+  technologies_practiced TEXT[],
+  primary_technology TEXT,
+  
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  
+  UNIQUE(user_id, date)
 );
 
---Learningpaths(curatedsequencesofchallenges)
-CREATETABLEIFNOTEXISTSlearning_paths(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-nameTEXTNOTNULL,
-descriptionTEXT,
-difficulty_levelINTEGERDEFAULT1,
-estimated_duration_hoursINTEGER,
-technology_idUUIDREFERENCEStechnologies(id)ONDELETECASCADE,
-challenge_sequenceUUID[],--OrderedarrayofchallengeIDs
-is_publishedBOOLEANDEFAULTFALSE,
-created_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-created_byUUIDREFERENCESusers(id)ONDELETESETNULL
+-- Learning paths (curated sequences of challenges)
+CREATE TABLE IF NOT EXISTS learning_paths (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  description TEXT,
+  difficulty_level INTEGER DEFAULT 1,
+  estimated_duration_hours INTEGER,
+  technology_id UUID REFERENCES technologies(id) ON DELETE CASCADE,
+  challenge_sequence UUID[], -- Ordered array of challenge IDs
+  is_published BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  created_by UUID REFERENCES users(id) ON DELETE SET NULL
 );
 
---Userlearningpathprogress
-CREATETABLEIFNOTEXISTSuser_learning_path_progress(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-user_idUUIDREFERENCESusers(id)ONDELETECASCADE,
-learning_path_idUUIDREFERENCESlearning_paths(id)ONDELETECASCADE,
-current_challenge_indexINTEGERDEFAULT0,
-completed_challengesUUID[],
-started_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-completed_atTIMESTAMPWITHTIMEZONE,
-
-UNIQUE(user_id,learning_path_id)
+-- User learning path progress
+CREATE TABLE IF NOT EXISTS user_learning_path_progress (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  learning_path_id UUID REFERENCES learning_paths(id) ON DELETE CASCADE,
+  current_challenge_index INTEGER DEFAULT 0,
+  completed_challenges UUID[],
+  started_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  completed_at TIMESTAMP WITH TIME ZONE,
+  
+  UNIQUE(user_id, learning_path_id)
 );
 
---Codesubmissions(forreviewandanalysis)
-CREATETABLEIFNOTEXISTScode_submissions(
-idUUIDPRIMARYKEYDEFAULTuuid_generate_v4(),
-user_idUUIDREFERENCESusers(id)ONDELETECASCADE,
-challenge_idUUIDREFERENCESchallenges(id)ONDELETECASCADE,
-
---Submissioncontent
-submitted_codeTEXTNOTNULL,
-languageTEXTNOTNULL,
-
---Analysisresults
-passes_testsBOOLEANDEFAULTFALSE,
-test_resultsJSONBDEFAULT'{}'::JSONB,
-ai_feedbackJSONBDEFAULT'{}'::JSONB,
-scoreINTEGERDEFAULT0,
-
---Metadata
-submitted_atTIMESTAMPWITHTIMEZONEDEFAULTNOW(),
-analysis_completed_atTIMESTAMPWITHTIMEZONE,
-versionINTEGERDEFAULT1
+-- Code submissions (for review and analysis)
+CREATE TABLE IF NOT EXISTS code_submissions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  challenge_id UUID REFERENCES challenges(id) ON DELETE CASCADE,
+  
+  -- Submission content
+  submitted_code TEXT NOT NULL,
+  language TEXT NOT NULL,
+  
+  -- Analysis results
+  passes_tests BOOLEAN DEFAULT FALSE,
+  test_results JSONB DEFAULT '{}'::JSONB,
+  ai_feedback JSONB DEFAULT '{}'::JSONB,
+  score INTEGER DEFAULT 0,
+  
+  -- Metadata
+  submitted_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  analysis_completed_at TIMESTAMP WITH TIME ZONE,
+  version INTEGER DEFAULT 1
 );
 
---Indexesforperformance
-CREATEINDEXIFNOTEXISTSidx_users_clerk_user_idONusers(clerk_user_id);
-CREATEINDEXIFNOTEXISTSidx_users_emailONusers(email);
-CREATEINDEXIFNOTEXISTSidx_challenges_slugONchallenges(slug);
-CREATEINDEXIFNOTEXISTSidx_challenges_technologyONchallenges(technology_id);
-CREATEINDEXIFNOTEXISTSidx_challenges_categoryONchallenges(category_id);
-CREATEINDEXIFNOTEXISTSidx_challenges_difficultyONchallenges(difficulty_level);
-CREATEINDEXIFNOTEXISTSidx_user_progress_user_idONuser_challenge_progress(user_id);
-CREATEINDEXIFNOTEXISTSidx_user_progress_challenge_idONuser_challenge_progress(challenge_id);
-CREATEINDEXIFNOTEXISTSidx_user_progress_statusONuser_challenge_progress(status);
-CREATEINDEXIFNOTEXISTSidx_user_analytics_user_dateONuser_analytics(user_id,date);
-CREATEINDEXIFNOTEXISTSidx_code_submissions_user_challengeONcode_submissions(user_id,challenge_id);
+-- Indexes for performance
+CREATE INDEX IF NOT EXISTS idx_users_clerk_user_id ON users(clerk_user_id);
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_challenges_slug ON challenges(slug);
+CREATE INDEX IF NOT EXISTS idx_challenges_technology ON challenges(technology_id);
+CREATE INDEX IF NOT EXISTS idx_challenges_category ON challenges(category_id);
+CREATE INDEX IF NOT EXISTS idx_challenges_difficulty ON challenges(difficulty_level);
+CREATE INDEX IF NOT EXISTS idx_user_progress_user_id ON user_challenge_progress(user_id);
+CREATE INDEX IF NOT EXISTS idx_user_progress_challenge_id ON user_challenge_progress(challenge_id);
+CREATE INDEX IF NOT EXISTS idx_user_progress_status ON user_challenge_progress(status);
+CREATE INDEX IF NOT EXISTS idx_user_analytics_user_date ON user_analytics(user_id, date);
+CREATE INDEX IF NOT EXISTS idx_code_submissions_user_challenge ON code_submissions(user_id, challenge_id);
 
---RLS(RowLevelSecurity)policies
-ALTERTABLEusersENABLEROWLEVELSECURITY;
-ALTERTABLEuser_challenge_progressENABLEROWLEVELSECURITY;
-ALTERTABLEuser_achievementsENABLEROWLEVELSECURITY;
-ALTERTABLEuser_analyticsENABLEROWLEVELSECURITY;
-ALTERTABLEuser_learning_path_progressENABLEROWLEVELSECURITY;
-ALTERTABLEcode_submissionsENABLEROWLEVELSECURITY;
+-- RLS (Row Level Security) policies
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_challenge_progress ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_achievements ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_analytics ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_learning_path_progress ENABLE ROW LEVEL SECURITY;
+ALTER TABLE code_submissions ENABLE ROW LEVEL SECURITY;
 
---BasicRLSpolicies(userscanonlyaccesstheirowndata)
-CREATEPOLICY"Userscanviewownprofile"ONusersFORSELECTUSING(clerk_user_id=current_setting('app.current_user_id',true));
-CREATEPOLICY"Userscanupdateownprofile"ONusersFORUPDATEUSING(clerk_user_id=current_setting('app.current_user_id',true));
+-- Basic RLS policies (users can only access their own data)
+CREATE POLICY "Users can view own profile" ON users FOR SELECT USING (clerk_user_id = current_setting('app.current_user_id', true));
+CREATE POLICY "Users can update own profile" ON users FOR UPDATE USING (clerk_user_id = current_setting('app.current_user_id', true));
 
-CREATEPOLICY"Userscanviewownprogress"ONuser_challenge_progressFORALLUSING(user_idIN(SELECTidFROMusersWHEREclerk_user_id=current_setting('app.current_user_id',true)));
+CREATE POLICY "Users can view own progress" ON user_challenge_progress FOR ALL USING (user_id IN (SELECT id FROM users WHERE clerk_user_id = current_setting('app.current_user_id', true)));
 
-CREATEPOLICY"Userscanviewownachievements"ONuser_achievementsFORALLUSING(user_idIN(SELECTidFROMusersWHEREclerk_user_id=current_setting('app.current_user_id',true)));
+CREATE POLICY "Users can view own achievements" ON user_achievements FOR ALL USING (user_id IN (SELECT id FROM users WHERE clerk_user_id = current_setting('app.current_user_id', true)));
 
-CREATEPOLICY"Userscanviewownanalytics"ONuser_analyticsFORALLUSING(user_idIN(SELECTidFROMusersWHEREclerk_user_id=current_setting('app.current_user_id',true)));
+CREATE POLICY "Users can view own analytics" ON user_analytics FOR ALL USING (user_id IN (SELECT id FROM users WHERE clerk_user_id = current_setting('app.current_user_id', true)));
 
-CREATEPOLICY"Userscanviewownlearningpathprogress"ONuser_learning_path_progressFORALLUSING(user_idIN(SELECTidFROMusersWHEREclerk_user_id=current_setting('app.current_user_id',true)));
+CREATE POLICY "Users can view own learning path progress" ON user_learning_path_progress FOR ALL USING (user_id IN (SELECT id FROM users WHERE clerk_user_id = current_setting('app.current_user_id', true)));
 
-CREATEPOLICY"Userscanviewownsubmissions"ONcode_submissionsFORALLUSING(user_idIN(SELECTidFROMusersWHEREclerk_user_id=current_setting('app.current_user_id',true)));
+CREATE POLICY "Users can view own submissions" ON code_submissions FOR ALL USING (user_id IN (SELECT id FROM users WHERE clerk_user_id = current_setting('app.current_user_id', true)));
 
---Functionsforupdated_attimestamps
-CREATEORREPLACEFUNCTIONupdate_updated_at_column()
-RETURNSTRIGGERAS$$
+-- Functions for updated_at timestamps
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
 BEGIN
-NEW.updated_at=NOW();
-RETURNNEW;
+    NEW.updated_at = NOW();
+    RETURN NEW;
 END;
-$$language'plpgsql';
+$$ language 'plpgsql';
 
---Triggersforupdated_at
-CREATETRIGGERupdate_users_updated_atBEFOREUPDATEONusersFOREACHROWEXECUTEFUNCTIONupdate_updated_at_column();
-CREATETRIGGERupdate_challenges_updated_atBEFOREUPDATEONchallengesFOREACHROWEXECUTEFUNCTIONupdate_updated_at_column();
-CREATETRIGGERupdate_user_challenge_progress_updated_atBEFOREUPDATEONuser_challenge_progressFOREACHROWEXECUTEFUNCTIONupdate_updated_at_column();
+-- Triggers for updated_at
+CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_challenges_updated_at BEFORE UPDATE ON challenges FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_user_challenge_progress_updated_at BEFORE UPDATE ON user_challenge_progress FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();

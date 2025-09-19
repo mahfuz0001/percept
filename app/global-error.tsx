@@ -21,7 +21,7 @@ export default function GlobalError({
                 A critical error occurred. Please refresh the page or contact support.
               </p>
             </div>
-
+            
             <div className="space-y-4">
               <button
                 onClick={reset}

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from '@clerk/nextjs';
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Percept - Anti-Tutorial Hell Platform",
@@ -35,14 +33,14 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         elements: {
-          formButtonPrimary:
+          formButtonPrimary: 
             "bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors",
           card: "shadow-xl border-0 rounded-2xl bg-white",
           headerTitle: "text-2xl font-semibold text-gray-900",
           headerSubtitle: "text-gray-600",
-          socialButtonsBlockButton:
+          socialButtonsBlockButton: 
             "border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors",
-          formFieldInput:
+          formFieldInput: 
             "border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
           footerActionLink: "text-blue-600 hover:text-blue-700 font-medium",
           dividerLine: "bg-gray-200",
@@ -53,34 +51,9 @@ export default function RootLayout({
         }
       }}
     >
-      <html lang="en" suppressHydrationWarning>
-        <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="anonymous"
-          />
-        </head>
-        <body className="min-h-screen bg-background font-sans antialiased">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster
-              position="top-right"
-              toastOptions={{
-                duration: 4000,
-                style: {
-                  background: "#363636",
-                  color: "#fff",
-                },
-              }}
-            />
-          </ThemeProvider>
+      <html lang="en">
+        <body className="antialiased">
+          {children}
         </body>
       </html>
     </ClerkProvider>

@@ -35,7 +35,7 @@ export default function Error({
             </details>
           )}
         </div>
-
+        
         <div className="space-y-4">
           <button
             onClick={reset}

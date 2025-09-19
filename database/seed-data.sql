@@ -1,207 +1,207 @@
---Insertinitialtechnologies
-INSERTINTOtechnologies(name,slug,description,difficulty_level,color,is_active)VALUES
-('HTML','html','HyperTextMarkupLanguage-thefoundationofwebcontent',1,'#e34c26',true),
-('CSS','css','CascadingStyleSheets-stylingandlayoutforwebpages',1,'#1572B6',true),
-('JavaScript','javascript','Dynamicprogramminglanguageforwebinteractivity',2,'#F7DF1E',true),
-('TypeScript','typescript','TypedsupersetofJavaScriptforbetterdevelopmentexperience',2,'#3178C6',true),
-('React','react','Component-basedJavaScriptlibraryforbuildinguserinterfaces',3,'#61DAFB',true),
-('APIIntegration','api-integration','WorkingwithRESTAPIsandexternalservices',2,'#009688',true);
+-- Insert initial technologies
+INSERT INTO technologies (name, slug, description, difficulty_level, color, is_active) VALUES
+('HTML', 'html', 'HyperText Markup Language - the foundation of web content', 1, '#e34c26', true),
+('CSS', 'css', 'Cascading Style Sheets - styling and layout for web pages', 1, '#1572B6', true),
+('JavaScript', 'javascript', 'Dynamic programming language for web interactivity', 2, '#F7DF1E', true),
+('TypeScript', 'typescript', 'Typed superset of JavaScript for better development experience', 2, '#3178C6', true),
+('React', 'react', 'Component-based JavaScript library for building user interfaces', 3, '#61DAFB', true),
+('API Integration', 'api-integration', 'Working with REST APIs and external services', 2, '#009688', true);
 
---Insertchallengecategories
-INSERTINTOchallenge_categories(name,slug,description,sort_order,is_active)VALUES
-('Layout&Structure','layout-structure','Buildingpagelayoutsandcontentstructure',1,true),
-('Styling&Design','styling-design','VisualdesignandCSStechniques',2,true),
-('InteractiveElements','interactive-elements','Userinteractionsanddynamiccontent',3,true),
-('DataHandling','data-handling','WorkingwithdataandAPIs',4,true),
-('Performance&Optimization','performance-optimization','Codeoptimizationandbestpractices',5,true);
+-- Insert challenge categories
+INSERT INTO challenge_categories (name, slug, description, sort_order, is_active) VALUES
+('Layout & Structure', 'layout-structure', 'Building page layouts and content structure', 1, true),
+('Styling & Design', 'styling-design', 'Visual design and CSS techniques', 2, true),
+('Interactive Elements', 'interactive-elements', 'User interactions and dynamic content', 3, true),
+('Data Handling', 'data-handling', 'Working with data and APIs', 4, true),
+('Performance & Optimization', 'performance-optimization', 'Code optimization and best practices', 5, true);
 
---Insertinitialachievements
-INSERTINTOachievements(name,description,icon,badge_color,points,criteria,is_active)VALUES
-('FirstSteps','Completeyourfirstchallenge','🎯','#3B82F6',100,'{"type":"challenges_completed","value":1}',true),
-('HTMLHero','Complete5HTMLchallenges','🌐','#E34C26',250,'{"type":"technology_challenges","technology":"html","value":5}',true),
-('CSSMaster','Complete10CSSchallenges','🎨','#1572B6',500,'{"type":"technology_challenges","technology":"css","value":10}',true),
-('JavaScriptNinja','Complete15JavaScriptchallenges','⚡','#F7DF1E',750,'{"type":"technology_challenges","technology":"javascript","value":15}',true),
-('TypeScriptPro','Complete10TypeScriptchallenges','📘','#3178C6',600,'{"type":"technology_challenges","technology":"typescript","value":10}',true),
-('ReactWizard','Complete20Reactchallenges','⚛️','#61DAFB',1000,'{"type":"technology_challenges","technology":"react","value":20}',true),
-('APIExpert','Complete8APIIntegrationchallenges','🔌','#009688',400,'{"type":"technology_challenges","technology":"api-integration","value":8}',true),
-('WeekWarrior','Completechallengesfor7consecutivedays','🔥','#F59E0B',300,'{"type":"streak","value":7}',true),
-('ProblemSolver','Complete50challengestotal','🏆','#8B5CF6',2000,'{"type":"challenges_completed","value":50}',true),
-('SpeedRunner','Completeachallengeinunder10minutes','⚡','#10B981',150,'{"type":"time_limit","value":10}',true);
+-- Insert initial achievements
+INSERT INTO achievements (name, description, icon, badge_color, points, criteria, is_active) VALUES
+('First Steps', 'Complete your first challenge', '🎯', '#3B82F6', 100, '{"type": "challenges_completed", "value": 1}', true),
+('HTML Hero', 'Complete 5 HTML challenges', '🌐', '#E34C26', 250, '{"type": "technology_challenges", "technology": "html", "value": 5}', true),
+('CSS Master', 'Complete 10 CSS challenges', '🎨', '#1572B6', 500, '{"type": "technology_challenges", "technology": "css", "value": 10}', true),
+('JavaScript Ninja', 'Complete 15 JavaScript challenges', '⚡', '#F7DF1E', 750, '{"type": "technology_challenges", "technology": "javascript", "value": 15}', true),
+('TypeScript Pro', 'Complete 10 TypeScript challenges', '📘', '#3178C6', 600, '{"type": "technology_challenges", "technology": "typescript", "value": 10}', true),
+('React Wizard', 'Complete 20 React challenges', '⚛️', '#61DAFB', 1000, '{"type": "technology_challenges", "technology": "react", "value": 20}', true),
+('API Expert', 'Complete 8 API Integration challenges', '🔌', '#009688', 400, '{"type": "technology_challenges", "technology": "api-integration", "value": 8}', true),
+('Week Warrior', 'Complete challenges for 7 consecutive days', '🔥', '#F59E0B', 300, '{"type": "streak", "value": 7}', true),
+('Problem Solver', 'Complete 50 challenges total', '🏆', '#8B5CF6', 2000, '{"type": "challenges_completed", "value": 50}', true),
+('Speed Runner', 'Complete a challenge in under 10 minutes', '⚡', '#10B981', 150, '{"type": "time_limit", "value": 10}', true);
 
---InsertsampleHTMLchallenges
-DO$$
+-- Insert sample HTML challenges
+DO $$
 DECLARE
-html_tech_idUUID;
-layout_cat_idUUID;
-styling_cat_idUUID;
+    html_tech_id UUID;
+    layout_cat_id UUID;
+    styling_cat_id UUID;
 BEGIN
---GettechnologyandcategoryIDs
-SELECTidINTOhtml_tech_idFROMtechnologiesWHEREslug='html';
-SELECTidINTOlayout_cat_idFROMchallenge_categoriesWHEREslug='layout-structure';
-SELECTidINTOstyling_cat_idFROMchallenge_categoriesWHEREslug='styling-design';
+    -- Get technology and category IDs
+    SELECT id INTO html_tech_id FROM technologies WHERE slug = 'html';
+    SELECT id INTO layout_cat_id FROM challenge_categories WHERE slug = 'layout-structure';
+    SELECT id INTO styling_cat_id FROM challenge_categories WHERE slug = 'styling-design';
 
---InsertHTMLchallenges
-INSERTINTOchallenges(
-title,slug,description,difficulty_level,category_id,technology_id,
-problem_statement,requirements,starter_code,points,tags,is_published
-)VALUES
-(
-'PersonalPortfolioHeader',
-'personal-portfolio-header',
-'Createaprofessionalheadersectionforapersonalportfoliowebsite',
-1,
-layout_cat_id,
-html_tech_id,
-'Buildaheadersectionthatincludesyourname,abrieftagline,andnavigationlinks.Thisheadershouldbesemanticandaccessible.',
-ARRAY['UsesemanticHTML5elements','Includeproperheadinghierarchy','Addnavigationwithatleast4links','Includeaprofessionaltaglineorsubtitle'],
-'<!DOCTYPEhtml>
-<htmllang="en">
+    -- Insert HTML challenges
+    INSERT INTO challenges (
+        title, slug, description, difficulty_level, category_id, technology_id,
+        problem_statement, requirements, starter_code, points, tags, is_published
+    ) VALUES
+    (
+        'Personal Portfolio Header',
+        'personal-portfolio-header',
+        'Create a professional header section for a personal portfolio website',
+        1,
+        layout_cat_id,
+        html_tech_id,
+        'Build a header section that includes your name, a brief tagline, and navigation links. This header should be semantic and accessible.',
+        ARRAY['Use semantic HTML5 elements', 'Include proper heading hierarchy', 'Add navigation with at least 4 links', 'Include a professional tagline or subtitle'],
+        '<!DOCTYPE html>
+<html lang="en">
 <head>
-<metacharset="UTF-8">
-<metaname="viewport"content="width=device-width,initial-scale=1.0">
-<title>YourPortfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
 </head>
 <body>
-<!--Buildyourheaderhere-->
-
+    <!-- Build your header here -->
+    
 </body>
 </html>',
-100,
-ARRAY['html','semantic','portfolio','header'],
-true
-),
-(
-'ContactFormStructure',
-'contact-form-structure',
-'Buildacompletecontactformwithpropervalidationattributes',
-1,
-layout_cat_id,
-html_tech_id,
-'Createacontactformthatcollectsname,email,subject,andmessage.Useappropriateinputtypesandvalidationattributes.',
-ARRAY['Useproperformstructure','Includeallrequiredinputtypes','Addproperlabelsforaccessibility','Includeclient-sidevalidationattributes'],
-'<!DOCTYPEhtml>
-<htmllang="en">
+        100,
+        ARRAY['html', 'semantic', 'portfolio', 'header'],
+        true
+    ),
+    (
+        'Contact Form Structure',
+        'contact-form-structure',
+        'Build a complete contact form with proper validation attributes',
+        1,
+        layout_cat_id,
+        html_tech_id,
+        'Create a contact form that collects name, email, subject, and message. Use appropriate input types and validation attributes.',
+        ARRAY['Use proper form structure', 'Include all required input types', 'Add proper labels for accessibility', 'Include client-side validation attributes'],
+        '<!DOCTYPE html>
+<html lang="en">
 <head>
-<metacharset="UTF-8">
-<metaname="viewport"content="width=device-width,initial-scale=1.0">
-<title>ContactForm</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
 </head>
 <body>
-<!--Createyourcontactformhere-->
-
+    <!-- Create your contact form here -->
+    
 </body>
 </html>',
-150,
-ARRAY['html','forms','validation','accessibility'],
-true
-);
-END$$;
+        150,
+        ARRAY['html', 'forms', 'validation', 'accessibility'],
+        true
+    );
+END $$;
 
---InsertsampleCSSchallenges
-DO$$
+-- Insert sample CSS challenges
+DO $$
 DECLARE
-css_tech_idUUID;
-styling_cat_idUUID;
-layout_cat_idUUID;
+    css_tech_id UUID;
+    styling_cat_id UUID;
+    layout_cat_id UUID;
 BEGIN
---GettechnologyandcategoryIDs
-SELECTidINTOcss_tech_idFROMtechnologiesWHEREslug='css';
-SELECTidINTOstyling_cat_idFROMchallenge_categoriesWHEREslug='styling-design';
-SELECTidINTOlayout_cat_idFROMchallenge_categoriesWHEREslug='layout-structure';
+    -- Get technology and category IDs
+    SELECT id INTO css_tech_id FROM technologies WHERE slug = 'css';
+    SELECT id INTO styling_cat_id FROM challenge_categories WHERE slug = 'styling-design';
+    SELECT id INTO layout_cat_id FROM challenge_categories WHERE slug = 'layout-structure';
 
---InsertCSSchallenges
-INSERTINTOchallenges(
-title,slug,description,difficulty_level,category_id,technology_id,
-problem_statement,requirements,starter_code,points,tags,is_published
-)VALUES
-(
-'ResponsiveCardComponent',
-'responsive-card-component',
-'Designaresponsivecardcomponentthatworksonallscreensizes',
-2,
-styling_cat_id,
-css_tech_id,
-'Createacardcomponentwithanimage,title,description,andbutton.Makeitresponsiveandvisuallyappealing.',
-ARRAY['UseCSSGridorFlexboxforlayout','Implementresponsivedesign','Addhovereffects','Includeproperspacingandtypography'],
-'<!DOCTYPEhtml>
-<htmllang="en">
+    -- Insert CSS challenges
+    INSERT INTO challenges (
+        title, slug, description, difficulty_level, category_id, technology_id,
+        problem_statement, requirements, starter_code, points, tags, is_published
+    ) VALUES
+    (
+        'Responsive Card Component',
+        'responsive-card-component',
+        'Design a responsive card component that works on all screen sizes',
+        2,
+        styling_cat_id,
+        css_tech_id,
+        'Create a card component with an image, title, description, and button. Make it responsive and visually appealing.',
+        ARRAY['Use CSS Grid or Flexbox for layout', 'Implement responsive design', 'Add hover effects', 'Include proper spacing and typography'],
+        '<!DOCTYPE html>
+<html lang="en">
 <head>
-<metacharset="UTF-8">
-<metaname="viewport"content="width=device-width,initial-scale=1.0">
-<title>CardComponent</title>
-<style>
-/*AddyourCSShere*/
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Component</title>
+    <style>
+        /* Add your CSS here */
+        
+    </style>
 </head>
 <body>
-<divclass="card">
-<imgsrc="https://picsum.photos/300/200"alt="Cardimage">
-<divclass="card-content">
-<h2>CardTitle</h2>
-<p>Thisisthecarddescriptionthatshouldbestylednicely.</p>
-<button>LearnMore</button>
-</div>
-</div>
+    <div class="card">
+        <img src="https://picsum.photos/300/200" alt="Card image">
+        <div class="card-content">
+            <h2>Card Title</h2>
+            <p>This is the card description that should be styled nicely.</p>
+            <button>Learn More</button>
+        </div>
+    </div>
 </body>
 </html>',
-200,
-ARRAY['css','responsive','components','layout'],
-true
-);
-END$$;
+        200,
+        ARRAY['css', 'responsive', 'components', 'layout'],
+        true
+    );
+END $$;
 
---InsertsampleJavaScriptchallenges
-DO$$
+-- Insert sample JavaScript challenges
+DO $$
 DECLARE
-js_tech_idUUID;
-interactive_cat_idUUID;
+    js_tech_id UUID;
+    interactive_cat_id UUID;
 BEGIN
---GettechnologyandcategoryIDs
-SELECTidINTOjs_tech_idFROMtechnologiesWHEREslug='javascript';
-SELECTidINTOinteractive_cat_idFROMchallenge_categoriesWHEREslug='interactive-elements';
+    -- Get technology and category IDs
+    SELECT id INTO js_tech_id FROM technologies WHERE slug = 'javascript';
+    SELECT id INTO interactive_cat_id FROM challenge_categories WHERE slug = 'interactive-elements';
 
---InsertJavaScriptchallenges
-INSERTINTOchallenges(
-title,slug,description,difficulty_level,category_id,technology_id,
-problem_statement,requirements,starter_code,points,tags,is_published
-)VALUES
-(
-'TodoListManager',
-'todo-list-manager',
-'Buildafunctionaltodolistwithadd,complete,anddeletefunctionality',
-2,
-interactive_cat_id,
-js_tech_id,
-'Createatodolistwhereuserscanaddnewtasks,markthemascomplete,anddeletethem.Noframeworksallowed-vanillaJavaScriptonly.',
-ARRAY['Addnewtodosviainputfield','Togglecompletionstatus','Deleteindividualtodos','PersiststateinlocalStorage'],
-'<!DOCTYPEhtml>
-<htmllang="en">
+    -- Insert JavaScript challenges
+    INSERT INTO challenges (
+        title, slug, description, difficulty_level, category_id, technology_id,
+        problem_statement, requirements, starter_code, points, tags, is_published
+    ) VALUES
+    (
+        'Todo List Manager',
+        'todo-list-manager',
+        'Build a functional todo list with add, complete, and delete functionality',
+        2,
+        interactive_cat_id,
+        js_tech_id,
+        'Create a todo list where users can add new tasks, mark them as complete, and delete them. No frameworks allowed - vanilla JavaScript only.',
+        ARRAY['Add new todos via input field', 'Toggle completion status', 'Delete individual todos', 'Persist state in localStorage'],
+        '<!DOCTYPE html>
+<html lang="en">
 <head>
-<metacharset="UTF-8">
-<metaname="viewport"content="width=device-width,initial-scale=1.0">
-<title>TodoList</title>
-<style>
-body{font-family:Arial,sans-serif;max-width:600px;margin:0auto;padding:20px;}
-.todo-item{margin:10px0;padding:10px;border:1pxsolid#ddd;}
-.completed{text-decoration:line-through;opacity:0.6;}
-button{margin-left:10px;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .todo-item { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
+        .completed { text-decoration: line-through; opacity: 0.6; }
+        button { margin-left: 10px; }
+    </style>
 </head>
 <body>
-<h1>MyTodoList</h1>
-<inputtype="text"id="todoInput"placeholder="Addanewtodo...">
-<buttononclick="addTodo()">Add</button>
-<divid="todoList"></div>
+    <h1>My Todo List</h1>
+    <input type="text" id="todoInput" placeholder="Add a new todo...">
+    <button onclick="addTodo()">Add</button>
+    <div id="todoList"></div>
 
-<script>
-//AddyourJavaScriptcodehere
-
-</script>
+    <script>
+        // Add your JavaScript code here
+        
+    </script>
 </body>
 </html>',
-250,
-ARRAY['javascript','dom','events','localStorage'],
-true
-);
-END$$;
+        250,
+        ARRAY['javascript', 'dom', 'events', 'localStorage'],
+        true
+    );
+END $$;

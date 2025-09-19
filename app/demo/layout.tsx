@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "../globals.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Percept - Anti-Tutorial Hell Platform",
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords: ["coding", "programming", "tutorials", "challenges", "web development", "JavaScript", "React"],
   authors: [{ name: "Percept Team" }],
   openGraph: {
-    title: "Percept - Escape Tutorial Hell",
+    title: "Percept - Escape Tutorial Hall",
     description: "Real challenges for real developers. No hand-holding, just problem-solving.",
     type: "website",
     locale: "en_US",
