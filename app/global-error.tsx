@@ -1,44 +1,44 @@
-'useclient';
+'use client';
 
-importLinkfrom'next/link';
+import Link from 'next/link';
 
-exportdefaultfunctionGlobalError({
-error,
-reset,
-}:{
-error:Error&{digest?:string};
-reset:()=>void;
-}){
-return(
-<html>
-<body>
-<divclassName="min-h-screenbg-gradient-to-brfrom-red-50to-orange-100flexitems-centerjustify-centerpx-4">
-<divclassName="max-w-mdw-fulltext-center">
-<divclassName="mb-8">
-<divclassName="text-8xlmb-4">💥</div>
-<h1className="text-4xlfont-boldtext-gray-900mb-2">CriticalError</h1>
-<pclassName="text-lgtext-gray-600mb-8">
-Acriticalerroroccurred.Pleaserefreshthepageorcontactsupport.
-</p>
-</div>
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  return (
+    <html>
+      <body>
+        <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-100 flex items-center justify-center px-4">
+          <div className="max-w-md w-full text-center">
+            <div className="mb-8">
+              <div className="text-8xl mb-4">💥</div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">Critical Error</h1>
+              <p className="text-lg text-gray-600 mb-8">
+                A critical error occurred. Please refresh the page or contact support.
+              </p>
+            </div>
 
-<divclassName="space-y-4">
-<button
-onClick={reset}
-className="blockw-fullbg-blue-600hover:bg-blue-700text-whitefont-mediumpy-3px-6rounded-lgtransition-colors"
->
-TryAgain
-</button>
-<Link
-href="/"
-className="blocktext-gray-700hover:text-gray-900font-mediumpy-3px-6rounded-lgborderborder-gray-300hover:border-gray-400transition-colors"
->
-GoHome
-</Link>
-</div>
-</div>
-</div>
-</body>
-</html>
-);
+            <div className="space-y-4">
+              <button
+                onClick={reset}
+                className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              >
+                Try Again
+              </button>
+              <Link
+                href="/"
+                className="block text-gray-700 hover:text-gray-900 font-medium py-3 px-6 rounded-lg border border-gray-300 hover:border-gray-400 transition-colors"
+              >
+                Go Home
+              </Link>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+  );
 }
