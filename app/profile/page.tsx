@@ -104,12 +104,12 @@ Level3Developer
 <label className="block text-sm font-medium text-gray-700 mb-2">
 PreferredDifficultyLevel
 </label>
-<select className="w-fullborder border-gray-300rounded-lgpx-3py-2focus:outline-none focus:ring-2 focus:ring-blue-500">
-<option>Beginner</option>
-<optionselected>Intermediate</option>
-<option>Advanced</option>
-<option>Mixed</option>
-</select>
+            <select className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option>Beginner</option>
+              <option selected>Intermediate</option>
+              <option>Advanced</option>
+              <option>Mixed</option>
+            </select>
 </div>
 
 <div>
@@ -139,12 +139,12 @@ className="roundedborder-gray-300text-blue-600focus:ring-blue-500"
 <label className="block text-sm font-medium text-gray-700 mb-2">
 DailyLearningGoal
 </label>
-<select className="w-fullborder border-gray-300rounded-lgpx-3py-2focus:outline-none focus:ring-2 focus:ring-blue-500">
-<option>30minutes</option>
-<optionselected>1hour</option>
-<option>2hours</option>
-<option>3+hours</option>
-</select>
+            <select className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option>30 minutes</option>
+              <option defaultValue="selected">1 hour</option>
+              <option>2 hours</option>
+              <option>3+ hours</option>
+            </select>
 </div>
 </div>
 </div>

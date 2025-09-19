@@ -25,17 +25,17 @@ return(
 initial={{opacity:0,x:-20}}
 animate={{opacity:1,x:0}}
 className="flex items-centerspace-x-3"
->
-<div className="p-1bg-gradient-to-rfrom-blue-600 to-purple-600rounded-lgshadow-lg">
-<Imagesrc="/logo.png"alt="logo"width={30}height={30}/>
-</div>
-<span className="text-xl font-boldbg-gradient-to-rfrom-blue-600 to-purple-600bg-clip-texttext-transparent">
-Percept
-</span>
-</motion.div>
+        >
+          <div className="p-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg">
+            <img src="/logo.png" alt="logo" width={30} height={30} />
+          </div>
+          <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Percept
+          </span>
+        </div>
 
-{/*DesktopNavigation*/}
-<div className="hidden md:flex items-centerspace-x-4">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-4">
 <GlobalSearch/>
 <Tooltip>
 <TooltipTriggerasChild>
