@@ -1,43 +1,43 @@
-import{auth}from'@clerk/nextjs/server';
-import{redirect}from'next/navigation';
-import{UserButton}from'@clerk/nextjs';
-importLinkfrom'next/link';
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+import { UserButton } from '@clerk/nextjs';
+import Link from 'next/link';
 
-exportdefaultasyncfunctionChallengesPage(){
-const{userId}=awaitauth();
+export default async function ChallengesPage() {
+  const { userId } = await auth();
 
-if(!userId){
-redirect('/sign-in');
-}
+  if (!userId) {
+    redirect('/sign-in');
+  }
 
-constchallenges=[
-{
-id:1,
-title:"BuildaTodoApp",
-description:"Createafunctionaltodoapplicationwithadd,delete,andmarkcompletefeatures",
-difficulty:"Beginner",
-technologies:["HTML","CSS","JavaScript"],
-points:150,
-time:"1-2hours",
-completed:true,
-category:"WebFundamentals"
-},
-{
-id:2,
-title:"WeatherDashboard",
-description:"BuildaweatherappthatfetchesdatafromanAPIanddisplayscurrentconditions",
-difficulty:"Intermediate",
-technologies:["React","API","CSS"],
-points:250,
-time:"2-3hours",
-completed:false,
-category:"React&APIs"
-},
-{
-id:3,
-title:"E-commerceCart",
-description:"Implementashoppingcartwithadd/removeitems,quantitymanagement,andtotalcalculation",
-difficulty:"Intermediate",
+  const challenges = [
+    {
+      id: 1,
+      title: "Build a Todo App",
+      description: "Create a functional todo application with add, delete, and mark complete features",
+      difficulty: "Beginner",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      points: 150,
+      time: "1-2 hours",
+      completed: true,
+      category: "Web Fundamentals"
+    },
+    {
+      id: 2,
+      title: "Weather Dashboard",
+      description: "Build a weather app that fetches data from an API and displays current conditions",
+      difficulty: "Intermediate",
+      technologies: ["React", "API", "CSS"],
+      points: 250,
+      time: "2-3 hours",
+      completed: false,
+      category: "React & APIs"
+    },
+    {
+      id: 3,
+      title: "E-commerce Cart",
+      description: "Implement a shopping cart with add/remove items, quantity management, and total calculation",
+      difficulty: "Intermediate",
 technologies:["React","StateManagement"],
 points:300,
 time:"3-4hours",
