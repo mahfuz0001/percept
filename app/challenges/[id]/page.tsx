@@ -436,29 +436,56 @@ Your application should have a clean, intuitive interface and handle edge cases 
 
           {/* Code Editor */}
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-gray-900">Code Editor</h2>
-                <div className="flex space-x-2">
+            <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-gray-900 flex items-center">
+                  💻 Code Editor
+                </h2>
+                <div className="flex space-x-3">
                   <button
                     onClick={handleGetHint}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                    disabled={hintsUsed >= 5}
+                    className={`flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                      hintsUsed >= 5 
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                        : 'bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+                    }`}
                   >
-                    💡 Get Hint ({hintsUsed}/4)
+                    💡 Get Hint ({hintsUsed}/5)
                   </button>
                   <button
                     onClick={handleRunCode}
                     disabled={isSubmitting}
-                    className="bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                    className="flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
                   >
-                    {isSubmitting ? 'Running...' : '▶️ Run Code'}
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Analyzing...
+                      </>
+                    ) : (
+                      '▶️ Analyze Code'
+                    )}
                   </button>
                   <button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                    className="flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
                   >
-                    {isSubmitting ? 'Submitting...' : '🚀 Submit'}
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Submitting...
+                      </>
+                    ) : (
+                      '🚀 Submit Solution'
+                    )}
                   </button>
                 </div>
               </div>
@@ -472,24 +499,31 @@ Your application should have a clean, intuitive interface and handle edge cases 
             </div>
 
             {/* Output Panel */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Output / Feedback</h3>
-              <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm min-h-[100px]">
-                {output || 'No output yet. Run your code to see results here.'}
+            <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                📝 Output & Feedback
+              </h3>
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-green-400 p-6 rounded-xl font-mono text-sm min-h-[120px] border border-gray-700 shadow-inner">
+                {output || '💻 Ready for action! Click "Get Hint" to get started, "Analyze Code" to check your progress, or start coding right away.'}
               </div>
             </div>
 
             {/* Live Preview */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Live Preview</h3>
-              <div className="border border-gray-300 rounded-lg min-h-[300px] p-4 bg-gray-50">
+            <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                👁️ Live Preview
+              </h3>
+              <div className="border-2 border-dashed border-gray-300 rounded-xl min-h-[300px] p-4 bg-gray-50 overflow-hidden">
                 <iframe
                   srcDoc={userCode}
-                  className="w-full h-full min-h-[280px] border-0"
+                  className="w-full h-full min-h-[280px] border-0 bg-white rounded-lg"
                   title="Code Preview"
                   sandbox="allow-scripts"
                 />
               </div>
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                💡 Your code will automatically preview here. Test interactive features by clicking around!
+              </p>
             </div>
           </div>
         </div>
