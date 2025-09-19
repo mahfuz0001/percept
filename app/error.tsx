@@ -1,56 +1,56 @@
-'useclient';
+'use client';
 
-import{useEffect}from'react';
-importLinkfrom'next/link';
+import { useEffect } from 'react';
+import Link from 'next/link';
 
-exportdefaultfunctionError({
-error,
-reset,
-}:{
-error:Error&{digest?:string};
-reset:()=>void;
-}){
-useEffect(()=>{
-//Logtheerrortoyourerrorreportingservice
-console.error('Applicationerror:',error);
-},[error]);
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    // Log the error to your error reporting service
+    console.error('Application error:', error);
+  }, [error]);
 
-return(
-<divclassName="min-h-screenbg-gradient-to-brfrom-red-50to-orange-100flexitems-centerjustify-centerpx-4">
-<divclassName="max-w-mdw-fulltext-center">
-<divclassName="mb-8">
-<divclassName="text-8xlmb-4">⚠️</div>
-<h1className="text-4xlfont-boldtext-gray-900mb-2">Somethingwentwrong</h1>
-<pclassName="text-lgtext-gray-600mb-8">
-Anunexpectederroroccurred.Ourteamhasbeennotified.
-</p>
-{process.env.NODE_ENV==='development'&&(
-<detailsclassName="mt-4p-4bg-red-100rounded-lgtext-lefttext-sm">
-<summaryclassName="cursor-pointerfont-mediumtext-red-800">
-ErrorDetails(Development)
-</summary>
-<preclassName="mt-2text-red-700whitespace-pre-wrap">
-{error.message}
-</pre>
-</details>
-)}
-</div>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-100 flex items-center justify-center px-4">
+      <div className="max-w-md w-full text-center">
+        <div className="mb-8">
+          <div className="text-8xl mb-4">⚠️</div>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Something went wrong</h1>
+          <p className="text-lg text-gray-600 mb-8">
+            An unexpected error occurred. Our team has been notified.
+          </p>
+          {process.env.NODE_ENV === 'development' && (
+            <details className="mt-4 p-4 bg-red-100 rounded-lg text-left text-sm">
+              <summary className="cursor-pointer font-medium text-red-800">
+                Error Details (Development)
+              </summary>
+              <pre className="mt-2 text-red-700 whitespace-pre-wrap">
+                {error.message}
+              </pre>
+            </details>
+          )}
+        </div>
 
-<divclassName="space-y-4">
-<button
-onClick={reset}
-className="blockw-fullbg-blue-600hover:bg-blue-700text-whitefont-mediumpy-3px-6rounded-lgtransition-colors"
->
-TryAgain
-</button>
-<Link
-href="/"
-className="blocktext-gray-700hover:text-gray-900font-mediumpy-3px-6rounded-lgborderborder-gray-300hover:border-gray-400transition-colors"
->
-GoHome
-</Link>
-</div>
-</div>
-</div>
-);
+        <div className="space-y-4">
+          <button
+            onClick={reset}
+            className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+          >
+            Try Again
+          </button>
+          <Link
+            href="/"
+            className="block text-gray-700 hover:text-gray-900 font-medium py-3 px-6 rounded-lg border border-gray-300 hover:border-gray-400 transition-colors"
+          >
+            Go Home
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }

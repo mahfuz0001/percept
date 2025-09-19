@@ -1,61 +1,21 @@
-"useclient"
+// Temporary simplified version
+"use client";
 
-import*asReactfrom"react"
-import*asTooltipPrimitivefrom"@radix-ui/react-tooltip"
+import React from "react";
 
-import{cn}from"@/lib/utils"
-
-functionTooltipProvider({
-delayDuration=0,
-...props
-}:React.ComponentProps<typeofTooltipPrimitive.Provider>){
-return(
-<TooltipPrimitive.Provider
-data-slot="tooltip-provider"
-delayDuration={delayDuration}
-{...props}
-/>
-)
+// Simple placeholder components
+export function TooltipProvider({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
 
-functionTooltip({
-...props
-}:React.ComponentProps<typeofTooltipPrimitive.Root>){
-return(
-<TooltipProvider>
-<TooltipPrimitive.Rootdata-slot="tooltip"{...props}/>
-</TooltipProvider>
-)
+export function Tooltip({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
 
-functionTooltipTrigger({
-...props
-}:React.ComponentProps<typeofTooltipPrimitive.Trigger>){
-return<TooltipPrimitive.Triggerdata-slot="tooltip-trigger"{...props}/>
+export function TooltipTrigger({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
 
-functionTooltipContent({
-className,
-sideOffset=0,
-children,
-...props
-}:React.ComponentProps<typeofTooltipPrimitive.Content>){
-return(
-<TooltipPrimitive.Portal>
-<TooltipPrimitive.Content
-data-slot="tooltip-content"
-sideOffset={sideOffset}
-className={cn(
-"bg-primarytext-primary-foregroundanimate-infade-in-0zoom-in-95data-[state=closed]:animate-outdata-[state=closed]:fade-out-0data-[state=closed]:zoom-out-95data-[side=bottom]:slide-in-from-top-2data-[side=left]:slide-in-from-right-2data-[side=right]:slide-in-from-left-2data-[side=top]:slide-in-from-bottom-2z-50w-fitorigin-(--radix-tooltip-content-transform-origin)rounded-mdpx-3py-1.5text-xstext-balance",
-className
-)}
-{...props}
->
-{children}
-<TooltipPrimitive.ArrowclassName="bg-primaryfill-primaryz-50size-2.5translate-y-[calc(-50%_-_2px)]rotate-45rounded-[2px]"/>
-</TooltipPrimitive.Content>
-</TooltipPrimitive.Portal>
-)
+export function TooltipContent({ children }: { children: React.ReactNode }) {
+  return null; // Simplified - no tooltip content for now
 }
-
-export{Tooltip,TooltipTrigger,TooltipContent,TooltipProvider}

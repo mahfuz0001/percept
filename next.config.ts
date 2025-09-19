@@ -1,22 +1,22 @@
-importtype{NextConfig}from"next";
+import type { NextConfig } from "next";
 
-constnextConfig:NextConfig={
-/*configoptionshere*/
-asyncredirects(){
-return[
-{
-source:'/',
-destination:'/dashboard',
-permanent:false,
-has:[
-{
-type:'cookie',
-key:'__session',
-},
-],
-},
-];
-},
+const nextConfig: NextConfig = {
+  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/dashboard',
+        permanent: false,
+        has: [
+          {
+            type: 'cookie',
+            key: '__session',
+          },
+        ],
+      },
+    ];
+  },
 };
 
-exportdefaultnextConfig;
+export default nextConfig;

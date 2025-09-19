@@ -1,68 +1,71 @@
-//components/sections/PhilosophySection.tsx
-"useclient";
+// Temporary simplified version
+"use client";
 
-import{motion}from"framer-motion";
-import{Target,CheckCircle,XCircle}from"lucide-react";
-import{Card,CardContent,CardDescription,CardHeader,CardTitle}from"@/components/ui/card";
+import React from "react";
 
-exportdefaultfunctionPhilosophySection(){
- return(
-  <sectionclassName="py-20bg-whitedark:bg-gray-900">
-   <divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
-    <motion.divinitial={{opacity:0,y:40}}whileInView={{opacity:1,y:0}}transition={{duration:0.8,delay:0.2}}viewport={{once:true}}className="gridmd:grid-cols-2gap-12items-centermb-24">
-     <div>
-      <h2className="text-3xlfont-boldtext-gray-900dark:text-whitemb-6">OurPhilosophy</h2>
-      <divclassName="space-y-6">
-       <CardclassName="border-red-200dark:border-red-800">
-        <CardContentclassName="p-6">
-         <divclassName="flexitems-startspace-x-4">
-          <XCircleclassName="w-6h-6text-red-500flex-shrink-0mt-1"/>
-          <div>
-           <h3className="font-semiboldtext-gray-900dark:text-whitemb-2">Traditionaltutorialscreatepassivelearners</h3>
-           <pclassName="text-gray-600dark:text-gray-400">Youfollowsteps,copycode,andfeellikeyouunderstand—untilyoufacearealproblemalone.</p>
-          </div>
-         </div>
-        </CardContent>
-       </Card>
-
-       <CardclassName="border-green-200dark:border-green-800">
-        <CardContentclassName="p-6">
-         <divclassName="flexitems-startspace-x-4">
-          <CheckCircleclassName="w-6h-6text-green-500flex-shrink-0mt-1"/>
-          <div>
-           <h3className="font-semiboldtext-gray-900dark:text-whitemb-2">Ourchallengesforceactivelearning</h3>
-           <pclassName="text-gray-600dark:text-gray-400">You&apos;llstruggle,research,experiment,andeventuallysolveproblemsindependently.</p>
-          </div>
-         </div>
-        </CardContent>
-       </Card>
-
-       <CardclassName="bg-gradient-to-rfrom-blue-50to-purple-50dark:from-blue-900/20dark:to-purple-900/20border-blue-200dark:border-blue-700">
-        <CardContentclassName="p-6">
-         <pclassName="text-blue-900dark:text-blue-200font-medium">Thisstruggleisnotabug—it&apos;sthefeaturethatbuildsgenuinedeveloperconfidence.</p>
-        </CardContent>
-       </Card>
-      </div>
-     </div>
-
-     <CardclassName="shadow-2xl">
-      <CardHeader>
-       <CardTitleclassName="text-2xlfont-boldtext-gray-900dark:text-white">RealProblems</CardTitle>
-       <CardDescriptionclassName="text-gray-600dark:text-gray-400">Facechallengesthatmirroractualdevelopmentwork.Noartificialexamples.</CardDescription>
-      </CardHeader>
-      <CardContent>
-       <divclassName="space-y-4">
-        {["ResponsiveThree-ColumnGrid","TypeScriptFormValidation","ReactStateManagement","APIIntegration&Caching"].map((challenge,index)=>(
-         <motion.divkey={index}initial={{opacity:0,x:-20}}whileInView={{opacity:1,x:0}}transition={{delay:index*0.1}}className="flexitems-centerspace-x-3p-3rounded-lgbg-gray-50dark:bg-gray-800">
-          <TargetclassName="w-5h-5text-blue-600"/>
-          <spanclassName="text-gray-700dark:text-gray-300font-medium">{challenge}</span>
-         </motion.div>
-        ))}
-       </div>
-      </CardContent>
-     </Card>
-    </motion.div>
-   </div>
-  </section>
- );
+export default function PhilosophySection() {
+  return (
+    <section className="py-20 bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+              Our Philosophy
+            </h2>
+            <div className="space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                  <span className="text-sm">❌</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                    No More Tutorial Hell
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Stop following step-by-step guides that leave you helpless when faced with real problems.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                  <span className="text-sm">✅</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                    Struggle-First Learning
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Embrace the struggle. Build confidence through overcoming real challenges independently.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="relative">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                Traditional Learning vs Percept
+              </h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600 dark:text-gray-400">Hand-holding</span>
+                  <span className="text-red-500">❌</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600 dark:text-gray-400">Independent Research</span>
+                  <span className="text-green-500">✅</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600 dark:text-gray-400">Real Problem Solving</span>
+                  <span className="text-green-500">✅</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

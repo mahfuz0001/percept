@@ -1,11 +1,11 @@
 import*asReactfrom"react"
-import{Slot}from"@radix-ui/react-slot"
-import{cva,typeVariantProps}from"class-variance-authority"
+import { Slot } from"@radix-ui/react-slot"
+import { cva,typeVariantProps } from"class-variance-authority"
 
-import{cn}from"@/lib/utils"
+import { cn } from"@/lib/utils"
 
-constbuttonVariants=cva(
-"inline-flexitems-centerjustify-centergap-2whitespace-nowraprounded-mdtext-smfont-mediumtransition-alldisabled:pointer-events-nonedisabled:opacity-50[&_svg]:pointer-events-none[&_svg:not([class*='size-'])]:size-4shrink-0[&_svg]:shrink-0outline-nonefocus-visible:border-ringfocus-visible:ring-ring/50focus-visible:ring-[3px]aria-invalid:ring-destructive/20dark:aria-invalid:ring-destructive/40aria-invalid:border-destructive",
+const buttonVariants = cva(
+"inline-flex items-centerjustify-centergap-2whitespace-nowraprounded-mdtext-sm font-mediumtransition-alldisabled:pointer-events-nonedisabled:opacity-50[&_svg]:pointer-events-none[&_svg:not([class*='size-'])]:size-4shrink-0[&_svg]:shrink-0outline-nonefocus-visible:border-ringfocus-visible:ring-ring/50focus-visible:ring-[3px]aria-invalid:ring-destructive/20dark:aria-invalid:ring-destructive/40aria-invalid:border-destructive",
 {
 variants:{
 variant:{
@@ -13,7 +13,7 @@ default:"bg-primarytext-primary-foregroundhover:bg-primary/90",
 destructive:
 "bg-destructivetext-whitehover:bg-destructive/90focus-visible:ring-destructive/20dark:focus-visible:ring-destructive/40dark:bg-destructive/60",
 outline:
-"borderbg-backgroundshadow-xshover:bg-accenthover:text-accent-foregrounddark:bg-input/30dark:border-inputdark:hover:bg-input/50",
+"border bg-backgroundshadow-xshover:bg-accenthover:text-accent-foregrounddark:bg-input/30dark:border-inputdark:hover:bg-input/50",
 secondary:
 "bg-secondarytext-secondary-foregroundhover:bg-secondary/80",
 ghost:
@@ -34,7 +34,7 @@ size:"default",
 }
 )
 
-functionButton({
+function Button({
 className,
 variant,
 size,
@@ -43,8 +43,8 @@ asChild=false,
 }:React.ComponentProps<"button">&
 VariantProps<typeofbuttonVariants>&{
 asChild?:boolean
-}){
-constComp=asChild?Slot:"button"
+}) {
+const Comp = asChild?Slot:"button"
 
 return(
 <Comp

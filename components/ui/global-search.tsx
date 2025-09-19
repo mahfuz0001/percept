@@ -1,8 +1,8 @@
 "useclient";
 
 importReact,{useState,useEffect}from"react";
-import{motion,AnimatePresence}from"framer-motion";
-import{
+import { motion,AnimatePresence } from"framer-motion";
+import { 
 Search,
 BookOpen,
 Trophy,
@@ -14,11 +14,11 @@ Star,
 Zap,
 X,
 Command,
-}from"lucide-react";
-importLinkfrom"next/link";
-import{Card,CardContent}from"@/components/ui/card";
-import{Badge}from"@/components/ui/badge";
-import{Button}from"@/components/ui/button";
+ } from"lucide-react";
+import Link from"next/link";
+import { Card,CardContent } from"@/components/ui/card";
+import { Badge } from"@/components/ui/badge";
+import { Button } from"@/components/ui/button";
 
 interfaceSearchResult{
 id:string;
@@ -119,39 +119,39 @@ metadata:{xp:300},
 },
 ];
 
-constcategoryConfig={
+const categoryConfig =  {
 course:{
 label:"Courses",
-color:"bg-blue-100text-blue-800dark:bg-blue-900dark:text-blue-200",
+color:"bg-blue-100 text-blue-800dark:bg-blue-900dark:text-blue-200",
 },
 lesson:{
 label:"Lessons",
-color:"bg-green-100text-green-800dark:bg-green-900dark:text-green-200",
+color:"bg-green-100 text-green-800dark:bg-green-900dark:text-green-200",
 },
 challenge:{
 label:"Challenges",
 color:
-"bg-orange-100text-orange-800dark:bg-orange-900dark:text-orange-200",
+"bg-orange-100 text-orange-800dark:bg-orange-900dark:text-orange-200",
 },
 achievement:{
 label:"Achievements",
 color:
-"bg-purple-100text-purple-800dark:bg-purple-900dark:text-purple-200",
+"bg-purple-100 text-purple-800dark:bg-purple-900dark:text-purple-200",
 },
 page:{
 label:"Pages",
-color:"bg-gray-100text-gray-800dark:bg-gray-900dark:text-gray-200",
+color:"bg-gray-100 text-gray-800dark:bg-gray-900dark:text-gray-200",
 },
 };
 
-exportfunctionGlobalSearch(){
+export function GlobalSearch() {
 const[isOpen,setIsOpen]=useState(false);
 const[query,setQuery]=useState("");
 const[results,setResults]=useState<SearchResult[]>([]);
 const[selectedIndex,setSelectedIndex]=useState(0);
 
 useEffect(()=>{
-consthandleKeyDown=(e:KeyboardEvent)=>{
+const handleKeyDown =  (e:KeyboardEvent)=>{
 //OpensearchwithCmd+KorCtrl+K
 if((e.metaKey||e.ctrlKey)&&e.key==="k"){
 e.preventDefault();
@@ -159,28 +159,28 @@ setIsOpen(true);
 }
 
 //ClosewithEscape
-if(e.key==="Escape"&&isOpen){
+if (e.key==="Escape"&&isOpen) {
 setIsOpen(false);
 setQuery("");
 setResults([]);
 }
 
 //Navigatewitharrowkeys
-if(isOpen&&results.length>0){
-if(e.key==="ArrowDown"){
+if (isOpen&&results.length>0) {
+if (e.key==="ArrowDown") {
 e.preventDefault();
 setSelectedIndex((prev)=>(prev+1)%results.length);
 }
-if(e.key==="ArrowUp"){
+if (e.key==="ArrowUp") {
 e.preventDefault();
 setSelectedIndex(
 (prev)=>(prev-1+results.length)%results.length
 );
 }
-if(e.key==="Enter"){
+if (e.key==="Enter") {
 e.preventDefault();
-constselectedResult=results[selectedIndex];
-if(selectedResult){
+const selectedResult =  results[selectedIndex];
+if (selectedResult) {
 window.location.href=selectedResult.href;
 setIsOpen(false);
 }
@@ -193,12 +193,12 @@ return()=>document.removeEventListener("keydown",handleKeyDown);
 },[isOpen,results,selectedIndex]);
 
 useEffect(()=>{
-if(query.length===0){
+if (query.length===0) {
 setResults([]);
 return;
 }
 
-constfiltered=searchData.filter(
+const filtered =  searchData.filter(
 (item)=>
 item.title.toLowerCase().includes(query.toLowerCase())||
 item.description.toLowerCase().includes(query.toLowerCase())
@@ -208,11 +208,11 @@ setResults(filtered.slice(0,8));//Limitto8results
 setSelectedIndex(0);
 },[query]);
 
-consthandleOpenSearch=()=>{
+const handleOpenSearch =  ()=>{
 setIsOpen(true);
 };
 
-consthandleCloseSearch=()=>{
+const handleCloseSearch =  ()=>{
 setIsOpen(false);
 setQuery("");
 setResults([]);
@@ -224,15 +224,15 @@ return(
 <Button
 variant="outline"
 onClick={handleOpenSearch}
-className="hiddenmd:flexitems-centergap-2text-gray-600dark:text-gray-400hover:text-gray-900dark:hover:text-whitemin-w-[240px]justify-start"
+className="hidden md:flex items-centergap-2text-gray-600dark:text-gray-400 hover:text-gray-900dark:hover:text-whitemin-w-[240px]justify-start"
 >
-<SearchclassName="w-4h-4"/>
-<spanclassName="text-sm">Searchcourses,lessons...</span>
-<divclassName="ml-autoflexitems-centergap-1">
-<kbdclassName="px-1.5py-0.5text-xsbg-gray-100dark:bg-gray-800roundedborder">
-<CommandclassName="w-3h-3"/>
+<Search className="w-4 h-4"/>
+<span className="text-sm">Searchcourses,lessons...</span>
+<div className="ml-autoflex items-centergap-1">
+<kbd className="px-1.5py-0.5text-xsbg-gray-100dark:bg-gray-800roundedborder">
+<Command className="w-3 h-3"/>
 </kbd>
-<kbdclassName="px-1.5py-0.5text-xsbg-gray-100dark:bg-gray-800roundedborder">
+<kbd className="px-1.5py-0.5text-xsbg-gray-100dark:bg-gray-800roundedborder">
 K
 </kbd>
 </div>
@@ -245,7 +245,7 @@ size="sm"
 onClick={handleOpenSearch}
 className="md:hiddenp-2"
 >
-<SearchclassName="w-5h-5"/>
+<Search className="w-5 h-5"/>
 </Button>
 
 {/*SearchModal*/}
@@ -257,7 +257,7 @@ className="md:hiddenp-2"
 initial={{opacity:0}}
 animate={{opacity:1}}
 exit={{opacity:0}}
-className="fixedinset-0bg-black/60backdrop-blur-smz-50"
+className="fixedinset-0 bg-black/60backdrop-blur-smz-50"
 onClick={handleCloseSearch}
 />
 
@@ -267,13 +267,13 @@ initial={{opacity:0,scale:0.95,y:-20}}
 animate={{opacity:1,scale:1,y:0}}
 exit={{opacity:0,scale:0.95,y:-20}}
 transition={{duration:0.2}}
-className="fixedtop-[20vh]left-1/2transform-translate-x-1/2w-fullmax-w-2xlmx-4z-50"
+className="fixedtop-[20vh]left-1/2transform-translate-x-1/2w-fullmax-w-2xl mx-4z-50"
 >
-<CardclassName="shadow-2xlborder-0overflow-hidden">
-<CardContentclassName="p-0">
+<Card className="shadow-2xlborder-0overflow-hidden">
+<CardContent className="p-0">
 {/*SearchInput*/}
-<divclassName="flexitems-centerborder-bborder-gray-200dark:border-gray-700px-4py-4">
-<SearchclassName="w-5h-5text-gray-400mr-3"/>
+<div className="flex items-centerborder-b border-gray-200dark:border-gray-700px-4py-4">
+<Search className="w-5 h-5text-gray-400mr-3"/>
 <input
 type="text"
 placeholder="Searchcourses,lessons,challenges..."
@@ -288,22 +288,22 @@ size="sm"
 onClick={handleCloseSearch}
 className="ml-2p-1"
 >
-<XclassName="w-4h-4"/>
+<X className="w-4 h-4"/>
 </Button>
 </div>
 
 {/*Results*/}
-<divclassName="max-h-96overflow-y-auto">
+<div className="max-h-96overflow-y-auto">
 {query.length===0?(
-<divclassName="px-4py-8text-center">
-<SearchclassName="w-12h-12text-gray-300dark:text-gray-600mx-automb-4"/>
-<h3className="text-lgfont-semiboldtext-gray-900dark:text-whitemb-2">
+<div className="px-4py-8text-center">
+<Search className="w-12 h-12text-gray-300dark:text-gray-600mx-automb-4"/>
+<h3 className="text-lg font-semibold text-gray-900dark:text-whitemb-2">
 QuickSearch
 </h3>
-<pclassName="text-gray-600dark:text-gray-400mb-4">
+<p className="text-gray-600dark:text-gray-400 mb-4">
 Findcourses,lessons,challenges,andmore
 </p>
-<divclassName="flexflex-wrapjustify-centergap-2">
+<div className="flex flex-wrapjustify-centergap-2">
 {[
 "HTML",
 "CSS",
@@ -324,19 +324,19 @@ className="text-xs"
 </div>
 </div>
 ):results.length===0?(
-<divclassName="px-4py-8text-center">
-<divclassName="w-12h-12bg-gray-100dark:bg-gray-800rounded-lgflexitems-centerjustify-centermx-automb-4">
-<SearchclassName="w-6h-6text-gray-400"/>
+<div className="px-4py-8text-center">
+<div className="w-12 h-12bg-gray-100dark:bg-gray-800 rounded-lgflex items-centerjustify-centermx-automb-4">
+<Search className="w-6 h-6text-gray-400"/>
 </div>
-<h3className="text-lgfont-semiboldtext-gray-900dark:text-whitemb-2">
+<h3 className="text-lg font-semibold text-gray-900dark:text-whitemb-2">
 Noresultsfound
 </h3>
-<pclassName="text-gray-600dark:text-gray-400">
+<p className="text-gray-600dark:text-gray-400">
 Trydifferentkeywordsorbrowseourcourses
 </p>
 </div>
 ):(
-<divclassName="py-2">
+<div className="py-2">
 {results.map((result,index)=>(
 <Link
 key={result.id}
@@ -351,22 +351,22 @@ index===selectedIndex
 }
 `}
 >
-<divclassName="flexitems-centergap-3">
+<div className="flex items-centergap-3">
 <div
 className={`
 p-2rounded-lg
 ${
 index===selectedIndex
 ?"bg-blue-100dark:bg-blue-900/40text-blue-600dark:text-blue-400"
-:"bg-gray-100dark:bg-gray-800text-gray-600dark:text-gray-400"
+:"bg-gray-100dark:bg-gray-800 text-gray-600dark:text-gray-400"
 }
 `}
 >
-<result.iconclassName="w-4h-4"/>
+<result.iconclassName="w-4 h-4"/>
 </div>
-<divclassName="flex-1min-w-0">
-<divclassName="flexitems-centergap-2mb-1">
-<h4className="font-mediumtext-gray-900dark:text-whitetruncate">
+<div className="flex-1min-w-0">
+<div className="flex items-centergap-2mb-1">
+<h4 className="font-medium text-gray-900dark:text-whitetruncate">
 {result.title}
 </h4>
 <Badge
@@ -388,14 +388,14 @@ className="text-xs"
 </Badge>
 )}
 </div>
-<pclassName="text-smtext-gray-600dark:text-gray-400truncate">
+<p className="text-smtext-gray-600dark:text-gray-400truncate">
 {result.description}
 </p>
 {result.metadata&&(
-<divclassName="flexitems-centergap-3mt-1text-xstext-gray-500dark:text-gray-500">
+<div className="flex items-centergap-3mt-1text-xstext-gray-500dark:text-gray-500">
 {result.metadata.duration&&(
-<divclassName="flexitems-centergap-1">
-<ClockclassName="w-3h-3"/>
+<div className="flex items-centergap-1">
+<Clock className="w-3 h-3"/>
 {result.metadata.duration}
 </div>
 )}
@@ -403,15 +403,15 @@ className="text-xs"
 <span>{result.metadata.difficulty}</span>
 )}
 {result.metadata.xp&&(
-<divclassName="flexitems-centergap-1">
-<StarclassName="w-3h-3"/>
+<div className="flex items-centergap-1">
+<Star className="w-3 h-3"/>
 {result.metadata.xp}XP
 </div>
 )}
 </div>
 )}
 </div>
-<ArrowRightclassName="w-4h-4text-gray-400"/>
+<ArrowRight className="w-4 h-4text-gray-400"/>
 </div>
 </Link>
 ))}
@@ -421,23 +421,23 @@ className="text-xs"
 
 {/*Footer*/}
 {results.length>0&&(
-<divclassName="border-tborder-gray-200dark:border-gray-700px-4py-3bg-gray-50dark:bg-gray-800/50">
-<divclassName="flexitems-centerjustify-betweentext-xstext-gray-500dark:text-gray-400">
-<divclassName="flexitems-centergap-4">
-<divclassName="flexitems-centergap-1">
-<kbdclassName="px-1.5py-0.5bg-whitedark:bg-gray-800roundedborder">
+<div className="border-tborder-gray-200dark:border-gray-700px-4py-3bg-gray-50dark:bg-gray-800/50">
+<div className="flex items-centerjustify-betweentext-xstext-gray-500dark:text-gray-400">
+<div className="flex items-centergap-4">
+<div className="flex items-centergap-1">
+<kbd className="px-1.5py-0.5bg-whitedark:bg-gray-800roundedborder">
 ↑↓
 </kbd>
 <span>Navigate</span>
 </div>
-<divclassName="flexitems-centergap-1">
-<kbdclassName="px-1.5py-0.5bg-whitedark:bg-gray-800roundedborder">
+<div className="flex items-centergap-1">
+<kbd className="px-1.5py-0.5bg-whitedark:bg-gray-800roundedborder">
 ↵
 </kbd>
 <span>Select</span>
 </div>
-<divclassName="flexitems-centergap-1">
-<kbdclassName="px-1.5py-0.5bg-whitedark:bg-gray-800roundedborder">
+<div className="flex items-centergap-1">
+<kbd className="px-1.5py-0.5bg-whitedark:bg-gray-800roundedborder">
 Esc
 </kbd>
 <span>Close</span>

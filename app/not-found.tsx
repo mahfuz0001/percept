@@ -1,27 +1,27 @@
-importLinkfrom'next/link';
+import Link from 'next/link';
 
-exportdefaultfunctionNotFound(){
+export default function NotFound() {
 return(
-<divclassName="min-h-screenbg-gradient-to-brfrom-blue-50to-indigo-100flexitems-centerjustify-centerpx-4">
-<divclassName="max-w-mdw-fulltext-center">
-<divclassName="mb-8">
-<divclassName="text-8xlmb-4">🔍</div>
-<h1className="text-4xlfont-boldtext-gray-900mb-2">PageNotFound</h1>
-<pclassName="text-lgtext-gray-600mb-8">
+<div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-centerjustify-center px-4">
+<div className="max-w-md w-fulltext-center">
+<div className="mb-8">
+<div className="text-8xlmb-4">🔍</div>
+<h1 className="text-4xlfont-bold text-gray-900 mb-2">PageNotFound</h1>
+<p className="text-lgtext-gray-600 mb-8">
 Thepageyou&apos;relookingfordoesn&apos;texistorhasbeenmoved.
 </p>
 </div>
 
-<divclassName="space-y-4">
+<div className="space-y-4">
 <Link
 href="/"
-className="blockbg-blue-600hover:bg-blue-700text-whitefont-mediumpy-3px-6rounded-lgtransition-colors"
+className="blockbg-blue-600hover:bg-blue-700 text-white font-mediumpy-3px-6rounded-lg transition-colors"
 >
 GoHome
 </Link>
 <Link
 href="/dashboard"
-className="blocktext-gray-700hover:text-gray-900font-mediumpy-3px-6rounded-lgborderborder-gray-300hover:border-gray-400transition-colors"
+className="block text-gray-700 hover:text-gray-900font-mediumpy-3px-6rounded-lg border border-gray-300hover:border-gray-400transition-colors"
 >
 GotoDashboard
 </Link>

@@ -1,36 +1,36 @@
-import{SignIn}from'@clerk/nextjs';
+import { SignIn } from '@clerk/nextjs';
 
-exportdefaultfunctionSignInPage(){
-return(
-<divclassName="min-h-screenflexitems-centerjustify-centerbg-gradient-to-brfrom-blue-50to-indigo-100px-4">
-<divclassName="max-w-mdw-fullspace-y-8">
-<divclassName="text-center">
-<h1className="text-4xlfont-boldtext-gray-900mb-2">
-WelcometoPercept
-</h1>
-<pclassName="text-lgtext-gray-600">
-Transformpassivelearningintoconfidentdevelopmentskills
-</p>
-</div>
-<divclassName="flexjustify-center">
-<SignIn
-appearance={{
-elements:{
-formButtonPrimary:
-"bg-blue-600hover:bg-blue-700text-whitefont-mediumpy-2px-4rounded-lgtransition-colors",
-card:"shadow-xlborder-0rounded-2xlbg-white",
-headerTitle:"text-2xlfont-semiboldtext-gray-900",
-headerSubtitle:"text-gray-600",
-socialButtonsBlockButton:
-"borderborder-gray-300hover:bg-gray-50text-gray-700font-mediumrounded-lgtransition-colors",
-formFieldInput:
-"borderborder-gray-300rounded-lgpx-3py-2focus:outline-nonefocus:ring-2focus:ring-blue-500focus:border-transparent",
-footerActionLink:"text-blue-600hover:text-blue-700font-medium"
-}
-}}
-/>
-</div>
-</div>
-</div>
-);
+export default function SignInPage() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+      <div className="max-w-md w-full space-y-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            Welcome to Percept
+          </h1>
+          <p className="text-lg text-gray-600">
+            Transform passive learning into confident development skills
+          </p>
+        </div>
+        <div className="flex justify-center">
+          <SignIn
+            appearance={{
+              elements: {
+                formButtonPrimary:
+                  "bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors",
+                card: "shadow-xl border-0 rounded-2xl bg-white",
+                headerTitle: "text-2xl font-semibold text-gray-900",
+                headerSubtitle: "text-gray-600",
+                socialButtonsBlockButton:
+                  "border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors",
+                formFieldInput:
+                  "border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                footerActionLink: "text-blue-600 hover:text-blue-700 font-medium"
+              }
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
 }

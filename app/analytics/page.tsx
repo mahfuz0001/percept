@@ -1,46 +1,46 @@
-import {auth} from'@clerk/nextjs/server';
-import {redirect} from'next/navigation';
-import {UserButton} from'@clerk/nextjs';
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
-exportdefaultasyncfunctionAnalyticsPage(){
-const {userId} = awaitauth();
+export default async function AnalyticsPage() {
+const {userId} = await auth();
 
-if(!userId){
+if (!userId) {
 redirect('/sign-in');
 }
 
 return(
-<divclassName="min-h-screenbg-gray-50">
+<div className="min-h-screen bg-gray-50">
 {/*Header*/}
-<headerclassName="bg-whiteshadow-smborder-bborder-gray-200">
-<divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
-<divclassName="flexjustify-betweenitems-centerh-16">
-<divclassName="flexitems-centerspace-x-8">
-<Linkhref="/dashboard"className="flexitems-center">
-<h1className="text-2xlfont-boldtext-gray-900">Percept</h1>
-<spanclassName="ml-2text-smtext-gray-500">Analytics</span>
+<header className="bg-whiteshado w-smborde r-bborder-gray-200">
+<div className="max-w-7xlm x-autop x-4sm:px-6lg:px-8">
+<div className="flex justify-betweenitem s-center h-16">
+<div className="flex items-centerspac e-x-8">
+<Link href="/dashboard" className="flex items-center">
+<h1 className="text-2xlfont-bold text-gray-900">Percept</h1>
+<span className="ml-2tex t-smtext-gray-500">Analytics</span>
 </Link>
-<navclassName="hiddenmd:flexspace-x-6">
-<Linkhref="/dashboard"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
+<nav className="hidden md:flex space-x-6">
+<Link href="/dashboard" className="text-gray-600 hover:text-gray-900font-mediumtransitio n-colors">
 Dashboard
 </Link>
-<Linkhref="/challenges"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
+<Link href="/challenges" className="text-gray-600 hover:text-gray-900font-mediumtransitio n-colors">
 Challenges
 </Link>
-<Linkhref="/profile"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
+<Link href="/profile" className="text-gray-600 hover:text-gray-900font-mediumtransitio n-colors">
 Profile
 </Link>
-<Linkhref="/analytics"className="text-blue-600font-medium">
+<Link href="/analytics" className="text-blue-600font-medium">
 Analytics
 </Link>
 </nav>
 </div>
-<divclassName="flexitems-centerspace-x-4">
+<div className="flex items-centerspac e-x-4">
 <UserButton
 appearance={{
 elements:{
-avatarBox:"w-10h-10"
+avatarBox:"w-10 h-10"
 }
 }}
 />
@@ -50,21 +50,21 @@ avatarBox:"w-10h-10"
 </header>
 
 {/*MainContent*/}
-<mainclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8py-8">
-<divclassName="mb-8">
-<h2className="text-3xlfont-boldtext-gray-900mb-2">
+<main className="max-w-7xlm x-autop x-4sm:px-6lg:px-8p y-8">
+<div className="mb-8">
+<h2 className="text-3xlfont-bold text-gray-900 mb-2">
 LearningAnalytics📊
 </h2>
-<pclassName="text-lgtext-gray-600">
+<p className="text-lgtext-gray-600">
 Trackyourprogress,identifypatterns,andoptimizeyourlearningjourney.
 </p>
 </div>
 
 {/*TimePeriodSelector*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-4mb-8">
-<divclassName="flexitems-centerjustify-between">
-<h3className="text-lgfont-semiboldtext-gray-900">TimePeriod</h3>
-<selectclassName="borderborder-gray-300rounded-lgpx-3py-2focus:outline-nonefocus:ring-2focus:ring-blue-500">
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-4m b-8">
+<div className="flex items-center justify-between">
+<h3 className="text-lg font-semibold text-gray-900">TimePeriod</h3>
+<select className="border border-gray-300rounded-lg px-3p y-2focus:outline-none focus:ring-2 focus:ring-blue-500">
 <option>Last7days</option>
 <option>Last30days</option>
 <option>Last3months</option>
@@ -74,65 +74,65 @@ Trackyourprogress,identifypatterns,andoptimizeyourlearningjourney.
 </div>
 
 {/*KeyMetrics*/}
-<divclassName="gridgrid-cols-1md:grid-cols-2lg:grid-cols-4gap-6mb-8">
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<divclassName="flexitems-centerjustify-between">
+<div className="gridgrid-col s-1md:grid-col s-2lg:grid-col s-4ga p-6mb-8">
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-6">
+<div className="flex items-center justify-between">
 <div>
-<pclassName="text-smfont-mediumtext-gray-600">TotalStudyTime</p>
-<pclassName="text-2xlfont-boldtext-gray-900">42hours</p>
-<pclassName="text-smtext-green-600">+8%fromlastweek</p>
+<p className="text-sm font-medium text-gray-600">TotalStudyTime</p>
+<p className="text-2xlfont-bold text-gray-900">42hours</p>
+<p className="text-smtext-green-600">+8%fromlastweek</p>
 </div>
-<divclassName="w-12h-12bg-blue-100rounded-lgflexitems-centerjustify-center">
-<spanclassName="text-2xl">⏱️</span>
+<div className="w-12 h-12 bg-blue-100 rounded-lgflexitem s-centerjustify-center">
+<span className="text-2xl">⏱️</span>
 </div>
 </div>
 </div>
 
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<divclassName="flexitems-centerjustify-between">
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-6">
+<div className="flex items-center justify-between">
 <div>
-<pclassName="text-smfont-mediumtext-gray-600">AverageSession</p>
-<pclassName="text-2xlfont-boldtext-gray-900">1.5hrs</p>
-<pclassName="text-smtext-green-600">+12%improvement</p>
+<p className="text-sm font-medium text-gray-600">AverageSession</p>
+<p className="text-2xlfont-bold text-gray-900">1.5hrs</p>
+<p className="text-smtext-green-600">+12%improvement</p>
 </div>
-<divclassName="w-12h-12bg-green-100rounded-lgflexitems-centerjustify-center">
-<spanclassName="text-2xl">📈</span>
+<div className="w-12 h-12 bg-green-100 rounded-lgflexitem s-centerjustify-center">
+<span className="text-2xl">📈</span>
 </div>
 </div>
 </div>
 
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<divclassName="flexitems-centerjustify-between">
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-6">
+<div className="flex items-center justify-between">
 <div>
-<pclassName="text-smfont-mediumtext-gray-600">SuccessRate</p>
-<pclassName="text-2xlfont-boldtext-gray-900">85%</p>
-<pclassName="text-smtext-red-600">-3%fromlastweek</p>
+<p className="text-sm font-medium text-gray-600">SuccessRate</p>
+<p className="text-2xlfont-bold text-gray-900">85%</p>
+<p className="text-smtex t-re d-600">-3%fromlastweek</p>
 </div>
-<divclassName="w-12h-12bg-purple-100rounded-lgflexitems-centerjustify-center">
-<spanclassName="text-2xl">🎯</span>
+<div className="w-12 h-12 bg-purpl e-100rounded-lgflexitem s-centerjustify-center">
+<span className="text-2xl">🎯</span>
 </div>
 </div>
 </div>
 
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<divclassName="flexitems-centerjustify-between">
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-6">
+<div className="flex items-center justify-between">
 <div>
-<pclassName="text-smfont-mediumtext-gray-600">HintsUsed</p>
-<pclassName="text-2xlfont-boldtext-gray-900">23</p>
-<pclassName="text-smtext-green-600">-15%independencegain</p>
+<p className="text-sm font-medium text-gray-600">HintsUsed</p>
+<p className="text-2xlfont-bold text-gray-900">23</p>
+<p className="text-smtext-green-600">-15%independencegain</p>
 </div>
-<divclassName="w-12h-12bg-orange-100rounded-lgflexitems-centerjustify-center">
-<spanclassName="text-2xl">💡</span>
+<div className="w-12 h-12 bg-orang e-100rounded-lgflexitem s-centerjustify-center">
+<span className="text-2xl">💡</span>
 </div>
 </div>
 </div>
 </div>
 
-<divclassName="gridgrid-cols-1lg:grid-cols-2gap-8mb-8">
+<div className="gridgrid-col s-1lg:grid-col s-2ga p-8m b-8">
 {/*ProgressChart*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">DailyProgress</h3>
-<divclassName="h-64flexitems-endjustify-betweenspace-x-2">
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-6">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">DailyProgress</h3>
+<div className="h-64flexitem s-endjustif y-betweenspac e-x-2">
 {[
 {day:'Mon',challenges:2,time:120},
 {day:'Tue',challenges:1,time:90},
@@ -141,32 +141,32 @@ Trackyourprogress,identifypatterns,andoptimizeyourlearningjourney.
 {day:'Fri',challenges:2,time:150},
 {day:'Sat',challenges:4,time:240},
 {day:'Sun',challenges:1,time:60}
-].map((data,index)=>(
-<divkey={index}className="flexflex-colitems-centerflex-1">
-<divclassName="w-fullbg-blue-100rounded-t-lgrelativemb-2"style={{height:`${Math.max(data.time/2.4,10)}px`}}>
-<divclassName="absoluteinset-0bg-blue-600rounded-t-lg"style={{height:`${data.challenges*20}%`}}></div>
-</div>
-<spanclassName="text-xstext-gray-600">{data.day}</span>
-<spanclassName="text-xstext-gray-500">{data.challenges}ch</span>
+        ].map((data, index) => (
+          <div key={index} className="flex flex-col items-center flex-1">
+            <div className="w-full bg-blue-100 rounded-t-lg relative mb-2" style={{height: `${Math.max(data.time / 2.4, 10)}px`}}>
+              <div className="absolute inset-0 bg-blue-600 rounded-t-lg" style={{height: `${data.challenges * 20}%`}}></div>
+            </div>
+            <span className="text-xs text-gray-600">{data.day}</span>
+            <span className="text-xs text-gray-500">{data.challenges}ch</span>
 </div>
 ))}
 </div>
-<divclassName="mt-4flexitems-centerspace-x-4text-sm">
-<divclassName="flexitems-center">
-<divclassName="w-3h-3bg-blue-600roundedmr-2"></div>
-<spanclassName="text-gray-600">ChallengesCompleted</span>
+<div className="mt-4flexitem s-centerspac e-x-4tex t-sm">
+<div className="flex items-center">
+<div className="w-3 h-3 bg-blue-600roundedm r-2"></div>
+<span className="text-gray-600">ChallengesCompleted</span>
 </div>
-<divclassName="flexitems-center">
-<divclassName="w-3h-3bg-blue-100roundedmr-2"></div>
-<spanclassName="text-gray-600">StudyTime(minutes)</span>
+<div className="flex items-center">
+<div className="w-3 h-3 bg-blue-100roundedm r-2"></div>
+<span className="text-gray-600">StudyTime(minutes)</span>
 </div>
 </div>
 </div>
 
 {/*SkillDistribution*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">SkillDistribution</h3>
-<divclassName="space-y-4">
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-6">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">SkillDistribution</h3>
+<div className="space-y-4">
 {[
 {skill:'JavaScript',percentage:85,color:'bg-yellow-500'},
 {skill:'React',percentage:70,color:'bg-cyan-500'},
@@ -174,55 +174,55 @@ Trackyourprogress,identifypatterns,andoptimizeyourlearningjourney.
 {skill:'TypeScript',percentage:60,color:'bg-blue-600'},
 {skill:'Node.js',percentage:45,color:'bg-green-500'},
 {skill:'APIs',percentage:55,color:'bg-purple-500'}
-].map((skill,index)=>(
-<divkey={index}className="flexitems-center">
-<divclassName="w-20text-smfont-mediumtext-gray-700">{skill.skill}</div>
-<divclassName="flex-1mx-4">
-<divclassName="w-fullbg-gray-200rounded-fullh-3">
-<div
-className={`${skill.color}h-3rounded-fulltransition-allduration-300`}
-style={{width:`${skill.percentage}%`}}
-></div>
+        ].map((skill, index) => (
+          <div key={index} className="flex items-center">
+            <div className="w-20 text-sm font-medium text-gray-700">{skill.skill}</div>
+            <div className="flex-1 mx-4">
+              <div className="w-full bg-gray-200 rounded-full h-3">
+                <div
+                  className={`${skill.color} h-3 rounded-full transition-all duration-300`}
+                  style={{width: `${skill.percentage}%`}}
+                ></div>
 </div>
 </div>
-<divclassName="w-12text-smtext-gray-600text-right">{skill.percentage}%</div>
+<div className="w-12tex t-smtext-gray-600tex t-right">{skill.percentage}%</div>
 </div>
 ))}
 </div>
 </div>
 </div>
 
-<divclassName="gridgrid-cols-1lg:grid-cols-2gap-8mb-8">
+<div className="gridgrid-col s-1lg:grid-col s-2ga p-8m b-8">
 {/*LearningPatterns*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">LearningPatterns</h3>
-<divclassName="space-y-4">
-<divclassName="p-4bg-blue-50rounded-lgborderborder-blue-200">
-<h4className="font-mediumtext-blue-900mb-1">PeakPerformanceTime</h4>
-<pclassName="text-blue-700text-sm">Youperformbestbetween2PM-4PMwith92%successrate</p>
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-6">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">LearningPatterns</h3>
+<div className="space-y-4">
+<div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+<h4 className="font-medium text-blue-900 mb-1">PeakPerformanceTime</h4>
+<p className="text-blue-700tex t-sm">Youperformbestbetween2PM-4PMwith92%successrate</p>
 </div>
 
-<divclassName="p-4bg-green-50rounded-lgborderborder-green-200">
-<h4className="font-mediumtext-green-900mb-1">StrongestTechnology</h4>
-<pclassName="text-green-700text-sm">CSS-90%masterylevelwithconsistentimprovement</p>
+<div className="p-4 bg-green-50 rounded-lg border border-green-200">
+<h4 className="font-medium text-green-900 mb-1">StrongestTechnology</h4>
+<p className="text-green-700tex t-sm">CSS-90%masterylevelwithconsistentimprovement</p>
 </div>
 
-<divclassName="p-4bg-yellow-50rounded-lgborderborder-yellow-200">
-<h4className="font-mediumtext-yellow-900mb-1">GrowthOpportunity</h4>
-<pclassName="text-yellow-700text-sm">Node.jschallengesshowthemostpotentialforskilldevelopment</p>
+<div className="p-4 bg-yello w-50rounded-lg border border-yello w-200">
+<h4 className="font-mediumtex t-yello w-900m b-1">GrowthOpportunity</h4>
+<p className="text-yello w-700tex t-sm">Node.jschallengesshowthemostpotentialforskilldevelopment</p>
 </div>
 
-<divclassName="p-4bg-purple-50rounded-lgborderborder-purple-200">
-<h4className="font-mediumtext-purple-900mb-1">LearningStyle</h4>
-<pclassName="text-purple-700text-sm">Youpreferintermediatechallengesandusehintsstrategically</p>
+<div className="p-4 bg-purpl e-50rounded-lg border border-purpl e-200">
+<h4 className="font-mediumtex t-purpl e-900m b-1">LearningStyle</h4>
+<p className="text-purpl e-700tex t-sm">Youpreferintermediatechallengesandusehintsstrategically</p>
 </div>
 </div>
 </div>
 
 {/*RecentAchievements*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">RecentAchievements</h3>
-<divclassName="space-y-4">
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-6">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">RecentAchievements</h3>
+<div className="space-y-4">
 {[
 {
 date:'Dec20,2024',
@@ -246,15 +246,15 @@ points:50,
 icon:'🎯'
 }
 ].map((achievement,index)=>(
-<divkey={index}className="flexitems-centerp-3bg-green-50rounded-lgborderborder-green-200">
-<divclassName="text-2xlmr-3">{achievement.icon}</div>
-<divclassName="flex-1">
-<h4className="font-mediumtext-green-900">{achievement.achievement}</h4>
-<pclassName="text-smtext-green-700">{achievement.description}</p>
-<pclassName="text-xstext-green-600">{achievement.date}</p>
+<div key={index} className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+<div className="text-2xl mr-3">{achievement.icon}</div>
+<div className="flex-1">
+<h4 className="font-medium text-green-900">{achievement.achievement}</h4>
+<p className="text-smtext-green-700">{achievement.description}</p>
+<p className="text-xstext-green-600">{achievement.date}</p>
 </div>
-<divclassName="text-right">
-<spanclassName="text-smfont-semiboldtext-green-600">+{achievement.points}XP</span>
+<div className="text-right">
+<span className="text-sm font-semibold text-green-600">+{achievement.points}XP</span>
 </div>
 </div>
 ))}
@@ -263,37 +263,37 @@ icon:'🎯'
 </div>
 
 {/*GoalSetting*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">LearningGoals</h3>
-<divclassName="gridgrid-cols-1md:grid-cols-3gap-6">
-<divclassName="p-4border-2border-dashedborder-blue-300rounded-lgtext-center">
-<divclassName="text-3xlmb-2">🎯</div>
-<h4className="font-semiboldtext-gray-900mb-1">WeeklyGoal</h4>
-<pclassName="text-smtext-gray-600mb-3">Complete5challengesthisweek</p>
-<divclassName="w-fullbg-gray-200rounded-fullh-2mb-2">
-<divclassName="bg-blue-600h-2rounded-full"style={{width:'60%'}}></div>
+<div className="bg-whiterounded-lgshado w-smborder border-gray-200 p-6">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">LearningGoals</h3>
+<div className="gridgrid-col s-1md:grid-col s-3ga p-6">
+<div className="p-4borde r-2borde r-dashedborder-blue-300rounded-lgtext-center">
+<div className="text-3xlm b-2">🎯</div>
+<h4 className="font-semibold text-gray-900 mb-1">WeeklyGoal</h4>
+<p className="text-smtext-gray-600 mb-3">Complete5challengesthisweek</p>
+<div className="w-full bg-gray-200 rounded-full h-2m b-2">
+<div className="bg-blue-600 h-2rounded-full" style={{width:'60%'}}></div>
 </div>
-<pclassName="text-xstext-gray-600">3of5completed</p>
-</div>
-
-<divclassName="p-4border-2border-dashedborder-green-300rounded-lgtext-center">
-<divclassName="text-3xlmb-2">📈</div>
-<h4className="font-semiboldtext-gray-900mb-1">SkillGoal</h4>
-<pclassName="text-smtext-gray-600mb-3">Reach70%inTypeScript</p>
-<divclassName="w-fullbg-gray-200rounded-fullh-2mb-2">
-<divclassName="bg-green-600h-2rounded-full"style={{width:'86%'}}></div>
-</div>
-<pclassName="text-xstext-gray-600">60%of70%target</p>
+<p className="text-xstext-gray-600">3of5completed</p>
 </div>
 
-<divclassName="p-4border-2border-dashedborder-purple-300rounded-lgtext-center">
-<divclassName="text-3xlmb-2">🏆</div>
-<h4className="font-semiboldtext-gray-900mb-1">AchievementGoal</h4>
-<pclassName="text-smtext-gray-600mb-3">Earn"ProblemSolver"badge</p>
-<divclassName="w-fullbg-gray-200rounded-fullh-2mb-2">
-<divclassName="bg-purple-600h-2rounded-full"style={{width:'70%'}}></div>
+<div className="p-4borde r-2borde r-dashedborder-green-300rounded-lgtext-center">
+<div className="text-3xlm b-2">📈</div>
+<h4 className="font-semibold text-gray-900 mb-1">SkillGoal</h4>
+<p className="text-smtext-gray-600 mb-3">Reach70%inTypeScript</p>
+<div className="w-full bg-gray-200 rounded-full h-2m b-2">
+<div className="bg-green-600 h-2rounded-full" style={{width:'86%'}}></div>
 </div>
-<pclassName="text-xstext-gray-600">7of10challengeswithouthints</p>
+<p className="text-xstext-gray-600">60%of70%target</p>
+</div>
+
+<div className="p-4borde r-2borde r-dashedborde r-purpl e-300rounded-lgtext-center">
+<div className="text-3xlm b-2">🏆</div>
+<h4 className="font-semibold text-gray-900 mb-1">AchievementGoal</h4>
+<p className="text-smtext-gray-600 mb-3">Earn"ProblemSolver"badge</p>
+<div className="w-full bg-gray-200 rounded-full h-2m b-2">
+<div className="bg-purpl e-600 h-2rounded-full" style={{width:'70%'}}></div>
+</div>
+<p className="text-xstext-gray-600">7of10challengeswithouthints</p>
 </div>
 </div>
 </div>

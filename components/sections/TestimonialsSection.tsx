@@ -1,72 +1,71 @@
-//components/sections/TestimonialsSection.tsx
-"useclient";
+// Temporary simplified version
+"use client";
 
-import{motion}from"framer-motion";
-import{Star}from"lucide-react";
-import{Card,CardContent,CardDescription}from"@/components/ui/card";
-import{Avatar,AvatarFallback,AvatarImage}from"@/components/ui/avatar";
-import{Badge}from"@/components/ui/badge";
+import React from "react";
 
-consttestimonials=[
- {
-  name:"SarahChen",
-  role:"FrontendDeveloper",
-  company:"Google",
-  content:"PerceptchangedhowIlearn.Insteadofcopyingcode,Inowsolverealproblemsandunderstandthewhybehindeverysolution.",
-  avatar:"https://images.unsplash.com/photo-1494790108755-2616b612b5c4?w=64&h=64&fit=crop&crop=face",
- },
- {
-  name:"MarcusRodriguez",
-  role:"FullStackEngineer",
-  company:"Microsoft",
-  content:"Thestruggle-firstapproachbuiltmyconfidence.NowItackleanycodingchallengewithoutfearofgettingstuck.",
-  avatar:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face",
- },
- {
-  name:"PriyaPatel",
-  role:"SoftwareEngineer",
-  company:"Meta",
-  content:"Fromtutorialhelltoproblem-solvingmasterin3months.Thebestinvestmentinmycodingjourney.",
-  avatar:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face",
- },
-];
-
-exportdefaultfunctionTestimonialsSection(){
- return(
-  <sectionclassName="py-20bg-whitedark:bg-gray-900">
-   <divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
-    <motion.divinitial={{opacity:0,y:30}}whileInView={{opacity:1,y:0}}transition={{duration:0.8}}viewport={{once:true}}className="text-centermb-16">
-     <Badgevariant="secondary"className="mb-4">SuccessStories</Badge>
-     <h2className="text-4xlfont-boldtext-gray-900dark:text-whitemb-4">LovedbyDevelopersWorldwide</h2>
-     <pclassName="text-xltext-gray-600dark:text-gray-400max-w-3xlmx-auto">Seehowdeveloperstransformedtheircareersbyescapingtutorialhell</p>
-    </motion.div>
-
-    <divclassName="gridmd:grid-cols-3gap-8">
-     {testimonials.map((testimonial,index)=>(
-      <motion.divkey={index}initial={{opacity:0,scale:0.9}}whileInView={{opacity:1,scale:1}}transition={{duration:0.5,delay:index*0.1}}viewport={{once:true}}>
-       <CardclassName="p-6h-fullshadow-lg">
-        <CardContentclassName="p-0">
-         <divclassName="flexitems-centermb-4">
-          <AvatarclassName="h-12w-12mr-4">
-           <AvatarImagesrc={testimonial.avatar}alt={testimonial.name}/>
-           <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-          </Avatar>
-          <div>
-           <h3className="font-boldtext-gray-900dark:text-white">{testimonial.name}</h3>
-           <pclassName="text-smtext-gray-600dark:text-gray-400">
-            {testimonial.role},{testimonial.company}
-           </p>
-          </div>
-         </div>
-         <CardDescriptionclassName="text-lgitalictext-gray-700dark:text-gray-300">
-          {testimonial.content}
-         </CardDescription>
-       </CardContent>
-</Card>
-      </motion.div>
-     ))}
-    </div>
-   </div>
-  </section>
- );
+export default function TestimonialsSection() {
+  return (
+    <section className="py-20 bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <div className="inline-block bg-gray-100 dark:bg-gray-800 rounded-full px-3 py-1 text-sm text-gray-600 dark:text-gray-400 mb-4">
+            Success Stories
+          </div>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Loved by Developers Worldwide
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            See how developers transformed their careers by escaping tutorial hell
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+                S
+              </div>
+              <div className="ml-3">
+                <h4 className="font-semibold text-gray-900 dark:text-white">Sarah Chen</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Frontend Developer</p>
+              </div>
+            </div>
+            <p className="text-gray-700 dark:text-gray-300">
+              "Percept challenged me to think like a real developer. No more copy-pasting code without understanding!"
+            </p>
+          </div>
+          
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
+                M
+              </div>
+              <div className="ml-3">
+                <h4 className="font-semibold text-gray-900 dark:text-white">Marcus Johnson</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Full-Stack Developer</p>
+              </div>
+            </div>
+            <p className="text-gray-700 dark:text-gray-300">
+              "Finally escaped tutorial hell! The struggle-first approach built real confidence in my coding abilities."
+            </p>
+          </div>
+          
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                A
+              </div>
+              <div className="ml-3">
+                <h4 className="font-semibold text-gray-900 dark:text-white">Alex Rodriguez</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">React Developer</p>
+              </div>
+            </div>
+            <p className="text-gray-700 dark:text-gray-300">
+              "Percept taught me to research, problem-solve, and build independently. Game-changer for my career!"
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

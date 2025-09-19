@@ -1,13 +1,13 @@
 import*asReactfrom"react"
 
-import{cn}from"@/lib/utils"
+import { cn } from"@/lib/utils"
 
-functionCard({className,...props}:React.ComponentProps<"div">){
+function Card({className,...props}:React.ComponentProps<"div">) {
 return(
 <div
 data-slot="card"
 className={cn(
-"bg-cardtext-card-foregroundflexflex-colgap-6rounded-xlborderpy-6shadow-sm",
+"bg-cardtext-card-foregroundflex flex-colgap-6rounded-xl border py-6shadow-sm",
 className
 )}
 {...props}
@@ -15,7 +15,7 @@ className
 )
 }
 
-functionCardHeader({className,...props}:React.ComponentProps<"div">){
+function CardHeader({className,...props}:React.ComponentProps<"div">) {
 return(
 <div
 data-slot="card-header"
@@ -28,7 +28,7 @@ className
 )
 }
 
-functionCardTitle({className,...props}:React.ComponentProps<"div">){
+function CardTitle({className,...props}:React.ComponentProps<"div">) {
 return(
 <div
 data-slot="card-title"
@@ -38,7 +38,7 @@ className={cn("leading-nonefont-semibold",className)}
 )
 }
 
-functionCardDescription({className,...props}:React.ComponentProps<"div">){
+function CardDescription({className,...props}:React.ComponentProps<"div">) {
 return(
 <div
 data-slot="card-description"
@@ -48,7 +48,7 @@ className={cn("text-muted-foregroundtext-sm",className)}
 )
 }
 
-functionCardAction({className,...props}:React.ComponentProps<"div">){
+function CardAction({className,...props}:React.ComponentProps<"div">) {
 return(
 <div
 data-slot="card-action"
@@ -61,7 +61,7 @@ className
 )
 }
 
-functionCardContent({className,...props}:React.ComponentProps<"div">){
+function CardContent({className,...props}:React.ComponentProps<"div">) {
 return(
 <div
 data-slot="card-content"
@@ -71,11 +71,11 @@ className={cn("px-6",className)}
 )
 }
 
-functionCardFooter({className,...props}:React.ComponentProps<"div">){
+function CardFooter({className,...props}:React.ComponentProps<"div">) {
 return(
 <div
 data-slot="card-footer"
-className={cn("flexitems-centerpx-6[.border-t]:pt-6",className)}
+className={cn("flex items-centerpx-6[.border-t]:pt-6",className)}
 {...props}
 />
 )
