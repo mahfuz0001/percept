@@ -1,6 +1,11 @@
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
-export default function DemoPage() {
+export default async function DemoLandingPage() {
+  // For demo purposes, simulate unauthenticated state
+  const isDemo = process.env.DEMO_MODE === 'true';
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Header */}
@@ -9,9 +14,11 @@ export default function DemoPage() {
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
               <h1 className="text-2xl font-bold text-gray-900">Percept</h1>
-              <span className="ml-3 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                Demo Mode
-              </span>
+              {isDemo && (
+                <span className="ml-3 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">
+                  Demo Mode
+                </span>
+              )}
             </div>
             <div className="flex items-center space-x-4">
               <Link
