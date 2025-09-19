@@ -1,0 +1,11 @@
+exportdefaultfunctionLoading(){
+return(
+<divclassName="min-h-screenbg-gradient-to-brfrom-blue-50to-indigo-100flexitems-centerjustify-center">
+<divclassName="text-center">
+<divclassName="inline-blockanimate-spinrounded-fullh-12w-12border-b-2border-blue-600mb-4"></div>
+<h2className="text-xlfont-semiboldtext-gray-900">Loading...</h2>
+<pclassName="text-gray-600mt-2">Pleasewaitwhileweprepareyourexperience</p>
+</div>
+</div>
+);
+}

@@ -1,0 +1,19 @@
+//components/VideoModal.tsx
+import{Play}from"lucide-react";
+import{DialogContent,DialogHeader,DialogTitle}from"@/components/ui/dialog";
+
+exportdefaultfunctionVideoModal(){
+ return(
+  <DialogContentclassName="max-w-4xl">
+   <DialogHeader>
+    <DialogTitle>SeePerceptinAction</DialogTitle>
+   </DialogHeader>
+   <divclassName="aspect-videobg-gray-100dark:bg-gray-800rounded-lgflexitems-centerjustify-center">
+    <divclassName="text-center">
+     <PlayclassName="w-16h-16text-gray-400mx-automb-4"/>
+     <pclassName="text-gray-600dark:text-gray-400">Demovideocomingsoon</p>
+    </div>
+   </div>
+  </DialogContent>
+ );
+}

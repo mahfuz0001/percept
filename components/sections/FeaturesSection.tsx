@@ -1,0 +1,129 @@
+//components/sections/FeaturesSection.tsx
+"useclient";
+
+import{motion}from"framer-motion";
+import{Zap,Target,Users,Star,CheckCircle}from"lucide-react";
+import{Card,CardContent,CardHeader,CardTitle}from"@/components/ui/card";
+import{Tabs,TabsContent,TabsList,TabsTrigger}from"@/components/ui/tabs";
+
+constfeatures=[
+ {icon:Zap,title:"NoHand-Holding",description:"Minimalguidanceforcesyoutothinkcriticallyanddevelopproblem-solvingskills.",color:"blue"},
+ {icon:Target,title:"RealProblems",description:"Facechallengesthatmirroractualdevelopmentwork.Noartificialexamples.",color:"green"},
+ {icon:Users,title:"CommunityDriven",description:"Joindeveloperswholearnbydoing,notbyfollowingtutorials.",color:"purple"},
+];
+
+constprocessSteps=[
+ {step:"1",title:"GetChallenge",description:"Receiveareal-worldcodingproblem"},
+ {step:"2",title:"Struggle",description:"Researchandexperimentindependently"},
+ {step:"3",title:"Breakthrough",description:"Experiencethejoyofsolvingityourself"},
+ {step:"4",title:"Confidence",description:"Buildgenuineproblem-solvingskills"},
+];
+
+constresultsMetrics=[
+ {metric:"95%",label:"Completechallengessuccessfully"},
+ {metric:"3x",label:"Fasteratsolvingnewproblems"},
+ {metric:"87%",label:"Landtheirdreamjobwithin6months"},
+];
+
+constlearningOutcomes=[
+ "Independentproblem-solvingability",
+ "Confidenceintacklingunknownchallenges",
+ "Researchanddebuggingskills",
+ "Real-worlddevelopmentexperience",
+];
+
+exportdefaultfunctionFeaturesSection(){
+ return(
+  <sectionclassName="py-16bg-gray-50dark:bg-gray-800">
+   <divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
+    <motion.divinitial={{opacity:0,y:20}}whileInView={{opacity:1,y:0}}transition={{duration:0.6}}viewport={{once:true}}className="text-centermb-16">
+     <h2className="text-4xlfont-boldtext-gray-900dark:text-whitemb-4">IndependentLearningPlatform</h2>
+     <pclassName="text-xltext-gray-600dark:text-gray-400max-w-2xlmx-auto">Research,experiment,andsolveproblemsyourself.Buildgenuineconfidencethroughstruggle-firstlearning.</p>
+    </motion.div>
+
+    <TabsdefaultValue="features"className="w-full">
+     <TabsListclassName="gridw-fullmax-w-mdmx-autogrid-cols-3mb-12">
+      <TabsTriggervalue="features">Features</TabsTrigger>
+      <TabsTriggervalue="process">Process</TabsTrigger>
+      <TabsTriggervalue="results">Results</TabsTrigger>
+     </TabsList>
+
+     <TabsContentvalue="features"className="space-y-8">
+      <divclassName="gridmd:grid-cols-3gap-8">
+       {features.map((feature,index)=>(
+        <motion.divkey={index}initial={{opacity:0,y:20}}whileInView={{opacity:1,y:0}}transition={{duration:0.6,delay:index*0.1}}viewport={{once:true}}whileHover={{y:-8,transition:{duration:0.3}}}>
+         <CardclassName="h-fullhover:shadow-xltransition-allduration-300border-0shadow-lg">
+          <CardContentclassName="p-6text-center">
+           <divclassName={`w-16h-16bg-${feature.color}-100dark:bg-${feature.color}-900/30rounded-fullflexitems-centerjustify-centermx-automb-4`}>
+            <feature.iconclassName={`w-8h-8text-${feature.color}-600dark:text-${feature.color}-400`}/>
+           </div>
+           <h3className="text-xlfont-boldtext-gray-900dark:text-whitemb-3">{feature.title}</h3>
+           <pclassName="text-gray-600dark:text-gray-400">{feature.description}</p>
+          </CardContent>
+         </Card>
+        </motion.div>
+       ))}
+      </div>
+     </TabsContent>
+
+     <TabsContentvalue="process"className="space-y-8">
+      <divclassName="gridmd:grid-cols-2lg:grid-cols-4gap-6">
+       {processSteps.map((item,index)=>(
+        <motion.divkey={index}initial={{opacity:0,scale:0.8}}whileInView={{opacity:1,scale:1}}transition={{duration:0.5,delay:index*0.1}}viewport={{once:true}}>
+         <CardclassName="text-centerh-full">
+          <CardContentclassName="p-6">
+           <divclassName="w-12h-12bg-gradient-to-rfrom-blue-600to-purple-600rounded-fullflexitems-centerjustify-centermx-automb-4text-whitefont-boldtext-lg">
+            {item.step}
+           </div>
+           <h3className="font-boldtext-gray-900dark:text-whitemb-2">{item.title}</h3>
+           <pclassName="text-gray-600dark:text-gray-400text-sm">{item.description}</p>
+          </CardContent>
+</Card>
+        </motion.div>
+       ))}
+      </div>
+     </TabsContent>
+
+     <TabsContentvalue="results"className="space-y-8">
+      <divclassName="gridmd:grid-cols-2gap-8">
+       <Card>
+        <CardHeader>
+         <CardTitleclassName="flexitems-centerspace-x-2">
+          <StarclassName="w-5h-5text-yellow-500"/>
+          <span>SuccessMetrics</span>
+         </CardTitle>
+        </CardHeader>
+        <CardContent>
+         <divclassName="space-y-4">
+          {resultsMetrics.map((stat,index)=>(
+           <divkey={index}className="flexjustify-betweenitems-centerp-3bg-gray-50dark:bg-gray-800rounded-lg">
+            <spanclassName="text-gray-600dark:text-gray-400">{stat.label}</span>
+            <spanclassName="font-boldtext-lgtext-blue-600">{stat.metric}</span>
+           </div>
+          ))}
+         </div>
+        </CardContent>
+       </Card>
+
+       <Card>
+        <CardHeader>
+         <CardTitle>LearningOutcomes</CardTitle>
+        </CardHeader>
+        <CardContent>
+         <divclassName="space-y-3">
+          {learningOutcomes.map((outcome,index)=>(
+           <divkey={index}className="flexitems-centerspace-x-3">
+            <CheckCircleclassName="w-5h-5text-green-500"/>
+            <spanclassName="text-gray-700dark:text-gray-300">{outcome}</span>
+           </div>
+          ))}
+         </div>
+        </CardContent>
+       </Card>
+      </div>
+     </TabsContent>
+    </Tabs>
+   </div>
+  </section>
+ );
+}
