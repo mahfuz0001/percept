@@ -29,7 +29,7 @@ function getClientIP(request: NextRequest): string {
     return cfConnectingIp;
   }
   
-  return request.ip || 'unknown';
+  return 'unknown';
 }
 
 export default clerkMiddleware(async (auth, req) => {

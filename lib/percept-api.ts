@@ -179,8 +179,80 @@ export class PerceptAPI {
   }
 
   /**
-   * Get user progress for challenges
+   * Get challenges with optional filtering
    */
+  static async getChallenges(filters?: {
+    category?: string;
+    difficulty?: number;
+    technology?: string;
+    isPublished?: boolean;
+  }) {
+    try {
+      let query = supabase
+        .from('challenges')
+        .select(`
+          *,
+          challenge_categories(name, slug),
+          technologies(name, slug, color)
+        `);
+
+      if (filters?.category) {
+        query = query.eq('challenge_categories.slug', filters.category);
+      }
+      
+      if (filters?.difficulty) {
+        query = query.eq('difficulty_level', filters.difficulty);
+      }
+      
+      if (filters?.technology) {
+        query = query.eq('technologies.slug', filters.technology);
+      }
+      
+      if (filters?.isPublished !== undefined) {
+        query = query.eq('is_published', filters.isPublished);
+      }
+
+      const { data, error } = await query.order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching challenges:', error);
+        return [];
+      }
+
+      return data || [];
+    } catch (error) {
+      console.error('Error in getChallenges:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Get a single challenge by ID
+   */
+  static async getChallenge(challengeId: string) {
+    try {
+      const { data, error } = await supabase
+        .from('challenges')
+        .select(`
+          *,
+          challenge_categories(name, slug),
+          technologies(name, slug, color)
+        `)
+        .eq('id', challengeId)
+        .eq('is_published', true)
+        .single();
+
+      if (error) {
+        console.error('Error fetching challenge:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error in getChallenge:', error);
+      return null;
+    }
+  }
   static async getUserProgress(userId: string, challengeId?: string) {
     try {
       let query = supabase

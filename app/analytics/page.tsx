@@ -289,7 +289,7 @@ export default async function AnalyticsPage() {
             <div className="p-4 border-2 border-dashed border-purple-300 rounded-lg text-center">
               <div className="text-3xl mb-2">🏆</div>
               <h4 className="font-semibold text-gray-900 mb-1">Achievement Goal</h4>
-              <p className="text-sm text-gray-600 mb-3">Earn "Problem Solver" badge</p>
+              <p className="text-sm text-gray-600 mb-3">Earn &quot;Problem Solver&quot; badge</p>
               <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
                 <div className="bg-purple-600 h-2 rounded-full" style={{ width: '70%' }}></div>
               </div>
