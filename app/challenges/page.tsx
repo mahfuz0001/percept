@@ -77,38 +77,38 @@ time:"1hour",
 completed:true,
 category:"CSSMastery"
 }
-];
+  ];
 
-constcategories=["All","WebFundamentals","React&APIs","ReactAdvanced","Backend","FullStack","CSSMastery"];
-constdifficulties=["All","Beginner","Intermediate","Advanced"];
+  const categories = ["All", "Web Fundamentals", "React & APIs", "React Advanced", "Backend", "Full Stack", "CSS Mastery"];
+  const difficulties = ["All", "Beginner", "Intermediate", "Advanced"];
 
-return(
-<divclassName="min-h-screenbg-gray-50">
+  return (
+    <div className="min-h-screen bg-gray-50">
 {/*Header*/}
-<headerclassName="bg-whiteshadow-smborder-bborder-gray-200">
-<divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
-<divclassName="flexjustify-betweenitems-centerh-16">
-<divclassName="flexitems-centerspace-x-8">
-<Linkhref="/dashboard"className="flexitems-center">
-<h1className="text-2xlfont-boldtext-gray-900">Percept</h1>
-<spanclassName="ml-2text-smtext-gray-500">Challenges</span>
+<header className="bg-whiteshadow-smborder-bborder-gray-200">
+<div className="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
+<div className="flexjustify-betweenitems-centerh-16">
+<div className="flexitems-centerspace-x-8">
+<Link href="/dashboard"className="flexitems-center">
+<h1 className="text-2xlfont-boldtext-gray-900">Percept</h1>
+<span className="ml-2text-smtext-gray-500">Challenges</span>
 </Link>
-<navclassName="hiddenmd:flexspace-x-6">
-<Linkhref="/dashboard"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
+<nav className="hiddenmd:flexspace-x-6">
+<Link href="/dashboard"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
 Dashboard
 </Link>
-<Linkhref="/challenges"className="text-blue-600font-medium">
+<Link href="/challenges"className="text-blue-600font-medium">
 Challenges
 </Link>
-<Linkhref="/profile"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
+<Link href="/profile"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
 Profile
 </Link>
-<Linkhref="/analytics"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
+<Link href="/analytics"className="text-gray-600hover:text-gray-900font-mediumtransition-colors">
 Analytics
 </Link>
 </nav>
 </div>
-<divclassName="flexitems-centerspace-x-4">
+<div className="flexitems-centerspace-x-4">
 <UserButton
 appearance={{
 elements:{
@@ -122,59 +122,59 @@ avatarBox:"w-10h-10"
 </header>
 
 {/*MainContent*/}
-<mainclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8py-8">
-<divclassName="mb-8">
-<h2className="text-3xlfont-boldtext-gray-900mb-2">
+<main className="max-w-7xlmx-autopx-4sm:px-6lg:px-8py-8">
+<div className="mb-8">
+<h2 className="text-3xlfont-boldtext-gray-900mb-2">
 CodingChallenges🚀
 </h2>
-<pclassName="text-lgtext-gray-600">
+<p className="text-lgtext-gray-600">
 Chooseyourchallengeandstartbuildingrealskills.Nohand-holding,justproblem-solving.
 </p>
 </div>
 
 {/*StatsSummary*/}
-<divclassName="gridgrid-cols-1md:grid-cols-4gap-6mb-8">
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<divclassName="text-center">
-<divclassName="text-3xlfont-boldtext-blue-600">{challenges.filter(c=>c.completed).length}</div>
-<divclassName="text-smtext-gray-600">Completed</div>
+<div className="gridgrid-cols-1md:grid-cols-4gap-6mb-8">
+<div className="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
+<div className="text-center">
+<div className="text-3xlfont-boldtext-blue-600">{challenges.filter(c=>c.completed).length}</div>
+<div className="text-smtext-gray-600">Completed</div>
 </div>
 </div>
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<divclassName="text-center">
-<divclassName="text-3xlfont-boldtext-green-600">{challenges.length-challenges.filter(c=>c.completed).length}</div>
-<divclassName="text-smtext-gray-600">Available</div>
+<div className="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
+<div className="text-center">
+<div className="text-3xlfont-boldtext-green-600">{challenges.length-challenges.filter(c=>c.completed).length}</div>
+<div className="text-smtext-gray-600">Available</div>
 </div>
 </div>
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<divclassName="text-center">
-<divclassName="text-3xlfont-boldtext-purple-600">{challenges.filter(c=>c.completed).reduce((sum,c)=>sum+c.points,0)}</div>
-<divclassName="text-smtext-gray-600">PointsEarned</div>
+<div className="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
+<div className="text-center">
+<div className="text-3xlfont-boldtext-purple-600">{challenges.filter(c=>c.completed).reduce((sum,c)=>sum+c.points,0)}</div>
+<div className="text-smtext-gray-600">PointsEarned</div>
 </div>
 </div>
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
-<divclassName="text-center">
-<divclassName="text-3xlfont-boldtext-orange-600">{challenges.length}</div>
-<divclassName="text-smtext-gray-600">TotalChallenges</div>
+<div className="bg-whiterounded-lgshadow-smborderborder-gray-200p-6">
+<div className="text-center">
+<div className="text-3xlfont-boldtext-orange-600">{challenges.length}</div>
+<div className="text-smtext-gray-600">TotalChallenges</div>
 </div>
 </div>
 </div>
 
 {/*Filters*/}
-<divclassName="bg-whiterounded-lgshadow-smborderborder-gray-200p-6mb-8">
-<h3className="text-lgfont-semiboldtext-gray-900mb-4">FilterChallenges</h3>
-<divclassName="gridgrid-cols-1md:grid-cols-2gap-6">
+<div className="bg-whiterounded-lgshadow-smborderborder-gray-200p-6mb-8">
+<h3 className="text-lgfont-semiboldtext-gray-900mb-4">FilterChallenges</h3>
+<div className="gridgrid-cols-1md:grid-cols-2gap-6">
 <div>
-<labelclassName="blocktext-smfont-mediumtext-gray-700mb-2">Category</label>
-<selectclassName="w-fullborderborder-gray-300rounded-lgpx-3py-2focus:outline-nonefocus:ring-2focus:ring-blue-500">
+<label className="blocktext-smfont-mediumtext-gray-700mb-2">Category</label>
+<select className="w-fullborderborder-gray-300rounded-lgpx-3py-2focus:outline-nonefocus:ring-2focus:ring-blue-500">
 {categories.map(category=>(
 <optionkey={category}value={category}>{category}</option>
 ))}
 </select>
 </div>
 <div>
-<labelclassName="blocktext-smfont-mediumtext-gray-700mb-2">Difficulty</label>
-<selectclassName="w-fullborderborder-gray-300rounded-lgpx-3py-2focus:outline-nonefocus:ring-2focus:ring-blue-500">
+<label className="blocktext-smfont-mediumtext-gray-700mb-2">Difficulty</label>
+<select className="w-fullborderborder-gray-300rounded-lgpx-3py-2focus:outline-nonefocus:ring-2focus:ring-blue-500">
 {difficulties.map(difficulty=>(
 <optionkey={difficulty}value={difficulty}>{difficulty}</option>
 ))}
@@ -184,7 +184,7 @@ Chooseyourchallengeandstartbuildingrealskills.Nohand-holding,justproblem-solving
 </div>
 
 {/*ChallengesGrid*/}
-<divclassName="gridgrid-cols-1md:grid-cols-2lg:grid-cols-3gap-6">
+<div className="gridgrid-cols-1md:grid-cols-2lg:grid-cols-3gap-6">
 {challenges.map((challenge)=>(
 <div
 key={challenge.id}
@@ -192,34 +192,34 @@ className={`bg-whiterounded-lgshadow-smborder-2p-6hover:shadow-mdtransition-alld
 challenge.completed?'border-green-200bg-green-50':'border-gray-200hover:border-blue-300'
 }`}
 >
-<divclassName="flexitems-startjustify-betweenmb-4">
-<divclassName="flex-1">
-<h3className="text-lgfont-semiboldtext-gray-900mb-1">{challenge.title}</h3>
-<pclassName="text-smtext-gray-600mb-2">{challenge.category}</p>
+<div className="flexitems-startjustify-betweenmb-4">
+<div className="flex-1">
+<h3 className="text-lgfont-semiboldtext-gray-900mb-1">{challenge.title}</h3>
+<p className="text-smtext-gray-600mb-2">{challenge.category}</p>
 </div>
 {challenge.completed&&(
-<divclassName="flex-shrink-0">
-<spanclassName="bg-green-100text-green-800text-xsfont-mediumpx-2py-1rounded-full">
+<div className="flex-shrink-0">
+<span className="bg-green-100text-green-800text-xsfont-mediumpx-2py-1rounded-full">
 ✓Completed
 </span>
 </div>
 )}
 </div>
 
-<pclassName="text-gray-700mb-4text-sm">{challenge.description}</p>
+<p className="text-gray-700mb-4text-sm">{challenge.description}</p>
 
-<divclassName="flexitems-centerjustify-betweenmb-4">
-<spanclassName={`text-xspx-2py-1rounded-fullfont-medium${
+<div className="flexitems-centerjustify-betweenmb-4">
+<span className={`text-xspx-2py-1rounded-fullfont-medium${
 challenge.difficulty==='Beginner'?'bg-green-100text-green-800':
 challenge.difficulty==='Intermediate'?'bg-yellow-100text-yellow-800':
 'bg-red-100text-red-800'
 }`}>
 {challenge.difficulty}
 </span>
-<spanclassName="text-smtext-gray-600">{challenge.time}</span>
+<span className="text-smtext-gray-600">{challenge.time}</span>
 </div>
 
-<divclassName="flexflex-wrapgap-1mb-4">
+<div className="flexflex-wrapgap-1mb-4">
 {challenge.technologies.map((tech,index)=>(
 <spankey={index}className="text-xsbg-gray-100text-gray-700px-2py-1rounded">
 {tech}
@@ -227,9 +227,9 @@ challenge.difficulty==='Intermediate'?'bg-yellow-100text-yellow-800':
 ))}
 </div>
 
-<divclassName="flexitems-centerjustify-between">
-<spanclassName="text-smfont-semiboldtext-blue-600">{challenge.points}points</span>
-<buttonclassName={`px-4py-2rounded-lgtext-smfont-mediumtransition-colors${
+<div className="flexitems-centerjustify-between">
+<span className="text-smfont-semiboldtext-blue-600">{challenge.points}points</span>
+<button className={`px-4py-2rounded-lgtext-smfont-mediumtransition-colors${
 challenge.completed
 ?'bg-gray-100text-gray-600cursor-not-allowed'
 :'bg-blue-600hover:bg-blue-700text-white'
@@ -242,13 +242,13 @@ challenge.completed
 </div>
 
 {/*ComingSoon*/}
-<divclassName="mt-12bg-gradient-to-rfrom-blue-50to-indigo-50rounded-lgp-8text-center">
-<h3className="text-2xlfont-boldtext-gray-900mb-4">MoreChallengesComingSoon!🎯</h3>
-<pclassName="text-gray-600mb-6">
+<div className="mt-12bg-gradient-to-rfrom-blue-50to-indigo-50rounded-lgp-8text-center">
+<h3 className="text-2xlfont-boldtext-gray-900mb-4">MoreChallengesComingSoon!🎯</h3>
+<p className="text-gray-600mb-6">
 We&apos;reconstantlyaddingnewchallengesacrossdifferenttechnologiesanddifficultylevels.
 Wanttoseeaspecificchallenge?Letusknow!
 </p>
-<buttonclassName="bg-blue-600hover:bg-blue-700text-whitefont-mediumpy-3px-6rounded-lgtransition-colors">
+<button className="bg-blue-600hover:bg-blue-700text-whitefont-mediumpy-3px-6rounded-lgtransition-colors">
 RequestaChallenge
 </button>
 </div>

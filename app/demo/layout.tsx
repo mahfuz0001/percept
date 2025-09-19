@@ -1,38 +1,38 @@
-importtype{Metadata}from"next";
-import"./globals.css";
+import type { Metadata } from "next";
+import "../globals.css";
 
-exportconstmetadata:Metadata={
-title:"Percept-Anti-TutorialHellPlatform",
-description:"Transformpassivelearnersintoconfident,skilleddevelopersthroughchallenge-basedlearning",
-keywords:["coding","programming","tutorials","challenges","webdevelopment","JavaScript","React"],
-authors:[{name:"PerceptTeam"}],
-openGraph:{
-title:"Percept-EscapeTutorialHall",
-description:"Realchallengesforrealdevelopers.Nohand-holding,justproblem-solving.",
-type:"website",
-locale:"en_US",
-},
-twitter:{
-card:"summary_large_image",
-title:"Percept-Anti-TutorialHellPlatform",
-description:"Transformfrompassivelearnertoconfidentdeveloper",
-},
-robots:{
-index:true,
-follow:true,
-},
+export const metadata: Metadata = {
+  title: "Percept - Anti-Tutorial Hell Platform",
+  description: "Transform passive learners into confident, skilled developers through challenge-based learning",
+  keywords: ["coding", "programming", "tutorials", "challenges", "web development", "JavaScript", "React"],
+  authors: [{ name: "Percept Team" }],
+  openGraph: {
+    title: "Percept - Escape Tutorial Hell",
+    description: "Real challenges for real developers. No hand-holding, just problem-solving.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Percept - Anti-Tutorial Hell Platform",
+    description: "Transform from passive learner to confident developer",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
-exportdefaultfunctionRootLayout({
-children,
-}:Readonly<{
-children:React.ReactNode;
-}>){
-return(
-<htmllang="en">
-<bodyclassName="antialiased">
-{children}
-</body>
-</html>
-);
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className="antialiased">
+        {children}
+      </body>
+    </html>
+  );
 }
