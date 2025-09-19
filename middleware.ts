@@ -3,14 +3,10 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { rateLimit, getRateLimitHeaders } from './lib/rate-limiter';
 
-const isProtectedRoute = createRouteMatcher([
-  '/dashboard(.*)',
-  '/challenges(.*)',
-  '/profile(.*)',
-  '/analytics(.*)',
-]);
-
-const isPublicApiRoute = createRouteMatcher([
+const publicRoutes = createRouteMatcher([
+  '/',
+  '/sign-in(.*)',
+  '/sign-up(.*)',
   '/api/public(.*)',
 ]);
 
@@ -33,68 +29,58 @@ function getClientIP(request: NextRequest): string {
 }
 
 export default clerkMiddleware(async (auth, req) => {
-  try {
-    const ip = getClientIP(req);
-    const url = req.nextUrl.pathname;
+  const { userId } = await auth(); // Await the auth() function
+  const ip = getClientIP(req);
+  const url = req.nextUrl.pathname;
+
+  // Apply rate limiting to all API routes and authentication routes.
+  if (url.startsWith('/api') || url.startsWith('/sign-')) {
+    const identifier = `${ip}:${url}`;
+    const limit = url.startsWith('/api') ? 60 : 30; // 60 requests per 15min for API, 30 for auth
     
-    // Apply rate limiting to API routes and auth routes
-    if (url.startsWith('/api') || url.startsWith('/sign-') || isPublicApiRoute(req)) {
-      const identifier = `${ip}:${url}`;
-      const limit = url.startsWith('/api') ? 60 : 30; // 60 requests per 15min for API, 30 for auth
-      
-      if (!rateLimit(identifier, limit)) {
-        const headers = getRateLimitHeaders(identifier, limit);
-        return new NextResponse(
-          JSON.stringify({ 
-            error: 'Too many requests', 
-            message: 'Rate limit exceeded. Please try again later.' 
-          }),
-          { 
-            status: 429, 
-            headers: {
-              'Content-Type': 'application/json',
-              ...headers,
-            }
-          }
-        );
-      }
-      
-      // Add rate limit headers to successful responses
-      const response = NextResponse.next();
+    if (!rateLimit(identifier, limit)) {
       const headers = getRateLimitHeaders(identifier, limit);
-      Object.entries(headers).forEach(([key, value]) => {
-        response.headers.set(key, value);
-      });
+      return new NextResponse(
+        JSON.stringify({ 
+          error: 'Too many requests', 
+          message: 'Rate limit exceeded. Please try again later.' 
+        }),
+        { 
+          status: 429, 
+          headers: {
+            'Content-Type': 'application/json',
+            ...headers,
+          }
+        }
+      );
     }
-
-    // Protect routes that require authentication
-    if (isProtectedRoute(req)) {
-      await auth.protect();
-    }
-
-    return NextResponse.next();
-  } catch (error) {
-    console.error('Middleware error:', error);
     
-    // Return a generic error response
-    return new NextResponse(
-      JSON.stringify({ 
-        error: 'Internal server error', 
-        message: 'Something went wrong. Please try again.' 
-      }),
-      { 
-        status: 500, 
-        headers: { 'Content-Type': 'application/json' } 
-      }
-    );
+    const response = NextResponse.next();
+    const headers = getRateLimitHeaders(identifier, limit);
+    Object.entries(headers).forEach(([key, value]) => {
+      response.headers.set(key, value);
+    });
+    return response;
+  }
+
+  // Allow access to public routes without authentication.
+  if (publicRoutes(req)) {
+    return NextResponse.next();
+  }
+
+  // If the user is not signed in and tries to access a protected route, redirect them.
+  if (!userId) {
+    const signInUrl = new URL('/sign-in', req.url);
+    signInUrl.searchParams.set('redirect_url', req.url);
+    return NextResponse.redirect(signInUrl);
   }
 });
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
+    // Include all routes except static files and Next.js internals.
+    '/((?!.*\\..*|_next).*)',
+    '/',
     '/(api|trpc)(.*)',
   ],
 };

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { UserButton } from '@clerk/nextjs';
-import Link from 'next/link';
-import CodeEditor from '../../../components/CodeEditor';
+import React, { useState, useEffect } from "react";
+import { UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+import CodeEditor from "../../../components/CodeEditor";
 
 interface Challenge {
   id: string;
@@ -26,9 +26,9 @@ interface Challenge {
 
 export default function ChallengePage({ params }: { params: { id: string } }) {
   const [challenge, setChallenge] = useState<Challenge | null>(null);
-  const [userCode, setUserCode] = useState('');
+  const [userCode, setUserCode] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [output, setOutput] = useState('');
+  const [output, setOutput] = useState("");
   const [hintsUsed, setHintsUsed] = useState(0);
 
   // Mock challenge data - in production, this would come from the database
@@ -36,7 +36,8 @@ export default function ChallengePage({ params }: { params: { id: string } }) {
     const mockChallenge: Challenge = {
       id: params.id,
       title: "Build a Todo App",
-      description: "Create a functional todo application with add, delete, and mark complete features",
+      description:
+        "Create a functional todo application with add, delete, and mark complete features",
       difficulty: "Beginner",
       technologies: ["HTML", "CSS", "JavaScript"],
       points: 150,
@@ -54,7 +55,7 @@ Your application should have a clean, intuitive interface and handle edge cases 
         "Implement delete functionality for each todo",
         "Add filter buttons (All, Active, Completed)",
         "Style the application with CSS",
-        "Handle empty states appropriately"
+        "Handle empty states appropriately",
       ],
       starterCode: `<!DOCTYPE html>
 <html lang="en">
@@ -168,44 +169,44 @@ Your application should have a clean, intuitive interface and handle edge cases 
     </script>
 </body>
 </html>`,
-      language: 'html',
+      language: "html",
       testCases: [
         {
           input: "Add 'Learn JavaScript' todo",
           expected: "Todo should appear in the list",
-          description: "Should be able to add a new todo item"
+          description: "Should be able to add a new todo item",
         },
         {
           input: "Click checkbox on a todo",
           expected: "Todo should be marked as completed with strikethrough",
-          description: "Should be able to mark todos as completed"
+          description: "Should be able to mark todos as completed",
         },
         {
           input: "Click delete button",
           expected: "Todo should be removed from the list",
-          description: "Should be able to delete todos"
-        }
-      ]
+          description: "Should be able to delete todos",
+        },
+      ],
     };
-    
+
     setChallenge(mockChallenge);
     setUserCode(mockChallenge.starterCode);
   }, [params.id]);
 
   const handleCodeChange = (value: string | undefined) => {
-    setUserCode(value || '');
+    setUserCode(value || "");
   };
 
   const handleRunCode = async () => {
     if (!challenge) return;
-    
+
     setIsSubmitting(true);
     try {
       // Analyze code with AI
-      const response = await fetch('/api/challenges/analyze', {
-        method: 'POST',
+      const response = await fetch("/api/challenges/analyze", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           code: userCode,
@@ -219,57 +220,67 @@ Your application should have a clean, intuitive interface and handle edge cases 
       if (response.ok) {
         const data = await response.json();
         const analysis = data.analysis;
-        
+
         let output = `🔍 Code Analysis Complete!\n\n`;
         output += `Score: ${analysis.score}/100\n\n`;
-        
+
         if (analysis.issues.length > 0) {
           output += `Issues Found:\n`;
-          analysis.issues.forEach((issue: string) => output += `• ${issue}\n`);
-          output += '\n';
+          analysis.issues.forEach(
+            (issue: string) => (output += `• ${issue}\n`)
+          );
+          output += "\n";
         }
-        
+
         if (analysis.suggestions.length > 0) {
           output += `Suggestions:\n`;
-          analysis.suggestions.forEach((suggestion: string) => output += `• ${suggestion}\n`);
+          analysis.suggestions.forEach(
+            (suggestion: string) => (output += `• ${suggestion}\n`)
+          );
         }
-        
+
         setOutput(output);
       } else {
-        setOutput('Code analysis complete! Check your preview to see the results.');
+        setOutput(
+          "Code analysis complete! Check your preview to see the results."
+        );
       }
     } catch (error) {
-      setOutput('Code executed successfully! Check your preview to see the results.');
+      setOutput(
+        "Code executed successfully! Check your preview to see the results."
+      );
     }
     setIsSubmitting(false);
   };
 
   const handleSubmit = async () => {
     if (!challenge) return;
-    
+
     setIsSubmitting(true);
     try {
       // In production, this would submit to your API
       setTimeout(() => {
-        setOutput('Code submitted successfully! 🎉 Points awarded: ' + challenge.points);
+        setOutput(
+          "Code submitted successfully! 🎉 Points awarded: " + challenge.points
+        );
         setIsSubmitting(false);
       }, 1500);
-      } catch {
-        setOutput('Error submitting code. Please try again.');
-        setIsSubmitting(false);
-      }
+    } catch {
+      setOutput("Error submitting code. Please try again.");
+      setIsSubmitting(false);
+    }
   };
 
   const handleGetHint = async () => {
     if (!challenge) return;
-    
+
     setOutput("🤔 Generating hint...");
-    
+
     try {
-      const response = await fetch('/api/challenges/hints', {
-        method: 'POST',
+      const response = await fetch("/api/challenges/hints", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           challenge: {
@@ -294,32 +305,36 @@ Your application should have a clean, intuitive interface and handle edge cases 
           "📝 Create an array to store your todos and a function to render them. Each time the todos array changes, clear the existing list and re-render all todos with their checkboxes and delete buttons.",
           "✅ For the checkbox functionality, add an event listener that toggles the completed status. When checked, add a 'completed' class to style the text with strikethrough.",
           "🔍 Implement the filter functionality by creating functions that show/hide todos based on their completed status. Update the active filter button styling to show which filter is currently selected.",
-          "🎨 Polish the user experience by handling edge cases: what happens when the todo list is empty? How do you prevent adding empty todos? Consider adding a todo counter."
+          "🎨 Polish the user experience by handling edge cases: what happens when the todo list is empty? How do you prevent adding empty todos? Consider adding a todo counter.",
         ];
-        
+
         if (hintsUsed < fallbackHints.length) {
           setOutput(`💡 Hint ${hintsUsed + 1}: ${fallbackHints[hintsUsed]}`);
           setHintsUsed(hintsUsed + 1);
         } else {
-          setOutput("🎯 You've used all available hints! You have all the guidance you need. Remember: break the problem into small steps, test frequently, and don't be afraid to experiment. You've got this!");
+          setOutput(
+            "🎯 You've used all available hints! You have all the guidance you need. Remember: break the problem into small steps, test frequently, and don't be afraid to experiment. You've got this!"
+          );
         }
       }
     } catch (error) {
-      console.error('Hint generation error:', error);
+      console.error("Hint generation error:", error);
       // Better fallback with immediate hint
       const fallbackHints = [
         "🚀 Start by implementing the add functionality. Focus on getting the input value when Enter is pressed or a button is clicked, then create a new todo object with an ID, text, and completed status.",
         "📝 Create an array to store your todos and a function to render them. Each time the todos array changes, clear the existing list and re-render all todos with their checkboxes and delete buttons.",
         "✅ For the checkbox functionality, add an event listener that toggles the completed status. When checked, add a 'completed' class to style the text with strikethrough.",
         "🔍 Implement the filter functionality by creating functions that show/hide todos based on their completed status. Update the active filter button styling to show which filter is currently selected.",
-        "🎨 Polish the user experience by handling edge cases: what happens when the todo list is empty? How do you prevent adding empty todos? Consider adding a todo counter."
+        "🎨 Polish the user experience by handling edge cases: what happens when the todo list is empty? How do you prevent adding empty todos? Consider adding a todo counter.",
       ];
-      
+
       if (hintsUsed < fallbackHints.length) {
         setOutput(`💡 Hint ${hintsUsed + 1}: ${fallbackHints[hintsUsed]}`);
         setHintsUsed(hintsUsed + 1);
       } else {
-        setOutput("🎯 You've used all available hints! You have all the guidance you need. Remember: break the problem into small steps, test frequently, and don't be afraid to experiment. You've got this!");
+        setOutput(
+          "🎯 You've used all available hints! You have all the guidance you need. Remember: break the problem into small steps, test frequently, and don't be afraid to experiment. You've got this!"
+        );
       }
     }
   };
@@ -346,17 +361,20 @@ Your application should have a clean, intuitive interface and handle edge cases 
                 <h1 className="text-2xl font-bold text-gray-900">Percept</h1>
               </Link>
               <nav className="hidden md:flex space-x-6">
-                <Link href="/challenges" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+                <Link
+                  href="/challenges"
+                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                >
                   ← Back to Challenges
                 </Link>
               </nav>
             </div>
             <div className="flex items-center space-x-4">
-              <UserButton 
+              <UserButton
                 appearance={{
                   elements: {
-                    avatarBox: "w-10 h-10"
-                  }
+                    avatarBox: "w-10 h-10",
+                  },
                 }}
               />
             </div>
@@ -370,28 +388,39 @@ Your application should have a clean, intuitive interface and handle edge cases 
           <div className="space-y-6">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between mb-4">
-                <h1 className="text-2xl font-bold text-gray-900">{challenge.title}</h1>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  challenge.difficulty === 'Beginner' ? 'bg-green-100 text-green-800' :
-                  challenge.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
-                  'bg-red-100 text-red-800'
-                }`}>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  {challenge.title}
+                </h1>
+                <span
+                  className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    challenge.difficulty === "Beginner"
+                      ? "bg-green-100 text-green-800"
+                      : challenge.difficulty === "Intermediate"
+                      ? "bg-yellow-100 text-yellow-800"
+                      : "bg-red-100 text-red-800"
+                  }`}
+                >
                   {challenge.difficulty}
                 </span>
               </div>
-              
+
               <p className="text-gray-600 mb-4">{challenge.description}</p>
-              
+
               <div className="flex flex-wrap gap-4 mb-6">
                 <div className="flex items-center text-sm text-gray-600">
                   <span className="font-medium">⏱️ {challenge.time}</span>
                 </div>
                 <div className="flex items-center text-sm text-gray-600">
-                  <span className="font-medium">🏆 {challenge.points} points</span>
+                  <span className="font-medium">
+                    🏆 {challenge.points} points
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   {challenge.technologies.map((tech, i) => (
-                    <span key={i} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                    <span
+                      key={i}
+                      className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded"
+                    >
                       {tech}
                     </span>
                   ))}
@@ -400,7 +429,9 @@ Your application should have a clean, intuitive interface and handle edge cases 
             </div>
 
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Problem Statement</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                Problem Statement
+              </h2>
               <div className="prose prose-gray max-w-none">
                 <pre className="whitespace-pre-wrap text-gray-700 font-normal">
                   {challenge.problemStatement}
@@ -409,7 +440,9 @@ Your application should have a clean, intuitive interface and handle edge cases 
             </div>
 
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Requirements</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                Requirements
+              </h2>
               <ul className="space-y-2">
                 {challenge.requirements.map((req, i) => (
                   <li key={i} className="flex items-start">
@@ -421,13 +454,19 @@ Your application should have a clean, intuitive interface and handle edge cases 
             </div>
 
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Test Cases</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                Test Cases
+              </h2>
               <div className="space-y-3">
                 {challenge.testCases.map((test, i) => (
                   <div key={i} className="border border-gray-200 rounded p-3">
-                    <p className="font-medium text-gray-900 mb-1">{test.description}</p>
+                    <p className="font-medium text-gray-900 mb-1">
+                      {test.description}
+                    </p>
                     <p className="text-sm text-gray-600">Input: {test.input}</p>
-                    <p className="text-sm text-gray-600">Expected: {test.expected}</p>
+                    <p className="text-sm text-gray-600">
+                      Expected: {test.expected}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -437,59 +476,128 @@ Your application should have a clean, intuitive interface and handle edge cases 
           {/* Code Editor */}
           <div className="space-y-6">
             <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold text-gray-900 flex items-center">
-                  💻 Code Editor
+              <div className="flex items-center justify-between mb-6 bg-gradient-to-br from-gray-100 to-gray-200 p-4 rounded-lg shadow-inner">
+                <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6 text-gray-700"
+                  >
+                    <path d="M5.5 6A.5.5 0 0 0 5 6.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13ZM6 7h12v8H6V7Z" />
+                    <path
+                      fillRule="evenodd"
+                      d="M3.75 3.75a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 .75.75v15a.75.75 0 0 1-.75.75h-15a.75.75 0 0 1-.75-.75v-15ZM5.25 5.25v13.5h13.5V5.25h-13.5Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Code Editor
                 </h2>
-                <div className="flex space-x-3">
+                <div className="flex items-center space-x-4">
                   <button
                     onClick={handleGetHint}
                     disabled={hintsUsed >= 5}
-                    className={`flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                      hintsUsed >= 5 
-                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-                        : 'bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
-                    }`}
+                    className="btn btn-hint"
                   >
-                    💡 Get Hint ({hintsUsed}/5)
+                    <span className="flex items-center gap-1">
+                      💡 Get Hint{" "}
+                      <span className="text-sm font-normal">
+                        ({hintsUsed}/5)
+                      </span>
+                    </span>
                   </button>
                   <button
                     onClick={handleRunCode}
                     disabled={isSubmitting}
-                    className="flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
+                    className="btn btn-run"
                   >
                     {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <span className="flex items-center gap-2">
+                        <svg
+                          className="animate-spin h-4 w-4 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
                         </svg>
                         Analyzing...
-                      </>
+                      </span>
                     ) : (
-                      '▶️ Analyze Code'
+                      <span className="flex items-center gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="w-4 h-4"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M4.5 5.653c0-1.087.994-1.68 1.93-1.066l14.288 8.01c.937.623.937 1.493 0 2.116l-14.288 8.01c-.936.613-1.93-.004-1.93-1.066V5.653Z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        Analyze Code
+                      </span>
                     )}
                   </button>
                   <button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
+                    className="btn btn-submit"
                   >
                     {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <span className="flex items-center gap-2">
+                        <svg
+                          className="animate-spin h-4 w-4 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
                         </svg>
                         Submitting...
-                      </>
+                      </span>
                     ) : (
-                      '🚀 Submit Solution'
+                      <span className="flex items-center gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="w-4 h-4"
+                        >
+                          <path d="M11.72 1.59a.75.75 0 0 0-.585.241L6.967 6.969l4.587 4.587a.75.75 0 0 0 .515-.121L18.423 6.91a.75.75 0 0 0 .041-1.041L12.3 1.832a.75.75 0 0 0-.58-.242ZM5.28 7.647 1.832 1.59a.75.75 0 0 0-.241.585V18a.75.75 0 0 0 .241.585l3.448 6.057a.75.75 0 0 0 1.14-.145L12 11.455 5.845 7.79a.75.75 0 0 0-.565-.143Z" />
+                          <path d="M18.423 6.91 12.3 1.832a.75.75 0 0 0-.58-.242H1.59a.75.75 0 0 0-.241.585v11.536a.75.75 0 0 0 .58.241l11.536.001a.75.75 0 0 0 .241-.585V6.91h6.418Z" />
+                        </svg>
+                        Submit Solution
+                      </span>
                     )}
                   </button>
                 </div>
               </div>
-              
+
               <CodeEditor
                 initialCode={userCode}
                 language={challenge.language}
@@ -504,7 +612,8 @@ Your application should have a clean, intuitive interface and handle edge cases 
                 📝 Output & Feedback
               </h3>
               <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-green-400 p-6 rounded-xl font-mono text-sm min-h-[120px] border border-gray-700 shadow-inner">
-                {output || '💻 Ready for action! Click "Get Hint" to get started, "Analyze Code" to check your progress, or start coding right away.'}
+                {output ||
+                  '💻 Ready for action! Click "Get Hint" to get started, "Analyze Code" to check your progress, or start coding right away.'}
               </div>
             </div>
 
@@ -522,7 +631,8 @@ Your application should have a clean, intuitive interface and handle edge cases 
                 />
               </div>
               <p className="text-xs text-gray-500 mt-2 text-center">
-                💡 Your code will automatically preview here. Test interactive features by clicking around!
+                💡 Your code will automatically preview here. Test interactive
+                features by clicking around!
               </p>
             </div>
           </div>

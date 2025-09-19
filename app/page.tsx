@@ -1,6 +1,6 @@
-import { auth } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
-import Link from 'next/link';
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function Home() {
   const { userId } = await auth();
@@ -66,8 +66,9 @@ export default async function Home() {
               <span className="text-blue-600"> Tutorial Hell</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Transform from passive learner to confident developer through 
-              <strong> real-world challenges</strong> that build genuine problem-solving skills.
+              Transform from passive learner to confident developer through
+              <strong> real-world challenges</strong> that build genuine
+              problem-solving skills.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               {userId ? (
@@ -102,7 +103,7 @@ export default async function Home() {
                 </>
               )}
             </div>
-            
+
             {/* Social Proof */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-gray-600">
               <div className="flex items-center">
@@ -129,7 +130,8 @@ export default async function Home() {
                 Why Percept Works
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Our anti-tutorial approach builds the skills you actually need as a developer
+                Our anti-tutorial approach builds the skills you actually need
+                as a developer
               </p>
             </div>
 
@@ -143,7 +145,8 @@ export default async function Home() {
                   No Step-by-Step Guidance
                 </h3>
                 <p className="text-gray-600">
-                  Get problems, not solutions. Learn to research, experiment, and build independently like real developers do.
+                  Get problems, not solutions. Learn to research, experiment,
+                  and build independently like real developers do.
                 </p>
               </div>
 
@@ -156,7 +159,8 @@ export default async function Home() {
                   Real-World Challenges
                 </h3>
                 <p className="text-gray-600">
-                  Solve actual development problems across HTML, CSS, JavaScript, TypeScript, React, and APIs.
+                  Solve actual development problems across HTML, CSS,
+                  JavaScript, TypeScript, React, and APIs.
                 </p>
               </div>
 
@@ -169,7 +173,8 @@ export default async function Home() {
                   AI-Powered Hints
                 </h3>
                 <p className="text-gray-600">
-                  Get progressive nudges when stuck, without spoiling the solution. Learn to think, not memorize.
+                  Get progressive nudges when stuck, without spoiling the
+                  solution. Learn to think, not memorize.
                 </p>
               </div>
             </div>
@@ -190,12 +195,36 @@ export default async function Home() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
               {[
-                { name: 'HTML', color: 'bg-orange-100 text-orange-800 border-orange-200', emoji: '🌐' },
-                { name: 'CSS', color: 'bg-blue-100 text-blue-800 border-blue-200', emoji: '🎨' },
-                { name: 'JavaScript', color: 'bg-yellow-100 text-yellow-800 border-yellow-200', emoji: '⚡' },
-                { name: 'TypeScript', color: 'bg-blue-100 text-blue-800 border-blue-200', emoji: '📘' },
-                { name: 'React', color: 'bg-cyan-100 text-cyan-800 border-cyan-200', emoji: '⚛️' },
-                { name: 'APIs', color: 'bg-green-100 text-green-800 border-green-200', emoji: '🔌' },
+                {
+                  name: "HTML",
+                  color: "bg-orange-100 text-orange-800 border-orange-200",
+                  emoji: "🌐",
+                },
+                {
+                  name: "CSS",
+                  color: "bg-blue-100 text-blue-800 border-blue-200",
+                  emoji: "🎨",
+                },
+                {
+                  name: "JavaScript",
+                  color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+                  emoji: "⚡",
+                },
+                {
+                  name: "TypeScript",
+                  color: "bg-blue-100 text-blue-800 border-blue-200",
+                  emoji: "📘",
+                },
+                {
+                  name: "React",
+                  color: "bg-cyan-100 text-cyan-800 border-cyan-200",
+                  emoji: "⚛️",
+                },
+                {
+                  name: "APIs",
+                  color: "bg-green-100 text-green-800 border-green-200",
+                  emoji: "🔌",
+                },
               ].map((tech) => (
                 <div
                   key={tech.name}
@@ -224,31 +253,41 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  quote: "Finally, a platform that doesn't hold your hand. I learned more in 2 weeks than 6 months of tutorials.",
+                  quote:
+                    "Finally, a platform that doesn't hold your hand. I learned more in 2 weeks than 6 months of tutorials.",
                   author: "Sarah Chen",
                   role: "Frontend Developer at Google",
-                  avatar: "👩‍💻"
+                  avatar: "👩‍💻",
                 },
                 {
-                  quote: "The real-world challenges prepared me for actual job interviews. Got hired after 3 months!",
+                  quote:
+                    "The real-world challenges prepared me for actual job interviews. Got hired after 3 months!",
                   author: "Marcus Johnson",
                   role: "Full-Stack Developer",
-                  avatar: "👨‍💻"
+                  avatar: "👨‍💻",
                 },
                 {
-                  quote: "Percept taught me to think like a developer, not just copy code. Game changer for my career.",
+                  quote:
+                    "Percept taught me to think like a developer, not just copy code. Game changer for my career.",
                   author: "Elena Rodriguez",
                   role: "React Developer at Stripe",
-                  avatar: "👩‍🚀"
-                }
+                  avatar: "👩‍🚀",
+                },
               ].map((testimonial, index) => (
-                <div key={index} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                <div
+                  key={index}
+                  className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow"
+                >
                   <div className="text-4xl mb-4">{testimonial.avatar}</div>
                   <blockquote className="text-gray-700 mb-4 italic">
                     &quot;{testimonial.quote}&quot;
                   </blockquote>
-                  <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                  <div className="text-gray-600 text-sm">{testimonial.role}</div>
+                  <div className="font-semibold text-gray-900">
+                    {testimonial.author}
+                  </div>
+                  <div className="text-gray-600 text-sm">
+                    {testimonial.role}
+                  </div>
                 </div>
               ))}
             </div>
@@ -268,151 +307,32 @@ export default async function Home() {
               {[
                 {
                   question: "How is this different from coding tutorials?",
-                  answer: "Unlike tutorials that provide step-by-step instructions, Percept gives you real problems to solve independently. You'll learn to research, experiment, and debug like professional developers do."
+                  answer:
+                    "Unlike tutorials that provide step-by-step instructions, Percept gives you real problems to solve independently. You'll learn to research, experiment, and debug like professional developers do.",
                 },
                 {
                   question: "What if I get stuck on a challenge?",
-                  answer: "Our AI-powered hint system provides progressive nudges without spoiling the solution. You'll get just enough guidance to keep learning without becoming dependent on hand-holding."
+                  answer:
+                    "Our AI-powered hint system provides progressive nudges without spoiling the solution. You'll get just enough guidance to keep learning without becoming dependent on hand-holding.",
                 },
                 {
                   question: "Do I need prior coding experience?",
-                  answer: "We have challenges for all skill levels, from complete beginners to experienced developers looking to master new technologies. Start where you're comfortable and progress at your own pace."
+                  answer:
+                    "We have challenges for all skill levels, from complete beginners to experienced developers looking to master new technologies. Start where you're comfortable and progress at your own pace.",
                 },
                 {
                   question: "How much time should I dedicate?",
-                  answer: "Most challenges take 30-120 minutes. We recommend dedicating at least 1 hour per day for consistent progress. Quality practice matters more than quantity."
-                }
+                  answer:
+                    "Most challenges take 30-120 minutes. We recommend dedicating at least 1 hour per day for consistent progress. Quality practice matters more than quantity.",
+                },
               ].map((faq, index) => (
                 <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     {faq.question}
                   </h3>
-                  <p className="text-gray-700">
-                    {faq.answer}
-                  </p>
+                  <p className="text-gray-700">{faq.answer}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Business Model & Value Section */}
-        <section className="py-20 bg-gradient-to-r from-green-50 to-blue-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                How Percept Transforms Lives & Creates Value
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our mission is to break the tutorial hell cycle while building a sustainable business that helps developers worldwide
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {/* For Developers */}
-              <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl">👨‍💻</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">For Developers</h3>
-                <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Break free from tutorial dependency</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Build real problem-solving skills</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Get job-ready with confidence</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Access progressive AI-powered hints</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* For Companies */}
-              <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl">🏢</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">For Companies</h3>
-                <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Access skilled developers who can think independently</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Reduce hiring costs with pre-screened talent</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Corporate training programs available</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Custom challenge development services</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Revenue Model */}
-              <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl">💰</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Revenue Streams</h3>
-                <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Premium subscriptions with advanced challenges</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Corporate training partnerships</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Job placement commissions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2 mt-1">✓</span>
-                    <span>Custom challenge development</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Impact Stats */}
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Impact & Vision</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">92%</div>
-                  <div className="text-gray-600">Job Success Rate</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-green-600 mb-2">3x</div>
-                  <div className="text-gray-600">Faster Learning</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600 mb-2">$50K+</div>
-                  <div className="text-gray-600">Avg Salary Increase</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-orange-600 mb-2">10K+</div>
-                  <div className="text-gray-600">Lives Changed</div>
-                </div>
-              </div>
-              <p className="text-center text-gray-600 max-w-4xl mx-auto">
-                We&apos;re building the future of developer education - one that creates independent thinkers, not tutorial followers. 
-                Our sustainable business model ensures we can continue serving the developer community while creating real value for all stakeholders.
-              </p>
             </div>
           </div>
         </section>
@@ -424,7 +344,8 @@ export default async function Home() {
               Ready to Break Free from Tutorial Hell?
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              Join developers who&apos;ve transformed their skills through real-world problem solving
+              Join developers who&apos;ve transformed their skills through
+              real-world problem solving
             </p>
             {userId ? (
               <Link
@@ -456,19 +377,31 @@ export default async function Home() {
             <div className="flex justify-center space-x-6">
               {userId ? (
                 <>
-                  <Link href="/dashboard" className="text-gray-400 hover:text-white transition-colors">
+                  <Link
+                    href="/dashboard"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
                     Dashboard
                   </Link>
-                  <Link href="/challenges" className="text-gray-400 hover:text-white transition-colors">
+                  <Link
+                    href="/challenges"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
                     Challenges
                   </Link>
                 </>
               ) : (
                 <>
-                  <Link href="/sign-up" className="text-gray-400 hover:text-white transition-colors">
+                  <Link
+                    href="/sign-up"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
                     Get Started
                   </Link>
-                  <Link href="/sign-in" className="text-gray-400 hover:text-white transition-colors">
+                  <Link
+                    href="/sign-in"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
                     Sign In
                   </Link>
                 </>
