@@ -2,6 +2,9 @@ import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
+import { Button } from '@/components/shared/Button';
+import { Card, CardContent, CardHeader } from '@/components/shared/Card';
+import { Badge } from '@/components/shared/Badge';
 
 export default async function ProfilePage() {
   const { userId } = await auth();
@@ -9,6 +12,125 @@ export default async function ProfilePage() {
   if (!userId) {
     redirect('/sign-in');
   }
+
+  // Mock user data - in real app this would come from database
+  const userProfile = {
+    username: "developer_extraordinaire",
+    fullName: "Alex Johnson",
+    email: "alex@example.com",
+    avatar: "👨‍💻",
+    level: 5,
+    totalXP: 2450,
+    xpToNextLevel: 550,
+    currentStreak: 12,
+    longestStreak: 28,
+    joinedDate: "January 2024",
+    location: "San Francisco, CA",
+    specialization: "Full Stack Developer",
+    isPublic: true,
+    bio: "Passionate developer who loves solving complex problems and building amazing user experiences. Always learning something new!",
+    skills: ["JavaScript", "React", "Node.js", "TypeScript", "PostgreSQL", "AWS"],
+    socialLinks: {
+      github: "https://github.com/alexjohnson",
+      linkedin: "https://linkedin.com/in/alexjohnson",
+      twitter: "https://twitter.com/alexjohnson"
+    }
+  };
+
+  const achievements = [
+    {
+      id: 1,
+      name: "First Steps",
+      description: "Complete your first challenge",
+      icon: "🎯",
+      earned: true,
+      earnedDate: "Jan 15, 2024",
+      rarity: "Common"
+    },
+    {
+      id: 2,
+      name: "Problem Solver",
+      description: "Solve 10 challenges without hints",
+      icon: "🧠",
+      earned: true,
+      earnedDate: "Feb 3, 2024",
+      rarity: "Uncommon"
+    },
+    {
+      id: 3,
+      name: "Speed Demon",
+      description: "Complete a challenge in under 30 minutes",
+      icon: "⚡",
+      earned: true,
+      earnedDate: "Feb 12, 2024",
+      rarity: "Rare"
+    },
+    {
+      id: 4,
+      name: "Streak Master",
+      description: "Maintain a 30-day solving streak",
+      icon: "🔥",
+      earned: false,
+      progress: 12,
+      total: 30,
+      rarity: "Epic"
+    },
+    {
+      id: 5,
+      name: "Community Helper",
+      description: "Help 50 fellow developers in the community",
+      icon: "🤝",
+      earned: false,
+      progress: 23,
+      total: 50,
+      rarity: "Rare"
+    },
+    {
+      id: 6,
+      name: "JavaScript Master",
+      description: "Complete all JavaScript challenges",
+      icon: "🏆",
+      earned: false,
+      progress: 18,
+      total: 25,
+      rarity: "Legendary"
+    }
+  ];
+
+  const recentActivity = [
+    {
+      type: "challenge_completed",
+      title: "Completed 'Real-time Chat App'",
+      points: 500,
+      time: "2 hours ago",
+      icon: "✅"
+    },
+    {
+      type: "badge_earned",
+      title: "Earned 'Speed Demon' badge",
+      time: "1 day ago",
+      icon: "🏆"
+    },
+    {
+      type: "community_help",
+      title: "Answered question about React hooks",
+      time: "2 days ago",
+      icon: "💬"
+    },
+    {
+      type: "level_up",
+      title: "Reached Level 5!",
+      time: "3 days ago",
+      icon: "🎉"
+    }
+  ];
+
+  const favoriteTopics = [
+    { name: "React", progress: 85, total: 20, completed: 17 },
+    { name: "TypeScript", progress: 60, total: 15, completed: 9 },
+    { name: "Node.js", progress: 40, total: 10, completed: 4 },
+    { name: "CSS", progress: 90, total: 12, completed: 11 }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -18,7 +140,9 @@ export default async function ProfilePage() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
               <Link href="/dashboard" className="flex items-center">
-                <h1 className="text-2xl font-bold text-gray-900">Percept</h1>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Anti-Tutorial Hell
+                </h1>
                 <span className="ml-2 text-sm text-gray-500">Profile</span>
               </Link>
               <nav className="hidden md:flex space-x-6">
@@ -37,10 +161,11 @@ export default async function ProfilePage() {
               </nav>
             </div>
             <div className="flex items-center space-x-4">
+              <Button variant="outline" size="sm">Share Profile</Button>
               <UserButton 
                 appearance={{
                   elements: {
-                    avatarBox: "w-10 h-10"
+                    avatarBox: "w-10 h-10 ring-2 ring-blue-500 hover:ring-blue-600 transition-all duration-300"
                   }
                 }}
               />
@@ -50,214 +175,211 @@ export default async function ProfilePage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Your Profile ⚙️
-          </h2>
-          <p className="text-lg text-gray-600">
-            Customize your learning experience and track your development journey.
-          </p>
-        </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Left Column - Profile Info */}
+          <div className="lg:col-span-1">
+            {/* Profile Card */}
+            <Card className="mb-6">
+              <CardContent className="p-6 text-center">
+                <div className="text-6xl mb-4">{userProfile.avatar}</div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-1">{userProfile.fullName}</h2>
+                <p className="text-gray-600 mb-2">@{userProfile.username}</p>
+                <Badge variant="purple" className="mb-4">Level {userProfile.level}</Badge>
+                
+                <div className="mb-4">
+                  <div className="flex justify-between text-sm mb-1">
+                    <span>XP Progress</span>
+                    <span>{userProfile.totalXP} / {userProfile.totalXP + userProfile.xpToNextLevel}</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div 
+                      className="bg-blue-600 h-3 rounded-full" 
+                      style={{ width: `${(userProfile.totalXP / (userProfile.totalXP + userProfile.xpToNextLevel)) * 100}%` }}
+                    ></div>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">{userProfile.xpToNextLevel} XP to Level {userProfile.level + 1}</p>
+                </div>
 
-        {/* Profile Overview */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
-          <div className="flex items-center space-x-6">
-            <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center">
-              <span className="text-3xl">👨‍💻</span>
-            </div>
-            <div className="flex-1">
-              <h3 className="text-xl font-semibold text-gray-900">Developer Profile</h3>
-              <p className="text-gray-600 mb-2">Member since December 2024</p>
-              <div className="flex items-center space-x-4">
-                <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
-                  Level 3 Developer
-                </span>
-                <span className="text-sm text-gray-600">1,420 XP</span>
-              </div>
-            </div>
-          </div>
-        </div>
+                <p className="text-gray-700 text-sm mb-4">{userProfile.bio}</p>
+                
+                <div className="flex justify-center space-x-4 mb-4">
+                  <div className="text-center">
+                    <div className="text-xl font-bold text-blue-600">{userProfile.currentStreak}</div>
+                    <div className="text-xs text-gray-500">Current Streak</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xl font-bold text-green-600">{userProfile.longestStreak}</div>
+                    <div className="text-xs text-gray-500">Longest Streak</div>
+                  </div>
+                </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">12</div>
-            <div className="text-gray-600">Challenges Completed</div>
-          </div>
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">7</div>
-            <div className="text-gray-600">Day Streak</div>
-          </div>
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2">5</div>
-            <div className="text-gray-600">Skills Mastered</div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Learning Preferences */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Learning Preferences</h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Preferred Difficulty Level
-                </label>
-                <select className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>Beginner</option>
-                  <option selected>Intermediate</option>
-                  <option>Advanced</option>
-                  <option>Mixed</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Focus Areas
-                </label>
                 <div className="space-y-2">
-                  {[
-                    { name: 'Frontend Development', checked: true },
-                    { name: 'Backend Development', checked: false },
-                    { name: 'Full Stack', checked: true },
-                    { name: 'Mobile Development', checked: false }
-                  ].map((area, index) => (
-                    <label key={index} className="flex items-center">
-                      <input 
-                        type="checkbox" 
-                        checked={area.checked}
-                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" 
-                      />
-                      <span className="ml-2 text-sm text-gray-700">{area.name}</span>
-                    </label>
+                  <Button className="w-full">Edit Profile</Button>
+                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-600">
+                    <input 
+                      type="checkbox" 
+                      checked={userProfile.isPublic} 
+                      className="rounded border-gray-300"
+                      readOnly
+                    />
+                    <span>Public Profile</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Skills */}
+            <Card>
+              <CardHeader>
+                <h3 className="text-lg font-semibold text-gray-900">Skills</h3>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {userProfile.skills.map((skill, index) => (
+                    <Badge key={index} variant="info" size="sm">{skill}</Badge>
                   ))}
                 </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Daily Learning Goal
-                </label>
-                <select className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>30 minutes</option>
-                  <option selected>1 hour</option>
-                  <option>2 hours</option>
-                  <option>3+ hours</option>
-                </select>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
 
-          {/* Achievements */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Achievements 🏆</h3>
-            <div className="space-y-4">
-              {[
-                { 
-                  title: "First Steps", 
-                  description: "Completed your first challenge", 
-                  earned: true,
-                  icon: "🎯",
-                  date: "Dec 15, 2024"
-                },
-                { 
-                  title: "Streak Master", 
-                  description: "Maintained a 7-day learning streak", 
-                  earned: true,
-                  icon: "🔥",
-                  date: "Dec 18, 2024"
-                },
-                { 
-                  title: "JavaScript Ninja", 
-                  description: "Completed 5 JavaScript challenges", 
-                  earned: true,
-                  icon: "⚡",
-                  date: "Dec 20, 2024"
-                },
-                { 
-                  title: "Problem Solver", 
-                  description: "Solved 10 challenges without hints", 
-                  earned: false,
-                  icon: "🧠",
-                  date: null
-                },
-                { 
-                  title: "Full Stack Explorer", 
-                  description: "Complete challenges in frontend and backend", 
-                  earned: false,
-                  icon: "🌟",
-                  date: null
-                }
-              ].map((achievement, index) => (
-                <div key={index} className={`flex items-center p-3 rounded-lg border-2 ${
-                  achievement.earned ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-gray-50'
-                }`}>
-                  <div className="text-2xl mr-3">{achievement.icon}</div>
-                  <div className="flex-1">
-                    <h4 className={`font-medium ${achievement.earned ? 'text-green-900' : 'text-gray-500'}`}>
-                      {achievement.title}
-                    </h4>
-                    <p className={`text-sm ${achievement.earned ? 'text-green-700' : 'text-gray-500'}`}>
-                      {achievement.description}
-                    </p>
-                    {achievement.date && (
-                      <p className="text-xs text-green-600 mt-1">Earned on {achievement.date}</p>
-                    )}
-                  </div>
-                  {achievement.earned && (
-                    <div className="text-green-600">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
+          {/* Right Column - Main Content */}
+          <div className="lg:col-span-2">
+            {/* Achievements Section */}
+            <Card className="mb-8">
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <h3 className="text-xl font-semibold text-gray-900">Achievements & Badges 🏆</h3>
+                  <Badge variant="default">{achievements.filter(a => a.earned).length} / {achievements.length}</Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {achievements.map((achievement) => (
+                    <Card key={achievement.id} className={`p-4 ${
+                      achievement.earned 
+                        ? 'bg-gradient-to-r from-green-50 to-blue-50 border-green-200' 
+                        : 'bg-gray-50 border-gray-200'
+                    }`}>
+                      <div className="flex items-start space-x-3">
+                        <div className="text-3xl">{achievement.icon}</div>
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between mb-1">
+                            <h4 className="font-semibold text-gray-900">{achievement.name}</h4>
+                            <Badge 
+                              variant={
+                                achievement.rarity === 'Common' ? 'default' :
+                                achievement.rarity === 'Uncommon' ? 'info' :
+                                achievement.rarity === 'Rare' ? 'purple' :
+                                achievement.rarity === 'Epic' ? 'warning' : 'danger'
+                              }
+                              size="sm"
+                            >
+                              {achievement.rarity}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-2">{achievement.description}</p>
+                          
+                          {achievement.earned ? (
+                            <div className="flex items-center space-x-2">
+                              <Badge variant="success" size="sm">✅ Earned</Badge>
+                              <span className="text-xs text-gray-500">{achievement.earnedDate}</span>
+                            </div>
+                          ) : achievement.progress !== undefined ? (
+                            <div>
+                              <div className="flex justify-between text-xs mb-1">
+                                <span>Progress</span>
+                                <span>{achievement.progress} / {achievement.total}</span>
+                              </div>
+                              <div className="w-full bg-gray-200 rounded-full h-2">
+                                <div 
+                                  className="bg-blue-600 h-2 rounded-full" 
+                                  style={{ width: `${(achievement.progress! / achievement.total!) * 100}%` }}
+                                ></div>
+                              </div>
+                            </div>
+                          ) : (
+                            <Badge variant="default" size="sm">🔒 Locked</Badge>
+                          )}
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Learning Progress */}
+            <Card className="mb-8">
+              <CardHeader>
+                <h3 className="text-xl font-semibold text-gray-900">Learning Progress 📈</h3>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {favoriteTopics.map((topic, index) => (
+                    <div key={index}>
+                      <div className="flex justify-between items-center mb-2">
+                        <h4 className="font-semibold text-gray-900">{topic.name}</h4>
+                        <span className="text-sm text-gray-600">{topic.completed} / {topic.total} challenges</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div 
+                          className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full" 
+                          style={{ width: `${topic.progress}%` }}
+                        ></div>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">{topic.progress}% complete</p>
                     </div>
-                  )}
+                  ))}
                 </div>
-              ))}
+              </CardContent>
+            </Card>
+
+            {/* Recent Activity */}
+            <Card>
+              <CardHeader>
+                <h3 className="text-xl font-semibold text-gray-900">Recent Activity 📅</h3>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {recentActivity.map((activity, index) => (
+                    <div key={index} className="flex items-center space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="text-2xl">{activity.icon}</div>
+                      <div className="flex-1">
+                        <p className="font-medium text-gray-900">{activity.title}</p>
+                        <p className="text-sm text-gray-500">{activity.time}</p>
+                      </div>
+                      {activity.points && (
+                        <Badge variant="success" size="sm">+{activity.points} XP</Badge>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 text-center">
+                  <Button variant="outline">View All Activity</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Certificate Section */}
+        <Card className="mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-200">
+          <CardContent className="p-8 text-center">
+            <div className="text-4xl mb-4">🎓</div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Earn Certificates
+            </h3>
+            <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+              Complete learning paths and demonstrate mastery to earn official certificates that showcase your skills to employers and peers.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Button>View Available Certificates</Button>
+              <Button variant="outline">Share Achievements</Button>
             </div>
-          </div>
-        </div>
-
-        {/* Notification Settings */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Notification Settings</h3>
-          <div className="space-y-4">
-            {[
-              { name: 'Daily learning reminders', description: 'Get reminded to practice coding daily', enabled: true },
-              { name: 'New challenge notifications', description: 'Be notified when new challenges are added', enabled: true },
-              { name: 'Achievement celebrations', description: 'Celebrate when you earn new achievements', enabled: true },
-              { name: 'Weekly progress reports', description: 'Receive weekly summaries of your progress', enabled: false },
-              { name: 'Community updates', description: 'Updates about new features and community events', enabled: false }
-            ].map((setting, index) => (
-              <div key={index} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                <div className="flex-1">
-                  <h4 className="font-medium text-gray-900">{setting.name}</h4>
-                  <p className="text-sm text-gray-600">{setting.description}</p>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" className="sr-only peer" checked={setting.enabled} />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                </label>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Account Actions */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Account Actions</h3>
-          <div className="space-y-4">
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors">
-              Save Changes
-            </button>
-            <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-4 rounded-lg transition-colors">
-              Export Progress Data
-            </button>
-            <button className="w-full bg-red-50 hover:bg-red-100 text-red-600 font-medium py-3 px-4 rounded-lg transition-colors">
-              Reset All Progress
-            </button>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </main>
     </div>
   );
