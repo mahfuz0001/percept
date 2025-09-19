@@ -6,7 +6,6 @@ import {
   Search,
   BookOpen,
   Trophy,
-  User,
   Code2,
   ArrowRight,
   Clock,

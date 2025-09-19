@@ -3,12 +3,17 @@
 import Link from 'next/link';
 
 export default function GlobalError({
-  error: _error,
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  // Log the error for debugging purposes
+  if (process.env.NODE_ENV === 'development') {
+    console.error('Global error:', error);
+  }
+  
   return (
     <html>
       <body>

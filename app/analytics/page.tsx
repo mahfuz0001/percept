@@ -1,7 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
-import Link from "next/link";
 import { Header } from "@/components/shared/Header";
 
 export default async function AnalyticsPage() {

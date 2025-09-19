@@ -1,20 +1,13 @@
-import { auth } from "@clerk/nextjs/server";
-import Link from "next/link";
-import { Button } from "@/components/shared/Button";
-import { Card, CardContent } from "@/components/shared/Card";
-import { Badge } from "@/components/shared/Badge";
 import { Header } from "@/components/landing/Header";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { PhilosophySection } from "@/components/landing/PhilosophySection";
 import { InteractiveCodeDemo } from "@/components/ui/interactive-code-demo";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
-import { CTASection } from "@/components/landing/cta";
 import { FloatingActionButton } from "@/components/shared/FloatingActionButton";
 import { WelcomeTour } from "@/components/landing/welcome-tour";
 
 export default async function Home() {
-  const { userId } = await auth();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
@@ -28,21 +21,6 @@ export default async function Home() {
       </section>
       <FeaturesSection />
       <TestimonialsSection />
-      {/* <CTASection
-        title="Ready to get started?"
-        description="Join thousands of creators and developers building the future."
-        action={
-          userId ? (
-            <Button asChild>
-              <Link href="/dashboard">Go to Dashboard</Link>
-            </Button>
-          ) : (
-            <Button asChild>
-              <Link href="/sign-up">Sign up now</Link>
-            </Button>
-          )
-        }
-      /> */}
       <FloatingActionButton />
       <WelcomeTour />
     </div>

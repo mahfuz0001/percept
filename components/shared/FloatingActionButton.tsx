@@ -8,12 +8,8 @@ import {
   BookOpen,
   Trophy,
   User,
-  Search,
-  Zap,
   MessageCircle,
-  Settings,
   Home,
-  Code2,
   Rocket,
 } from "lucide-react";
 import Link from "next/link";

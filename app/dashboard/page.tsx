@@ -2,7 +2,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Header } from "@/components/shared/Header";
-import { StatCard, type StatCardProps } from "@/components/shared/StatCard";
+import { StatCard } from "@/components/shared/StatCard";
 import {
   RecentActivityCard,
   type Activity,
