@@ -1,21 +1,34 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from '@clerk/nextjs';
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "Percept - Anti-Tutorial Hell Platform",
-  description: "Transform passive learners into confident, skilled developers through challenge-based learning",
-  keywords: ["coding", "programming", "tutorials", "challenges", "web development", "JavaScript", "React"],
+  title: "Percept - The anti-tutorial hell platform for confident developers",
+  description:
+    "Transform passive learners into confident, skilled developers through challenge-based learning",
+  keywords: [
+    "coding",
+    "programming",
+    "tutorials",
+    "challenges",
+    "web development",
+    "JavaScript",
+    "React",
+  ],
   authors: [{ name: "Percept Team" }],
   openGraph: {
     title: "Percept - Escape Tutorial Hell",
-    description: "Real challenges for real developers. No hand-holding, just problem-solving.",
+    description:
+      "Real challenges for real developers. No hand-holding, just problem-solving.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Percept - Anti-Tutorial Hell Platform",
+    title:
+      "Percept -  The anti-tutorial hell platform for confident developers",
     description: "Transform from passive learner to confident developer",
   },
   robots: {
@@ -33,27 +46,60 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         elements: {
-          formButtonPrimary: 
+          formButtonPrimary:
             "bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors",
           card: "shadow-xl border-0 rounded-2xl bg-white",
           headerTitle: "text-2xl font-semibold text-gray-900",
           headerSubtitle: "text-gray-600",
-          socialButtonsBlockButton: 
+          socialButtonsBlockButton:
             "border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors",
-          formFieldInput: 
+          formFieldInput:
             "border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
           footerActionLink: "text-blue-600 hover:text-blue-700 font-medium",
           dividerLine: "bg-gray-200",
           dividerText: "text-gray-500",
           formFieldLabel: "text-gray-700 font-medium",
           identityPreviewText: "text-gray-600",
-          identityPreviewEditButton: "text-blue-600 hover:text-blue-700"
-        }
+          identityPreviewEditButton: "text-blue-600 hover:text-blue-700",
+        },
       }}
     >
-      <html lang="en">
-        <body className="antialiased">
-          {children}
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+          />
+        </head>
+        <body className="min-h-screen bg-background font-sans antialiased">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: "#363636",
+                  color: "#fff",
+                },
+              }}
+            />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

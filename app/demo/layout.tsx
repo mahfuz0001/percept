@@ -2,19 +2,29 @@ import type { Metadata } from "next";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Percept - Anti-Tutorial Hell Platform",
-  description: "Transform passive learners into confident, skilled developers through challenge-based learning",
-  keywords: ["coding", "programming", "tutorials", "challenges", "web development", "JavaScript", "React"],
+  title: "Percept - The anti-tutorial hell platform for confident developers",
+  description:
+    "Transform passive learners into confident, skilled developers through challenge-based learning",
+  keywords: [
+    "coding",
+    "programming",
+    "tutorials",
+    "challenges",
+    "web development",
+    "JavaScript",
+    "React",
+  ],
   authors: [{ name: "Percept Team" }],
   openGraph: {
     title: "Percept - Escape Tutorial Hall",
-    description: "Real challenges for real developers. No hand-holding, just problem-solving.",
+    description:
+      "Real challenges for real developers. No hand-holding, just problem-solving.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Percept - Anti-Tutorial Hell Platform",
+    title: "Percept - The anti-tutorial hell platform for confident developers",
     description: "Transform from passive learner to confident developer",
   },
   robots: {
@@ -30,9 +40,7 @@ export default function DemoLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {children}
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

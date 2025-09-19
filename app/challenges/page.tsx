@@ -1,16 +1,17 @@
-import { auth } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
-import { UserButton } from '@clerk/nextjs';
-import Link from 'next/link';
-import { Button } from '@/components/shared/Button';
-import { Card, CardContent, CardHeader } from '@/components/shared/Card';
-import { Badge } from '@/components/shared/Badge';
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+import { Button } from "@/components/shared/Button";
+import { Card, CardContent, CardHeader } from "@/components/shared/Card";
+import { Badge } from "@/components/shared/Badge";
+import { Header } from "@/components/shared/Header";
 
 export default async function ChallengesPage() {
   const { userId } = await auth();
-  
+
   if (!userId) {
-    redirect('/sign-in');
+    redirect("/sign-in");
   }
 
   const challenges = [
@@ -18,271 +19,294 @@ export default async function ChallengesPage() {
     {
       id: 1,
       title: "Build a Todo App",
-      description: "Create a functional todo application with add, delete, and mark complete features",
+      description:
+        "Create a functional todo application with add, delete, and mark complete features",
       difficulty: "Beginner",
       technologies: ["HTML", "CSS", "JavaScript"],
       points: 150,
       time: "1-2 hours",
       completed: true,
-      category: "Web Fundamentals"
+      category: "Web Fundamentals",
     },
     {
       id: 2,
       title: "Responsive Portfolio",
-      description: "Design and build a responsive portfolio website showcasing your projects",
-      difficulty: "Beginner", 
+      description:
+        "Design and build a responsive portfolio website showcasing your projects",
+      difficulty: "Beginner",
       technologies: ["HTML", "CSS", "Flexbox", "Grid"],
       points: 200,
       time: "2-3 hours",
       completed: true,
-      category: "Web Fundamentals"
+      category: "Web Fundamentals",
     },
     {
       id: 3,
       title: "Interactive Calculator",
-      description: "Build a fully functional calculator with keyboard support and memory functions",
+      description:
+        "Build a fully functional calculator with keyboard support and memory functions",
       difficulty: "Beginner",
       technologies: ["HTML", "CSS", "JavaScript"],
       points: 175,
       time: "2-3 hours",
       completed: false,
-      category: "Web Fundamentals"
+      category: "Web Fundamentals",
     },
-    
+
     // React & APIs
     {
       id: 4,
       title: "Weather Dashboard",
-      description: "Build a weather app that fetches data from an API and displays current conditions",
+      description:
+        "Build a weather app that fetches data from an API and displays current conditions",
       difficulty: "Intermediate",
       technologies: ["React", "API", "CSS"],
       points: 250,
       time: "2-3 hours",
       completed: false,
-      category: "React & APIs"
+      category: "React & APIs",
     },
     {
       id: 5,
       title: "Movie Search Engine",
-      description: "Create a movie search app using TMDB API with filters and detailed views",
+      description:
+        "Create a movie search app using TMDB API with filters and detailed views",
       difficulty: "Intermediate",
       technologies: ["React", "API", "Routing"],
       points: 300,
       time: "3-4 hours",
       completed: false,
-      category: "React & APIs"
+      category: "React & APIs",
     },
     {
       id: 6,
       title: "Cryptocurrency Tracker",
-      description: "Build a real-time crypto price tracker with charts and portfolio tracking",
+      description:
+        "Build a real-time crypto price tracker with charts and portfolio tracking",
       difficulty: "Intermediate",
       technologies: ["React", "WebSocket", "Charts"],
       points: 350,
       time: "4-5 hours",
       completed: false,
-      category: "React & APIs"
+      category: "React & APIs",
     },
-    
+
     // React Advanced
     {
       id: 7,
       title: "E-commerce Cart",
-      description: "Implement a shopping cart with add/remove items, quantity management, and total calculation",
+      description:
+        "Implement a shopping cart with add/remove items, quantity management, and total calculation",
       difficulty: "Intermediate",
       technologies: ["React", "State Management", "Context"],
       points: 300,
       time: "3-4 hours",
       completed: false,
-      category: "React Advanced"
+      category: "React Advanced",
     },
     {
       id: 8,
       title: "Real-time Chat App",
-      description: "Build a real-time chat application with multiple rooms and user authentication",
+      description:
+        "Build a real-time chat application with multiple rooms and user authentication",
       difficulty: "Advanced",
       technologies: ["React", "Socket.io", "Node.js"],
       points: 500,
       time: "6-8 hours",
       completed: false,
-      category: "React Advanced"
+      category: "React Advanced",
     },
     {
       id: 9,
       title: "Task Management Board",
-      description: "Create a Kanban-style task board with drag & drop functionality",
+      description:
+        "Create a Kanban-style task board with drag & drop functionality",
       difficulty: "Advanced",
       technologies: ["React", "DnD", "Local Storage"],
       points: 450,
       time: "5-6 hours",
       completed: false,
-      category: "React Advanced"
+      category: "React Advanced",
     },
-    
+
     // Backend Challenges
     {
       id: 10,
       title: "REST API with Authentication",
-      description: "Build a complete REST API with JWT authentication and database integration",
+      description:
+        "Build a complete REST API with JWT authentication and database integration",
       difficulty: "Intermediate",
       technologies: ["Node.js", "Express", "JWT", "MongoDB"],
       points: 400,
       time: "4-5 hours",
       completed: false,
-      category: "Backend"
+      category: "Backend",
     },
     {
       id: 11,
       title: "GraphQL Server",
-      description: "Create a GraphQL server with resolvers, mutations, and subscriptions",
+      description:
+        "Create a GraphQL server with resolvers, mutations, and subscriptions",
       difficulty: "Advanced",
       technologies: ["GraphQL", "Node.js", "Apollo"],
       points: 550,
       time: "6-7 hours",
       completed: false,
-      category: "Backend"
+      category: "Backend",
     },
     {
       id: 12,
       title: "Microservices Architecture",
-      description: "Design and implement a microservices system with API gateway",
+      description:
+        "Design and implement a microservices system with API gateway",
       difficulty: "Advanced",
       technologies: ["Docker", "Node.js", "API Gateway"],
       points: 700,
       time: "8-10 hours",
       completed: false,
-      category: "Backend"
+      category: "Backend",
     },
-    
+
     // Full Stack
     {
       id: 13,
       title: "Blog Platform",
-      description: "Build a complete blog platform with CMS, user authentication, and SEO optimization",
+      description:
+        "Build a complete blog platform with CMS, user authentication, and SEO optimization",
       difficulty: "Advanced",
       technologies: ["Next.js", "Prisma", "PostgreSQL"],
       points: 600,
       time: "8-10 hours",
       completed: false,
-      category: "Full Stack"
+      category: "Full Stack",
     },
     {
       id: 14,
       title: "Social Media Clone",
-      description: "Create a social media app with posts, comments, likes, and real-time notifications",
+      description:
+        "Create a social media app with posts, comments, likes, and real-time notifications",
       difficulty: "Advanced",
       technologies: ["React", "Node.js", "Socket.io", "MongoDB"],
       points: 800,
       time: "10-12 hours",
       completed: false,
-      category: "Full Stack"
+      category: "Full Stack",
     },
     {
       id: 15,
       title: "E-learning Platform",
-      description: "Build a complete e-learning platform with video streaming, progress tracking, and payments",
+      description:
+        "Build a complete e-learning platform with video streaming, progress tracking, and payments",
       difficulty: "Expert",
       technologies: ["Next.js", "Stripe", "AWS", "PostgreSQL"],
       points: 1000,
       time: "15-20 hours",
       completed: false,
-      category: "Full Stack"
+      category: "Full Stack",
     },
 
     // CSS Mastery
     {
       id: 16,
       title: "CSS Grid Gallery",
-      description: "Design a responsive image gallery using CSS Grid with hover effects",
+      description:
+        "Design a responsive image gallery using CSS Grid with hover effects",
       difficulty: "Beginner",
       technologies: ["HTML", "CSS", "Grid"],
       points: 100,
       time: "1 hour",
       completed: true,
-      category: "CSS Mastery"
+      category: "CSS Mastery",
     },
     {
       id: 17,
       title: "3D CSS Animations",
-      description: "Create impressive 3D animations and transformations using pure CSS",
+      description:
+        "Create impressive 3D animations and transformations using pure CSS",
       difficulty: "Intermediate",
       technologies: ["CSS", "Animations", "3D Transforms"],
       points: 275,
       time: "3-4 hours",
       completed: false,
-      category: "CSS Mastery"
+      category: "CSS Mastery",
     },
     {
       id: 18,
       title: "CSS Framework",
-      description: "Build your own mini CSS framework with utilities and components",
+      description:
+        "Build your own mini CSS framework with utilities and components",
       difficulty: "Advanced",
       technologies: ["CSS", "SASS", "Design Systems"],
       points: 500,
       time: "6-8 hours",
       completed: false,
-      category: "CSS Mastery"
+      category: "CSS Mastery",
     },
 
     // TypeScript
     {
       id: 19,
       title: "Type-Safe API Client",
-      description: "Build a fully type-safe API client with TypeScript generics and error handling",
+      description:
+        "Build a fully type-safe API client with TypeScript generics and error handling",
       difficulty: "Intermediate",
       technologies: ["TypeScript", "Generics", "API"],
       points: 350,
       time: "3-4 hours",
       completed: false,
-      category: "TypeScript"
+      category: "TypeScript",
     },
     {
       id: 20,
       title: "Advanced Type Utilities",
-      description: "Create complex TypeScript utility types and conditional types",
+      description:
+        "Create complex TypeScript utility types and conditional types",
       difficulty: "Advanced",
       technologies: ["TypeScript", "Utility Types", "Conditional Types"],
       points: 450,
       time: "4-5 hours",
       completed: false,
-      category: "TypeScript"
+      category: "TypeScript",
     },
 
     // DevOps & Deployment
     {
       id: 21,
       title: "CI/CD Pipeline",
-      description: "Set up automated testing, building, and deployment pipeline",
+      description:
+        "Set up automated testing, building, and deployment pipeline",
       difficulty: "Intermediate",
       technologies: ["GitHub Actions", "Docker", "AWS"],
       points: 400,
       time: "4-5 hours",
       completed: false,
-      category: "DevOps"
+      category: "DevOps",
     },
     {
       id: 22,
       title: "Kubernetes Deployment",
-      description: "Deploy and manage applications using Kubernetes orchestration",
+      description:
+        "Deploy and manage applications using Kubernetes orchestration",
       difficulty: "Advanced",
       technologies: ["Kubernetes", "Docker", "Helm"],
       points: 600,
       time: "6-8 hours",
       completed: false,
-      category: "DevOps"
+      category: "DevOps",
     },
 
     // AI & Machine Learning
     {
       id: 23,
       title: "AI Chatbot",
-      description: "Build an intelligent chatbot using OpenAI API with conversation memory",
+      description:
+        "Build an intelligent chatbot using OpenAI API with conversation memory",
       difficulty: "Intermediate",
       technologies: ["JavaScript", "OpenAI API", "NLP"],
       points: 400,
       time: "4-5 hours",
       completed: false,
-      category: "AI/ML"
+      category: "AI/ML",
     },
     {
       id: 24,
@@ -293,70 +317,35 @@ export default async function ChallengesPage() {
       points: 550,
       time: "6-7 hours",
       completed: false,
-      category: "AI/ML"
-    }
+      category: "AI/ML",
+    },
   ];
 
   const categories = [
-    "All", 
-    "Web Fundamentals", 
-    "React & APIs", 
-    "React Advanced", 
-    "Backend", 
-    "Full Stack", 
-    "CSS Mastery", 
-    "TypeScript", 
-    "DevOps", 
-    "AI/ML"
+    "All",
+    "Web Fundamentals",
+    "React & APIs",
+    "React Advanced",
+    "Backend",
+    "Full Stack",
+    "CSS Mastery",
+    "TypeScript",
+    "DevOps",
+    "AI/ML",
   ];
-  
-  const difficulties = ["All", "Beginner", "Intermediate", "Advanced", "Expert"];
+
+  const difficulties = [
+    "All",
+    "Beginner",
+    "Intermediate",
+    "Advanced",
+    "Expert",
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-8">
-              <Link href="/dashboard" className="flex items-center">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Percept
-                </h1>
-                <span className="ml-2 text-sm text-gray-500">Challenges</span>
-              </Link>
-              <nav className="hidden md:flex space-x-6">
-                <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
-                  Dashboard
-                </Link>
-                <Link href="/challenges" className="text-blue-600 font-medium">
-                  Challenges
-                </Link>
-                <Link href="/learning-portal" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
-                  Learning Portal
-                </Link>
-                <Link href="/community" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
-                  Community
-                </Link>
-              </nav>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="hidden sm:flex items-center px-4 py-2 bg-gradient-to-r from-green-100 to-blue-100 rounded-full shadow-inner">
-                <span className="text-sm font-semibold text-gray-800">
-                  🏆 Level 5 • 2,450 XP
-                </span>
-              </div>
-              <UserButton 
-                appearance={{
-                  elements: {
-                    avatarBox: "w-10 h-10 ring-2 ring-blue-500 hover:ring-blue-600 transition-all duration-300"
-                  }
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -365,7 +354,8 @@ export default async function ChallengesPage() {
             Coding Challenges 🚀
           </h2>
           <p className="text-lg text-gray-600">
-            Choose your challenge and start building real skills. No hand-holding, just problem-solving.
+            Choose your challenge and start building real skills. No
+            hand-holding, just problem-solving.
           </p>
         </div>
 
@@ -405,34 +395,38 @@ export default async function ChallengesPage() {
                 Category
               </label>
               <select className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                {categories.map(category => (
-                  <option key={category} value={category}>{category}</option>
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
                 ))}
               </select>
             </div>
-            
+
             <div className="flex-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Difficulty
               </label>
               <select className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                {difficulties.map(difficulty => (
-                  <option key={difficulty} value={difficulty}>{difficulty}</option>
+                {difficulties.map((difficulty) => (
+                  <option key={difficulty} value={difficulty}>
+                    {difficulty}
+                  </option>
                 ))}
               </select>
             </div>
-            
+
             <div className="flex-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Search
               </label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder="Search challenges..."
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            
+
             <div className="flex items-end">
               <Button>AI Suggest Challenge</Button>
             </div>
@@ -445,11 +439,15 @@ export default async function ChallengesPage() {
             <Card key={challenge.id} hover className="relative">
               <CardHeader>
                 <div className="flex justify-between items-start mb-2">
-                  <Badge 
+                  <Badge
                     variant={
-                      challenge.difficulty === 'Beginner' ? 'success' : 
-                      challenge.difficulty === 'Intermediate' ? 'info' : 
-                      challenge.difficulty === 'Advanced' ? 'purple' : 'danger'
+                      challenge.difficulty === "Beginner"
+                        ? "success"
+                        : challenge.difficulty === "Intermediate"
+                        ? "info"
+                        : challenge.difficulty === "Advanced"
+                        ? "purple"
+                        : "danger"
                     }
                   >
                     {challenge.difficulty}
@@ -459,16 +457,16 @@ export default async function ChallengesPage() {
                     {challenge.time}
                   </div>
                 </div>
-                
+
                 <h3 className="font-bold text-lg text-gray-900 mb-2">
                   {challenge.title}
                 </h3>
-                
+
                 <p className="text-gray-600 text-sm mb-3">
                   {challenge.description}
                 </p>
               </CardHeader>
-              
+
               <CardContent>
                 <div className="flex flex-wrap gap-1 mb-3">
                   {challenge.technologies.map((tech, index) => (
@@ -477,26 +475,37 @@ export default async function ChallengesPage() {
                     </Badge>
                   ))}
                 </div>
-                
+
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center text-sm text-gray-600">
                     <span className="mr-1">⭐</span>
-                    <span className="font-semibold">{challenge.points} pts</span>
+                    <span className="font-semibold">
+                      {challenge.points} pts
+                    </span>
                   </div>
                   <Badge variant="default" size="sm">
                     {challenge.category}
                   </Badge>
                 </div>
-                
+
                 {challenge.completed ? (
                   <div className="flex items-center justify-between">
-                    <Badge variant="success" icon="✅">Completed</Badge>
-                    <Button variant="outline" size="sm" href={`/challenges/${challenge.id}`}>
+                    <Badge variant="success" icon="✅">
+                      Completed
+                    </Badge>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      href={`/challenges/${challenge.id}`}
+                    >
                       View Solution
                     </Button>
                   </div>
                 ) : (
-                  <Button href={`/challenges/${challenge.id}`} className="w-full">
+                  <Button
+                    href={`/challenges/${challenge.id}`}
+                    className="w-full"
+                  >
                     Start Challenge
                   </Button>
                 )}
@@ -517,11 +526,13 @@ export default async function ChallengesPage() {
                   AI Challenge Generator
                 </h3>
                 <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-                  Can&apos;t find the perfect challenge? Describe what you want to build, and our AI will generate a custom challenge tailored to your skill level and interests.
+                  Can&apos;t find the perfect challenge? Describe what you want
+                  to build, and our AI will generate a custom challenge tailored
+                  to your skill level and interests.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder="E.g., 'Build a music player with React and Spotify API'"
                     className="flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />

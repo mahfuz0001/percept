@@ -18,48 +18,51 @@ type RecommendedChallengeCardProps = {
 export function RecommendedChallengeCard({
   challenges,
 }: RecommendedChallengeCardProps) {
+  const difficultyColors = {
+    Beginner: "bg-green-100 text-green-800",
+    Intermediate: "bg-blue-100 text-blue-800",
+    Advanced: "bg-red-100 text-red-800",
+  };
+
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
-      <h3 className="text-xl font-semibold text-gray-900 mb-4">
-        Recommended Challenges
+    <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-6 mb-8">
+      <h3 className="text-2xl font-bold text-gray-900 mb-6">
+        Recommended Challenges ✨
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {challenges.map((challenge, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {challenges.map((challenge) => (
           <div
-            key={index}
-            className={`bg-white rounded-lg border-l-4 p-5 shadow-sm hover:shadow-md transition-all duration-200 ${challenge.color}`}
+            key={challenge.title} // Use a unique value for the key
+            className={`flex flex-col h-full rounded-lg border-l-4 p-6 shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl ${challenge.color}`}
           >
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between mb-3">
               <span
                 className={`text-sm font-semibold rounded-full px-3 py-1 ${
-                  challenge.difficulty === "Beginner"
-                    ? "bg-green-100 text-green-800"
-                    : challenge.difficulty === "Intermediate"
-                    ? "bg-blue-100 text-blue-800"
-                    : "bg-red-100 text-red-800"
+                  difficultyColors[challenge.difficulty]
                 }`}
               >
                 {challenge.difficulty}
               </span>
-              <span className="text-sm font-bold text-gray-600">
+              <span className="text-md font-bold text-gray-700">
                 +{challenge.points} pts
               </span>
             </div>
-            <h4 className="font-bold text-lg text-gray-900 mb-2">
+            <h4 className="font-extrabold text-xl text-gray-900 mb-2 leading-tight">
               {challenge.title}
             </h4>
-            <div className="flex flex-wrap gap-2 mb-3">
-              {challenge.tech.map((tech, techIndex) => (
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              {challenge.tech.map((tech) => (
                 <span
-                  key={techIndex}
-                  className="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-1"
+                  key={tech}
+                  className="text-xs font-medium bg-gray-100 text-gray-600 rounded-full px-2 py-1"
                 >
                   {tech}
                 </span>
               ))}
             </div>
-            <p className="text-sm text-gray-500">
-              <span className="font-semibold">Time:</span> {challenge.time}
+            <p className="mt-auto text-sm text-gray-500">
+              <span className="font-semibold text-gray-600">Time:</span>{" "}
+              {challenge.time}
             </p>
           </div>
         ))}
