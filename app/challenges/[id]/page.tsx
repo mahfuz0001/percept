@@ -263,6 +263,8 @@ Your application should have a clean, intuitive interface and handle edge cases 
   const handleGetHint = async () => {
     if (!challenge) return;
     
+    setOutput("🤔 Generating hint...");
+    
     try {
       const response = await fetch('/api/challenges/hints', {
         method: 'POST',
@@ -286,23 +288,39 @@ Your application should have a clean, intuitive interface and handle edge cases 
         setOutput(`💡 AI Hint ${data.hintsUsed}: ${data.hint}`);
         setHintsUsed(data.hintsUsed);
       } else {
-        // Fallback to static hints if AI fails
+        // Enhanced fallback hints for the todo app
         const fallbackHints = [
-          "Start by implementing the add functionality. Get the input value and create a new todo object.",
-          "Use an array to store your todos and update the DOM whenever the array changes.",
-          "For the checkbox functionality, add an event listener that toggles the completed status.",
-          "Implement the filter functionality by showing/hiding todos based on their completed status."
+          "🚀 Start by implementing the add functionality. Focus on getting the input value when Enter is pressed or a button is clicked, then create a new todo object with an ID, text, and completed status.",
+          "📝 Create an array to store your todos and a function to render them. Each time the todos array changes, clear the existing list and re-render all todos with their checkboxes and delete buttons.",
+          "✅ For the checkbox functionality, add an event listener that toggles the completed status. When checked, add a 'completed' class to style the text with strikethrough.",
+          "🔍 Implement the filter functionality by creating functions that show/hide todos based on their completed status. Update the active filter button styling to show which filter is currently selected.",
+          "🎨 Polish the user experience by handling edge cases: what happens when the todo list is empty? How do you prevent adding empty todos? Consider adding a todo counter."
         ];
         
         if (hintsUsed < fallbackHints.length) {
           setOutput(`💡 Hint ${hintsUsed + 1}: ${fallbackHints[hintsUsed]}`);
           setHintsUsed(hintsUsed + 1);
         } else {
-          setOutput("You've used all available hints! Keep working on the solution.");
+          setOutput("🎯 You've used all available hints! You have all the guidance you need. Remember: break the problem into small steps, test frequently, and don't be afraid to experiment. You've got this!");
         }
       }
-    } catch {
-      setOutput("Unable to fetch hint at the moment. Try analyzing your code structure first.");
+    } catch (error) {
+      console.error('Hint generation error:', error);
+      // Better fallback with immediate hint
+      const fallbackHints = [
+        "🚀 Start by implementing the add functionality. Focus on getting the input value when Enter is pressed or a button is clicked, then create a new todo object with an ID, text, and completed status.",
+        "📝 Create an array to store your todos and a function to render them. Each time the todos array changes, clear the existing list and re-render all todos with their checkboxes and delete buttons.",
+        "✅ For the checkbox functionality, add an event listener that toggles the completed status. When checked, add a 'completed' class to style the text with strikethrough.",
+        "🔍 Implement the filter functionality by creating functions that show/hide todos based on their completed status. Update the active filter button styling to show which filter is currently selected.",
+        "🎨 Polish the user experience by handling edge cases: what happens when the todo list is empty? How do you prevent adding empty todos? Consider adding a todo counter."
+      ];
+      
+      if (hintsUsed < fallbackHints.length) {
+        setOutput(`💡 Hint ${hintsUsed + 1}: ${fallbackHints[hintsUsed]}`);
+        setHintsUsed(hintsUsed + 1);
+      } else {
+        setOutput("🎯 You've used all available hints! You have all the guidance you need. Remember: break the problem into small steps, test frequently, and don't be afraid to experiment. You've got this!");
+      }
     }
   };
 
@@ -418,29 +436,56 @@ Your application should have a clean, intuitive interface and handle edge cases 
 
           {/* Code Editor */}
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-gray-900">Code Editor</h2>
-                <div className="flex space-x-2">
+            <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-gray-900 flex items-center">
+                  💻 Code Editor
+                </h2>
+                <div className="flex space-x-3">
                   <button
                     onClick={handleGetHint}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                    disabled={hintsUsed >= 5}
+                    className={`flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                      hintsUsed >= 5 
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                        : 'bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+                    }`}
                   >
-                    💡 Get Hint ({hintsUsed}/4)
+                    💡 Get Hint ({hintsUsed}/5)
                   </button>
                   <button
                     onClick={handleRunCode}
                     disabled={isSubmitting}
-                    className="bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                    className="flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
                   >
-                    {isSubmitting ? 'Running...' : '▶️ Run Code'}
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Analyzing...
+                      </>
+                    ) : (
+                      '▶️ Analyze Code'
+                    )}
                   </button>
                   <button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                    className="flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
                   >
-                    {isSubmitting ? 'Submitting...' : '🚀 Submit'}
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Submitting...
+                      </>
+                    ) : (
+                      '🚀 Submit Solution'
+                    )}
                   </button>
                 </div>
               </div>
@@ -454,24 +499,31 @@ Your application should have a clean, intuitive interface and handle edge cases 
             </div>
 
             {/* Output Panel */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Output / Feedback</h3>
-              <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm min-h-[100px]">
-                {output || 'No output yet. Run your code to see results here.'}
+            <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                📝 Output & Feedback
+              </h3>
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-green-400 p-6 rounded-xl font-mono text-sm min-h-[120px] border border-gray-700 shadow-inner">
+                {output || '💻 Ready for action! Click "Get Hint" to get started, "Analyze Code" to check your progress, or start coding right away.'}
               </div>
             </div>
 
             {/* Live Preview */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Live Preview</h3>
-              <div className="border border-gray-300 rounded-lg min-h-[300px] p-4 bg-gray-50">
+            <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                👁️ Live Preview
+              </h3>
+              <div className="border-2 border-dashed border-gray-300 rounded-xl min-h-[300px] p-4 bg-gray-50 overflow-hidden">
                 <iframe
                   srcDoc={userCode}
-                  className="w-full h-full min-h-[280px] border-0"
+                  className="w-full h-full min-h-[280px] border-0 bg-white rounded-lg"
                   title="Code Preview"
                   sandbox="allow-scripts"
                 />
               </div>
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                💡 Your code will automatically preview here. Test interactive features by clicking around!
+              </p>
             </div>
           </div>
         </div>
