@@ -1,4 +1,4 @@
-exportdefaultfunctionLoading(){
+export default function Loading() {
 return(
 <divclassName="min-h-screenbg-gradient-to-brfrom-blue-50to-indigo-100flexitems-centerjustify-center">
 <divclassName="text-center">

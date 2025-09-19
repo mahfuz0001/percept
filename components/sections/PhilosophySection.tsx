@@ -5,7 +5,7 @@ import{motion}from"framer-motion";
 import{Target,CheckCircle,XCircle}from"lucide-react";
 import{Card,CardContent,CardDescription,CardHeader,CardTitle}from"@/components/ui/card";
 
-exportdefaultfunctionPhilosophySection(){
+export default function PhilosophySection() {
  return(
   <sectionclassName="py-20bg-whitedark:bg-gray-900">
    <divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">

@@ -4,7 +4,7 @@
 import{motion}from"framer-motion";
 import{InteractiveCodeDemo}from"@/components/ui/interactive-code-demo";
 
-exportdefaultfunctionInteractiveCodeDemoSection(){
+export default function InteractiveCodeDemoSection() {
  return(
   <sectionclassName="py-20bg-gradient-to-brfrom-gray-50via-blue-50to-purple-50dark:from-gray-900dark:via-blue-900/20dark:to-purple-900/20">
    <divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">

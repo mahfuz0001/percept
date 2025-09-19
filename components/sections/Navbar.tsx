@@ -11,7 +11,7 @@ import{ThemeToggle}from"@/components/theme-toggle";
 import{Button}from"@/components/ui/button";
 importMobileNavfrom"./MobileNav";
 
-exportdefaultfunctionNavbar(){
+export default function Navbar() {
 //Clientcomponentscannotbeasyncoruseserver-onlyfunctions.
 //We'veremovedtheserver-sidelogic(auth,redirect)forthiscomponent.
 //TheredirectionlogicshouldbehandledinaLayoutorMiddleware.

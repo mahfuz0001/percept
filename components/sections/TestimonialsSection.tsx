@@ -7,7 +7,7 @@ import{Card,CardContent,CardDescription}from"@/components/ui/card";
 import{Avatar,AvatarFallback,AvatarImage}from"@/components/ui/avatar";
 import{Badge}from"@/components/ui/badge";
 
-consttestimonials=[
+const testimonials = [
  {
   name:"SarahChen",
   role:"FrontendDeveloper",
@@ -31,7 +31,7 @@ consttestimonials=[
  },
 ];
 
-exportdefaultfunctionTestimonialsSection(){
+export default function TestimonialsSection() {
  return(
   <sectionclassName="py-20bg-whitedark:bg-gray-900">
    <divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">

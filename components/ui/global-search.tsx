@@ -119,7 +119,7 @@ metadata:{xp:300},
 },
 ];
 
-constcategoryConfig={
+const categoryConfig = {
 course:{
 label:"Courses",
 color:"bg-blue-100text-blue-800dark:bg-blue-900dark:text-blue-200",
@@ -144,14 +144,14 @@ color:"bg-gray-100text-gray-800dark:bg-gray-900dark:text-gray-200",
 },
 };
 
-exportfunctionGlobalSearch(){
+export function GlobalSearch() {
 const[isOpen,setIsOpen]=useState(false);
 const[query,setQuery]=useState("");
 const[results,setResults]=useState<SearchResult[]>([]);
 const[selectedIndex,setSelectedIndex]=useState(0);
 
 useEffect(()=>{
-consthandleKeyDown=(e:KeyboardEvent)=>{
+const handleKeyDown = (e:KeyboardEvent)=>{
 //OpensearchwithCmd+KorCtrl+K
 if((e.metaKey||e.ctrlKey)&&e.key==="k"){
 e.preventDefault();
@@ -159,28 +159,28 @@ setIsOpen(true);
 }
 
 //ClosewithEscape
-if(e.key==="Escape"&&isOpen){
+if (e.key==="Escape"&&isOpen) {
 setIsOpen(false);
 setQuery("");
 setResults([]);
 }
 
 //Navigatewitharrowkeys
-if(isOpen&&results.length>0){
-if(e.key==="ArrowDown"){
+if (isOpen&&results.length>0) {
+if (e.key==="ArrowDown") {
 e.preventDefault();
 setSelectedIndex((prev)=>(prev+1)%results.length);
 }
-if(e.key==="ArrowUp"){
+if (e.key==="ArrowUp") {
 e.preventDefault();
 setSelectedIndex(
 (prev)=>(prev-1+results.length)%results.length
 );
 }
-if(e.key==="Enter"){
+if (e.key==="Enter") {
 e.preventDefault();
-constselectedResult=results[selectedIndex];
-if(selectedResult){
+const selectedResult = results[selectedIndex];
+if (selectedResult) {
 window.location.href=selectedResult.href;
 setIsOpen(false);
 }
@@ -193,12 +193,12 @@ return()=>document.removeEventListener("keydown",handleKeyDown);
 },[isOpen,results,selectedIndex]);
 
 useEffect(()=>{
-if(query.length===0){
+if (query.length===0) {
 setResults([]);
 return;
 }
 
-constfiltered=searchData.filter(
+const filtered = searchData.filter(
 (item)=>
 item.title.toLowerCase().includes(query.toLowerCase())||
 item.description.toLowerCase().includes(query.toLowerCase())
@@ -208,11 +208,11 @@ setResults(filtered.slice(0,8));//Limitto8results
 setSelectedIndex(0);
 },[query]);
 
-consthandleOpenSearch=()=>{
+const handleOpenSearch = ()=>{
 setIsOpen(true);
 };
 
-consthandleCloseSearch=()=>{
+const handleCloseSearch = ()=>{
 setIsOpen(false);
 setQuery("");
 setResults([]);

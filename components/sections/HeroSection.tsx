@@ -11,10 +11,10 @@ import{Dialog,DialogContent,DialogHeader,DialogTitle,DialogTrigger}from"@/compon
 importVideoModalfrom"../VideoModal";
 importStatsGridfrom"../StatsGrid";
 
-exportdefaultfunctionHeroSection(){
+export default function HeroSection() {
 const[isVideoModalOpen,setIsVideoModalOpen]=useState(false);
 
-conststatsData=[
+const statsData = [
 {number:"10,000+",label:"ChallengesSolved"},
 {number:"5,000+",label:"ActiveLearners"},
 {number:"95%",label:"SuccessRate"},

@@ -1,6 +1,6 @@
-importLinkfrom'next/link';
+import Link from 'next/link';
 
-exportdefaultfunctionNotFound(){
+export default function NotFound() {
 return(
 <divclassName="min-h-screenbg-gradient-to-brfrom-blue-50to-indigo-100flexitems-centerjustify-centerpx-4">
 <divclassName="max-w-mdw-fulltext-center">

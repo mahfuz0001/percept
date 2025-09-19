@@ -6,33 +6,33 @@ import{Zap,Target,Users,Star,CheckCircle}from"lucide-react";
 import{Card,CardContent,CardHeader,CardTitle}from"@/components/ui/card";
 import{Tabs,TabsContent,TabsList,TabsTrigger}from"@/components/ui/tabs";
 
-constfeatures=[
+const features = [
  {icon:Zap,title:"NoHand-Holding",description:"Minimalguidanceforcesyoutothinkcriticallyanddevelopproblem-solvingskills.",color:"blue"},
  {icon:Target,title:"RealProblems",description:"Facechallengesthatmirroractualdevelopmentwork.Noartificialexamples.",color:"green"},
  {icon:Users,title:"CommunityDriven",description:"Joindeveloperswholearnbydoing,notbyfollowingtutorials.",color:"purple"},
 ];
 
-constprocessSteps=[
+const processSteps = [
  {step:"1",title:"GetChallenge",description:"Receiveareal-worldcodingproblem"},
  {step:"2",title:"Struggle",description:"Researchandexperimentindependently"},
  {step:"3",title:"Breakthrough",description:"Experiencethejoyofsolvingityourself"},
  {step:"4",title:"Confidence",description:"Buildgenuineproblem-solvingskills"},
 ];
 
-constresultsMetrics=[
+const resultsMetrics = [
  {metric:"95%",label:"Completechallengessuccessfully"},
  {metric:"3x",label:"Fasteratsolvingnewproblems"},
  {metric:"87%",label:"Landtheirdreamjobwithin6months"},
 ];
 
-constlearningOutcomes=[
+const learningOutcomes = [
  "Independentproblem-solvingability",
  "Confidenceintacklingunknownchallenges",
  "Researchanddebuggingskills",
  "Real-worlddevelopmentexperience",
 ];
 
-exportdefaultfunctionFeaturesSection(){
+export default function FeaturesSection() {
  return(
   <sectionclassName="py-16bg-gray-50dark:bg-gray-800">
    <divclassName="max-w-7xlmx-autopx-4sm:px-6lg:px-8">
