@@ -147,7 +147,7 @@ export function WelcomeTour() {
           onClick={restartTour}
           variant="outline"
           size="sm"
-          className="bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+          className="bg-card/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
         >
           <BookOpen className="w-4 h-4 mr-2" />
           Tour Guide

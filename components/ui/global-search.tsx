@@ -223,7 +223,7 @@ export function GlobalSearch() {
       <Button
         variant="outline"
         onClick={handleOpenSearch}
-        className="hidden md:flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white min-w-[240px] justify-start"
+        className="hidden md:flex items-center gap-2 text-muted-foreground dark:text-muted-foreground hover:text-foreground dark:hover:text-white min-w-[240px] justify-start"
       >
         <Search className="w-4 h-4" />
         <span className="text-sm">Search courses, lessons...</span>
@@ -271,14 +271,14 @@ export function GlobalSearch() {
               <Card className="shadow-2xl border-0 overflow-hidden">
                 <CardContent className="p-0">
                   {/* Search Input */}
-                  <div className="flex items-center border-b border-gray-200 dark:border-gray-700 px-4 py-4">
-                    <Search className="w-5 h-5 text-gray-400 mr-3" />
+                  <div className="flex items-center border-b border-border dark:border-border px-4 py-4">
+                    <Search className="w-5 h-5 text-muted-foreground mr-3" />
                     <input
                       type="text"
                       placeholder="Search courses, lessons, challenges..."
                       value={query}
                       onChange={(e) => setQuery(e.target.value)}
-                      className="flex-1 bg-transparent border-0 outline-0 text-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                      className="flex-1 bg-transparent border-0 outline-0 text-lg text-foreground dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                       autoFocus
                     />
                     <Button
@@ -295,11 +295,11 @@ export function GlobalSearch() {
                   <div className="max-h-96 overflow-y-auto">
                     {query.length === 0 ? (
                       <div className="px-4 py-8 text-center">
-                        <Search className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                        <Search className="w-12 h-12 text-muted-foreground dark:text-muted-foreground mx-auto mb-4" />
+                        <h3 className="text-lg font-semibold text-foreground dark:text-white mb-2">
                           Quick Search
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4">
+                        <p className="text-muted-foreground dark:text-muted-foreground mb-4">
                           Find courses, lessons, challenges, and more
                         </p>
                         <div className="flex flex-wrap justify-center gap-2">
@@ -325,12 +325,12 @@ export function GlobalSearch() {
                     ) : results.length === 0 ? (
                       <div className="px-4 py-8 text-center">
                         <div className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4">
-                          <Search className="w-6 h-6 text-gray-400" />
+                          <Search className="w-6 h-6 text-muted-foreground" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                        <h3 className="text-lg font-semibold text-foreground dark:text-white mb-2">
                           No results found
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-muted-foreground dark:text-muted-foreground">
                           Try different keywords or browse our courses
                         </p>
                       </div>
@@ -357,7 +357,7 @@ export function GlobalSearch() {
                                 ${
                                   index === selectedIndex
                                     ? "bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400"
-                                    : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
+                                    : "bg-gray-100 dark:bg-gray-800 text-muted-foreground dark:text-muted-foreground"
                                 }
                               `}
                               >
@@ -365,7 +365,7 @@ export function GlobalSearch() {
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2 mb-1">
-                                  <h4 className="font-medium text-gray-900 dark:text-white truncate">
+                                  <h4 className="font-medium text-foreground dark:text-white truncate">
                                     {result.title}
                                   </h4>
                                   <Badge
@@ -387,11 +387,11 @@ export function GlobalSearch() {
                                     </Badge>
                                   )}
                                 </div>
-                                <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                                <p className="text-sm text-muted-foreground dark:text-muted-foreground truncate">
                                   {result.description}
                                 </p>
                                 {result.metadata && (
-                                  <div className="flex items-center gap-3 mt-1 text-xs text-gray-500 dark:text-gray-500">
+                                  <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground dark:text-muted-foreground">
                                     {result.metadata.duration && (
                                       <div className="flex items-center gap-1">
                                         <Clock className="w-3 h-3" />
@@ -410,7 +410,7 @@ export function GlobalSearch() {
                                   </div>
                                 )}
                               </div>
-                              <ArrowRight className="w-4 h-4 text-gray-400" />
+                              <ArrowRight className="w-4 h-4 text-muted-foreground" />
                             </div>
                           </Link>
                         ))}
@@ -420,8 +420,8 @@ export function GlobalSearch() {
 
                   {/* Footer */}
                   {results.length > 0 && (
-                    <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3 bg-gray-50 dark:bg-gray-800/50">
-                      <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                    <div className="border-t border-border dark:border-border px-4 py-3 bg-gray-50 dark:bg-gray-800/50">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground dark:text-muted-foreground">
                         <div className="flex items-center gap-4">
                           <div className="flex items-center gap-1">
                             <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-800 rounded border">
