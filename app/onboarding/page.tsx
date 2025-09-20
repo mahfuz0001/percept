@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/shared/Button";
-import { Card, CardContent, CardProps } from "@/components/shared/Card";
+import { Card, CardContent } from "@/components/shared/Card";
 import { Badge } from "@/components/shared/Badge";
 import { CookieConfetti } from "@/components/shared/CookieConfetti";
 

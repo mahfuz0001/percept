@@ -1,7 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
-import Link from "next/link";
 import { Button } from "@/components/shared/Button";
 import { Card, CardContent, CardHeader } from "@/components/shared/Card";
 import { Badge } from "@/components/shared/Badge";

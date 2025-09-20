@@ -237,7 +237,7 @@ Your application should have a clean, intuitive interface and handle edge cases 
       } else {
         setOutput('Code analysis complete! Check your preview to see the results.');
       }
-    } catch (error) {
+    } catch {
       setOutput('Code executed successfully! Check your preview to see the results.');
     }
     setIsSubmitting(false);
