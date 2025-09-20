@@ -136,9 +136,9 @@ export default async function LeaderboardPage() {
   const categoryFilters = ["All", "Frontend", "Backend", "Full Stack", "DevOps", "AI/ML"];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-card shadow-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
@@ -146,16 +146,16 @@ export default async function LeaderboardPage() {
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Percept
                 </h1>
-                <span className="ml-2 text-sm text-gray-500">Leaderboard</span>
+                <span className="ml-2 text-sm text-muted-foreground">Leaderboard</span>
               </Link>
               <nav className="hidden md:flex space-x-6">
-                <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+                <Link href="/dashboard" className="text-muted-foreground hover:text-foreground font-medium transition-colors">
                   Dashboard
                 </Link>
-                <Link href="/challenges" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+                <Link href="/challenges" className="text-muted-foreground hover:text-foreground font-medium transition-colors">
                   Challenges
                 </Link>
-                <Link href="/learning-portal" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+                <Link href="/learning-portal" className="text-muted-foreground hover:text-foreground font-medium transition-colors">
                   Learning Portal
                 </Link>
                 <Link href="/leaderboard" className="text-blue-600 font-medium">
@@ -182,10 +182,10 @@ export default async function LeaderboardPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Section */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-bold text-foreground mb-2">
             Global Leaderboard 🏆
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-muted-foreground">
             See how you stack up against developers worldwide. Climb the ranks by completing challenges and earning XP!
           </p>
         </div>
@@ -194,10 +194,10 @@ export default async function LeaderboardPage() {
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Time Period
               </label>
-              <select className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <select className="w-full border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 {timeFilters.map(filter => (
                   <option key={filter} value={filter}>{filter}</option>
                 ))}
@@ -205,10 +205,10 @@ export default async function LeaderboardPage() {
             </div>
             
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Specialization
               </label>
-              <select className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <select className="w-full border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 {categoryFilters.map(filter => (
                   <option key={filter} value={filter}>{filter}</option>
                 ))}
@@ -216,13 +216,13 @@ export default async function LeaderboardPage() {
             </div>
             
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Search Users
               </label>
               <input 
                 type="text" 
                 placeholder="Search by username..."
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -230,12 +230,12 @@ export default async function LeaderboardPage() {
 
         {/* Top 3 Podium */}
         <div className="mb-12">
-          <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">🥇 Hall of Fame 🥇</h3>
+          <h3 className="text-xl font-bold text-foreground mb-6 text-center">🥇 Hall of Fame 🥇</h3>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {leaderboardData.slice(0, 3).map((user, index) => (
               <Card key={user.id} className={`relative text-center ${
                 index === 0 ? 'bg-gradient-to-b from-yellow-50 to-yellow-100 border-yellow-300 transform scale-105' :
-                index === 1 ? 'bg-gradient-to-b from-gray-50 to-gray-100 border-gray-300' :
+                index === 1 ? 'bg-gradient-to-b from-gray-50 to-gray-100 border-border' :
                 'bg-gradient-to-b from-orange-50 to-orange-100 border-orange-300'
               }`}>
                 <CardContent className="p-6">
@@ -246,19 +246,19 @@ export default async function LeaderboardPage() {
                   <h4 className="font-bold text-lg mb-1">
                     {user.isPublic ? user.fullName : user.username}
                   </h4>
-                  <p className="text-sm text-gray-600 mb-3">@{user.username}</p>
+                  <p className="text-sm text-muted-foreground mb-3">@{user.username}</p>
                   
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-sm text-gray-600">XP:</span>
+                      <span className="text-sm text-muted-foreground">XP:</span>
                       <span className="font-bold text-blue-600">{user.totalXP.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-sm text-gray-600">Level:</span>
+                      <span className="text-sm text-muted-foreground">Level:</span>
                       <span className="font-bold text-purple-600">{user.level}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-sm text-gray-600">Challenges:</span>
+                      <span className="text-sm text-muted-foreground">Challenges:</span>
                       <span className="font-bold text-green-600">{user.challengesCompleted}</span>
                     </div>
                   </div>
@@ -275,26 +275,26 @@ export default async function LeaderboardPage() {
         {/* Full Leaderboard */}
         <Card>
           <CardHeader>
-            <h3 className="text-xl font-bold text-gray-900">Complete Rankings</h3>
+            <h3 className="text-xl font-bold text-foreground">Complete Rankings</h3>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Rank</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">User</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">XP</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Level</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Challenges</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Streak</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Specialization</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Top Badges</th>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-3 px-4 font-semibold text-card-foreground">Rank</th>
+                    <th className="text-left py-3 px-4 font-semibold text-card-foreground">User</th>
+                    <th className="text-left py-3 px-4 font-semibold text-card-foreground">XP</th>
+                    <th className="text-left py-3 px-4 font-semibold text-card-foreground">Level</th>
+                    <th className="text-left py-3 px-4 font-semibold text-card-foreground">Challenges</th>
+                    <th className="text-left py-3 px-4 font-semibold text-card-foreground">Streak</th>
+                    <th className="text-left py-3 px-4 font-semibold text-card-foreground">Specialization</th>
+                    <th className="text-left py-3 px-4 font-semibold text-card-foreground">Top Badges</th>
                   </tr>
                 </thead>
                 <tbody>
                   {leaderboardData.map((user) => (
-                    <tr key={user.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                    <tr key={user.id} className="border-b border-gray-100 hover:bg-background transition-colors">
                       <td className="py-3 px-4">
                         <div className="flex items-center">
                           <span className="font-bold text-lg">#{user.rank}</span>
@@ -315,10 +315,10 @@ export default async function LeaderboardPage() {
                                   {user.fullName}
                                 </Link>
                               ) : (
-                                <span className="text-gray-600">Anonymous User</span>
+                                <span className="text-muted-foreground">Anonymous User</span>
                               )}
                             </div>
-                            <div className="text-sm text-gray-500">@{user.username}</div>
+                            <div className="text-sm text-muted-foreground">@{user.username}</div>
                           </div>
                         </div>
                       </td>

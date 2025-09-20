@@ -62,7 +62,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
+              className="text-5xl md:text-7xl font-bold text-foreground dark:text-white mb-6 leading-tight"
             >
               Escape Tutorial Hell
               <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse">
@@ -73,7 +73,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed"
+              className="text-xl md:text-2xl text-muted-foreground dark:text-muted-foreground max-w-4xl mx-auto mb-10 leading-relaxed"
             >
               Stop following step-by-step tutorials. Start solving real
               problems. Build the confidence to tackle any coding challenge
@@ -118,10 +118,10 @@ export function HeroSection() {
                   <DialogHeader>
                     <DialogTitle>See Percept in Action</DialogTitle>
                   </DialogHeader>
-                  <div className="aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
+                  <div className="aspect-video bg-muted dark:bg-muted rounded-lg flex items-center justify-center">
                     <div className="text-center">
-                      <Play className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                      <p className="text-gray-600 dark:text-gray-400">
+                      <Play className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                      <p className="text-muted-foreground dark:text-muted-foreground">
                         Demo video coming soon
                       </p>
                     </div>
@@ -141,12 +141,12 @@ export function HeroSection() {
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.05 }}
-                  className="text-center p-4 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm shadow-lg border border-gray-200 dark:border-gray-700"
+                  className="text-center p-4 rounded-lg bg-card/50 dark:bg-muted/50 backdrop-blur-sm shadow-lg border border-border dark:border-border"
                 >
                   <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-gray-600 dark:text-gray-400 text-sm md:text-base font-medium">
+                  <div className="text-muted-foreground dark:text-muted-foreground text-sm md:text-base font-medium">
                     {stat.label}
                   </div>
                 </motion.div>

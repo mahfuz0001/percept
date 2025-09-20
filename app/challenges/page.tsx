@@ -341,17 +341,17 @@ export default async function ChallengesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <Header />
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-bold text-foreground mb-2">
             Coding Challenges 🚀
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-muted-foreground">
             Choose your challenge and start building real skills. No
             hand-holding, just problem-solving.
           </p>
@@ -362,25 +362,25 @@ export default async function ChallengesPage() {
           <Card>
             <CardContent className="text-center">
               <div className="text-2xl font-bold text-blue-600 mb-1">24</div>
-              <div className="text-sm text-gray-600">Total Challenges</div>
+              <div className="text-sm text-muted-foreground">Total Challenges</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="text-center">
               <div className="text-2xl font-bold text-green-600 mb-1">3</div>
-              <div className="text-sm text-gray-600">Completed</div>
+              <div className="text-sm text-muted-foreground">Completed</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="text-center">
               <div className="text-2xl font-bold text-purple-600 mb-1">650</div>
-              <div className="text-sm text-gray-600">Points Earned</div>
+              <div className="text-sm text-muted-foreground">Points Earned</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="text-center">
               <div className="text-2xl font-bold text-orange-600 mb-1">21</div>
-              <div className="text-sm text-gray-600">In Progress</div>
+              <div className="text-sm text-muted-foreground">In Progress</div>
             </CardContent>
           </Card>
         </div>
@@ -456,11 +456,11 @@ export default async function ChallengesPage() {
                   </div>
                 </div>
 
-                <h3 className="font-bold text-lg text-gray-900 mb-2">
+                <h3 className="font-bold text-lg text-foreground mb-2">
                   {challenge.title}
                 </h3>
 
-                <p className="text-gray-600 text-sm mb-3">
+                <p className="text-muted-foreground text-sm mb-3">
                   {challenge.description}
                 </p>
               </CardHeader>
@@ -475,7 +475,7 @@ export default async function ChallengesPage() {
                 </div>
 
                 <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-muted-foreground">
                     <span className="mr-1">⭐</span>
                     <span className="font-semibold">
                       {challenge.points} pts
@@ -520,7 +520,7 @@ export default async function ChallengesPage() {
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl">🤖</span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
                   AI Challenge Generator
                 </h3>
                 <p className="text-gray-700 mb-6 max-w-2xl mx-auto">

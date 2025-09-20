@@ -10,27 +10,27 @@ export default async function AnalyticsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <Header />
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-bold text-foreground mb-2">
             Learning Analytics 📊
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-muted-foreground">
             Track your progress, identify patterns, and optimize your learning
             journey.
           </p>
         </div>
 
         {/* Time Period Selector */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-8">
+        <div className="bg-card rounded-lg shadow-sm border border-border p-4 mb-8">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900">Time Period</h3>
-            <select className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <h3 className="text-lg font-semibold text-foreground">Time Period</h3>
+            <select className="border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground">
               <option>Last 7 days</option>
               <option>Last 30 days</option>
               <option>Last 3 months</option>
@@ -41,13 +41,13 @@ export default async function AnalyticsPage() {
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-muted-foreground">
                   Total Study Time
                 </p>
-                <p className="text-2xl font-bold text-gray-900">42 hours</p>
+                <p className="text-2xl font-bold text-foreground">42 hours</p>
                 <p className="text-sm text-green-600">+8% from last week</p>
               </div>
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -56,13 +56,13 @@ export default async function AnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-muted-foreground">
                   Average Session
                 </p>
-                <p className="text-2xl font-bold text-gray-900">1.5 hrs</p>
+                <p className="text-2xl font-bold text-foreground">1.5 hrs</p>
                 <p className="text-sm text-green-600">+12% improvement</p>
               </div>
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -71,13 +71,13 @@ export default async function AnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-muted-foreground">
                   Success Rate
                 </p>
-                <p className="text-2xl font-bold text-gray-900">85%</p>
+                <p className="text-2xl font-bold text-foreground">85%</p>
                 <p className="text-sm text-red-600">-3% from last week</p>
               </div>
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -86,11 +86,11 @@ export default async function AnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Hints Used</p>
-                <p className="text-2xl font-bold text-gray-900">23</p>
+                <p className="text-sm font-medium text-muted-foreground">Hints Used</p>
+                <p className="text-2xl font-bold text-foreground">23</p>
                 <p className="text-sm text-green-600">-15% independence gain</p>
               </div>
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -102,8 +102,8 @@ export default async function AnalyticsPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* Progress Chart */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               Daily Progress
             </h3>
             <div className="h-64 flex items-end justify-between space-x-2">
@@ -126,8 +126,8 @@ export default async function AnalyticsPage() {
                       style={{ height: `${data.challenges * 20}%` }}
                     ></div>
                   </div>
-                  <span className="text-xs text-gray-600">{data.day}</span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-muted-foreground">{data.day}</span>
+                  <span className="text-xs text-muted-foreground">
                     {data.challenges}ch
                   </span>
                 </div>
@@ -136,18 +136,18 @@ export default async function AnalyticsPage() {
             <div className="mt-4 flex items-center space-x-4 text-sm">
               <div className="flex items-center">
                 <div className="w-3 h-3 bg-blue-600 rounded mr-2"></div>
-                <span className="text-gray-600">Challenges Completed</span>
+                <span className="text-muted-foreground">Challenges Completed</span>
               </div>
               <div className="flex items-center">
                 <div className="w-3 h-3 bg-blue-100 rounded mr-2"></div>
-                <span className="text-gray-600">Study Time (minutes)</span>
+                <span className="text-muted-foreground">Study Time (minutes)</span>
               </div>
             </div>
           </div>
 
           {/* Skill Distribution */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               Skill Distribution
             </h3>
             <div className="space-y-4">
@@ -160,18 +160,18 @@ export default async function AnalyticsPage() {
                 { skill: "APIs", percentage: 55, color: "bg-purple-500" },
               ].map((skill, index) => (
                 <div key={index} className="flex items-center">
-                  <div className="w-20 text-sm font-medium text-gray-700">
+                  <div className="w-20 text-sm font-medium text-card-foreground">
                     {skill.skill}
                   </div>
                   <div className="flex-1 mx-4">
-                    <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div className="w-full bg-muted rounded-full h-3">
                       <div
                         className={`${skill.color} h-3 rounded-full transition-all duration-300`}
                         style={{ width: `${skill.percentage}%` }}
                       ></div>
                     </div>
                   </div>
-                  <div className="w-12 text-sm text-gray-600 text-right">
+                  <div className="w-12 text-sm text-muted-foreground text-right">
                     {skill.percentage}%
                   </div>
                 </div>
@@ -182,8 +182,8 @@ export default async function AnalyticsPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* Learning Patterns */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               Learning Patterns
             </h3>
             <div className="space-y-4">
@@ -227,8 +227,8 @@ export default async function AnalyticsPage() {
           </div>
 
           {/* Recent Achievements */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               Recent Achievements
             </h3>
             <div className="space-y-4">
@@ -281,56 +281,56 @@ export default async function AnalyticsPage() {
         </div>
 
         {/* Goal Setting */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+          <h3 className="text-lg font-semibold text-foreground mb-4">
             Learning Goals
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-4 border-2 border-dashed border-blue-300 rounded-lg text-center">
               <div className="text-3xl mb-2">🎯</div>
-              <h4 className="font-semibold text-gray-900 mb-1">Weekly Goal</h4>
-              <p className="text-sm text-gray-600 mb-3">
+              <h4 className="font-semibold text-foreground mb-1">Weekly Goal</h4>
+              <p className="text-sm text-muted-foreground mb-3">
                 Complete 5 challenges this week
               </p>
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+              <div className="w-full bg-muted rounded-full h-2 mb-2">
                 <div
                   className="bg-blue-600 h-2 rounded-full"
                   style={{ width: "60%" }}
                 ></div>
               </div>
-              <p className="text-xs text-gray-600">3 of 5 completed</p>
+              <p className="text-xs text-muted-foreground">3 of 5 completed</p>
             </div>
 
             <div className="p-4 border-2 border-dashed border-green-300 rounded-lg text-center">
               <div className="text-3xl mb-2">📈</div>
-              <h4 className="font-semibold text-gray-900 mb-1">Skill Goal</h4>
-              <p className="text-sm text-gray-600 mb-3">
+              <h4 className="font-semibold text-foreground mb-1">Skill Goal</h4>
+              <p className="text-sm text-muted-foreground mb-3">
                 Reach 70% in TypeScript
               </p>
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+              <div className="w-full bg-muted rounded-full h-2 mb-2">
                 <div
                   className="bg-green-600 h-2 rounded-full"
                   style={{ width: "86%" }}
                 ></div>
               </div>
-              <p className="text-xs text-gray-600">60% of 70% target</p>
+              <p className="text-xs text-muted-foreground">60% of 70% target</p>
             </div>
 
             <div className="p-4 border-2 border-dashed border-purple-300 rounded-lg text-center">
               <div className="text-3xl mb-2">🏆</div>
-              <h4 className="font-semibold text-gray-900 mb-1">
+              <h4 className="font-semibold text-foreground mb-1">
                 Achievement Goal
               </h4>
-              <p className="text-sm text-gray-600 mb-3">
+              <p className="text-sm text-muted-foreground mb-3">
                 Earn &quot;Problem Solver&quot; badge
               </p>
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+              <div className="w-full bg-muted rounded-full h-2 mb-2">
                 <div
                   className="bg-purple-600 h-2 rounded-full"
                   style={{ width: "70%" }}
                 ></div>
               </div>
-              <p className="text-xs text-gray-600">
+              <p className="text-xs text-muted-foreground">
                 7 of 10 challenges without hints
               </p>
             </div>

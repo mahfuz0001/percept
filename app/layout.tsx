@@ -9,12 +9,14 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
+  fallback: ["system-ui", "arial"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-jetbrains-mono",
+  fallback: ["monospace"],
 });
 
 export const metadata: Metadata = {
@@ -61,18 +63,18 @@ export default function RootLayout({
         elements: {
           formButtonPrimary:
             "bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors",
-          card: "shadow-xl border-0 rounded-2xl bg-white",
-          headerTitle: "text-2xl font-semibold text-gray-900",
-          headerSubtitle: "text-gray-600",
+          card: "shadow-xl border-0 rounded-2xl bg-card dark:bg-card",
+          headerTitle: "text-2xl font-semibold text-foreground",
+          headerSubtitle: "text-muted-foreground",
           socialButtonsBlockButton:
-            "border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors",
+            "border border-border hover:bg-muted text-card-foreground font-medium rounded-lg transition-colors",
           formFieldInput:
-            "border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+            "border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground",
           footerActionLink: "text-blue-600 hover:text-blue-700 font-medium",
-          dividerLine: "bg-gray-200",
-          dividerText: "text-gray-500",
-          formFieldLabel: "text-gray-700 font-medium",
-          identityPreviewText: "text-gray-600",
+          dividerLine: "bg-border",
+          dividerText: "text-muted-foreground",
+          formFieldLabel: "text-card-foreground font-medium",
+          identityPreviewText: "text-muted-foreground",
           identityPreviewEditButton: "text-blue-600 hover:text-blue-700",
         },
       }}
@@ -92,8 +94,9 @@ export default function RootLayout({
               toastOptions={{
                 duration: 4000,
                 style: {
-                  background: "#363636",
-                  color: "#fff",
+                  background: "hsl(var(--card))",
+                  color: "hsl(var(--card-foreground))",
+                  border: "1px solid hsl(var(--border))",
                 },
               }}
             />

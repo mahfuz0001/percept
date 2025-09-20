@@ -4,13 +4,15 @@ import { PhilosophySection } from "@/components/landing/PhilosophySection";
 import { InteractiveCodeDemo } from "@/components/ui/interactive-code-demo";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
+import { DefaultCTA } from "@/components/landing/cta";
+import { Footer } from "@/components/landing/Footer";
 import { FloatingActionButton } from "@/components/shared/FloatingActionButton";
 import { WelcomeTour } from "@/components/landing/welcome-tour";
 
 export default async function Home() {
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-background to-indigo-50 dark:from-gray-900 dark:via-background dark:to-purple-900/20">
       <Header />
       <HeroSection />
       <PhilosophySection />
@@ -21,6 +23,8 @@ export default async function Home() {
       </section>
       <FeaturesSection />
       <TestimonialsSection />
+      <DefaultCTA />
+      <Footer />
       <FloatingActionButton />
       <WelcomeTour />
     </div>
