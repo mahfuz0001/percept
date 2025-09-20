@@ -4,6 +4,8 @@ import { PhilosophySection } from "@/components/landing/PhilosophySection";
 import { InteractiveCodeDemo } from "@/components/ui/interactive-code-demo";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
+import { DefaultCTA } from "@/components/landing/cta";
+import { Footer } from "@/components/landing/Footer";
 import { FloatingActionButton } from "@/components/shared/FloatingActionButton";
 import { WelcomeTour } from "@/components/landing/welcome-tour";
 
@@ -21,6 +23,8 @@ export default async function Home() {
       </section>
       <FeaturesSection />
       <TestimonialsSection />
+      <DefaultCTA />
+      <Footer />
       <FloatingActionButton />
       <WelcomeTour />
     </div>

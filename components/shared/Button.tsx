@@ -14,11 +14,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const buttonVariants = {
-  primary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl',
-  secondary: 'bg-gray-600 hover:bg-gray-700 text-white shadow-lg hover:shadow-xl',
-  outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 hover:border-blue-700',
-  ghost: 'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
-  danger: 'bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl'
+  primary: 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl',
+  secondary: 'bg-secondary hover:bg-secondary/80 text-secondary-foreground shadow-lg hover:shadow-xl',
+  outline: 'border-2 border-primary text-primary hover:bg-accent hover:text-accent-foreground',
+  ghost: 'text-card-foreground hover:bg-accent hover:text-accent-foreground',
+  danger: 'bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-lg hover:shadow-xl'
 };
 
 const buttonSizes = {
@@ -41,7 +41,7 @@ export function Button({
   external = false,
   ...props 
 }: ButtonProps) {
-  const baseClasses = 'font-semibold rounded-lg transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-300/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none inline-flex items-center justify-center gap-2';
+  const baseClasses = 'font-semibold rounded-lg transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-ring/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none inline-flex items-center justify-center gap-2';
   
   const combinedClasses = cn(
     baseClasses,

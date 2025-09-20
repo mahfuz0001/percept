@@ -2,9 +2,9 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/shared/Button";
-import { Card, CardContent } from "@/components/shared/Card";
-import { Badge } from "@/components/shared/Badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { CookieConfetti } from "@/components/shared/CookieConfetti";
 
 interface OnboardingData {
@@ -17,14 +17,12 @@ interface OnboardingData {
   careerGoal: string;
 }
 
-// Add the onClick prop to the Card component's type definition
-// Note: This assumes you can edit the Card component file. If not, you must wrap the Card in a div
-// and apply the onClick handler there.
-declare module "@/components/shared/Card" {
-  export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-    onClick?: () => void;
-  }
-}
+// Remove the module declaration since we're now using UI components
+// declare module "@/components/shared/Card" {
+//   export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+//     onClick?: () => void;
+//   }
+// }
 
 export default function OnboardingPage() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -80,15 +78,15 @@ export default function OnboardingPage() {
       component: (
         <div className="text-center">
           <div className="text-6xl mb-6">🚀</div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <h3 className="text-2xl font-bold text-foreground mb-4">
             Ready to escape tutorial hell?
           </h3>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             We&apos;ll ask you a few questions to create a personalized learning
             experience that matches your goals, interests, and current skill
             level.
           </p>
-          <div className="bg-blue-50 p-6 rounded-lg max-w-lg mx-auto">
+          <div className="bg-blue-50 dark:bg-blue-950 p-6 rounded-lg max-w-lg mx-auto">
             <h4 className="font-semibold text-blue-900 mb-2">
               What makes us different:
             </h4>
@@ -129,33 +127,37 @@ export default function OnboardingPage() {
               desc: "I&apos;m experienced but want new challenges",
             },
           ].map((option) => (
-            <Card
+            <div
               key={option.value}
-              className={`cursor-pointer transition-all duration-200 ${
-                formData.experience === option.value
-                  ? "border-blue-500 bg-blue-50"
-                  : "hover:border-gray-300"
-              }`}
+              className="cursor-pointer transition-all duration-200"
               onClick={() => updateFormData("experience", option.value)}
             >
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <div
-                    className={`w-4 h-4 rounded-full border-2 mr-4 ${
-                      formData.experience === option.value
-                        ? "bg-blue-500 border-blue-500"
-                        : "border-gray-300"
-                    }`}
-                  ></div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">
-                      {option.label}
-                    </h4>
-                    <p className="text-gray-600 text-sm">{option.desc}</p>
+              <Card
+                className={`${
+                  formData.experience === option.value
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
+                    : "hover:border-border"
+                }`}
+              >
+                <CardContent className="p-6">
+                  <div className="flex items-center">
+                    <div
+                      className={`w-4 h-4 rounded-full border-2 mr-4 ${
+                        formData.experience === option.value
+                          ? "bg-blue-500 border-blue-500"
+                          : "border-border"
+                      }`}
+                    ></div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">
+                        {option.label}
+                      </h4>
+                      <p className="text-muted-foreground text-sm">{option.desc}</p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
       ),
@@ -185,20 +187,24 @@ export default function OnboardingPage() {
             },
             { value: "learn-hobby", label: "Learn as a Hobby", icon: "🎨" },
           ].map((goal) => (
-            <Card
+            <div
               key={goal.value}
-              className={`cursor-pointer transition-all duration-200 ${
-                formData.goals.includes(goal.value)
-                  ? "border-blue-500 bg-blue-50"
-                  : "hover:border-gray-300"
-              }`}
+              className="cursor-pointer transition-all duration-200"
               onClick={() => toggleArrayValue("goals", goal.value)}
             >
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl mb-2">{goal.icon}</div>
-                <h4 className="font-semibold text-gray-900">{goal.label}</h4>
-              </CardContent>
-            </Card>
+              <Card
+                className={`${
+                  formData.goals.includes(goal.value)
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
+                    : "hover:border-border"
+                }`}
+              >
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl mb-2">{goal.icon}</div>
+                  <h4 className="font-semibold text-foreground">{goal.label}</h4>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
       ),
@@ -264,25 +270,29 @@ export default function OnboardingPage() {
               desc: "App development",
             },
           ].map((tech) => (
-            <Card
+            <div
               key={tech.value}
-              className={`cursor-pointer transition-all duration-200 ${
-                formData.preferredTechnologies.includes(tech.value)
-                  ? "border-blue-500 bg-blue-50"
-                  : "hover:border-gray-300"
-              }`}
+              className="cursor-pointer transition-all duration-200"
               onClick={() =>
                 toggleArrayValue("preferredTechnologies", tech.value)
               }
             >
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl mb-2">{tech.icon}</div>
-                <h4 className="font-semibold text-gray-900 text-sm">
-                  {tech.label}
-                </h4>
-                <p className="text-xs text-gray-600">{tech.desc}</p>
-              </CardContent>
-            </Card>
+              <Card
+                className={`${
+                  formData.preferredTechnologies.includes(tech.value)
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
+                    : "hover:border-border"
+                }`}
+              >
+                <CardContent className="p-4 text-center">
+                  <div className="text-2xl mb-2">{tech.icon}</div>
+                  <h4 className="font-semibold text-foreground text-sm">
+                    {tech.label}
+                  </h4>
+                  <p className="text-xs text-muted-foreground">{tech.desc}</p>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
       ),
@@ -319,33 +329,37 @@ export default function OnboardingPage() {
               desc: "I&apos;ll learn when I can",
             },
           ].map((option) => (
-            <Card
+            <div
               key={option.value}
-              className={`cursor-pointer transition-all duration-200 ${
-                formData.timeCommitment === option.value
-                  ? "border-blue-500 bg-blue-50"
-                  : "hover:border-gray-300"
-              }`}
+              className="cursor-pointer transition-all duration-200"
               onClick={() => updateFormData("timeCommitment", option.value)}
             >
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <div
-                    className={`w-4 h-4 rounded-full border-2 mr-4 ${
-                      formData.timeCommitment === option.value
-                        ? "bg-blue-500 border-blue-500"
-                        : "border-gray-300"
-                    }`}
-                  ></div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">
-                      {option.label}
-                    </h4>
-                    <p className="text-gray-600 text-sm">{option.desc}</p>
+              <Card
+                className={`${
+                  formData.timeCommitment === option.value
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
+                    : "hover:border-border"
+                }`}
+              >
+                <CardContent className="p-6">
+                  <div className="flex items-center">
+                    <div
+                      className={`w-4 h-4 rounded-full border-2 mr-4 ${
+                        formData.timeCommitment === option.value
+                          ? "bg-blue-500 border-blue-500"
+                          : "border-border"
+                      }`}
+                    ></div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">
+                        {option.label}
+                      </h4>
+                      <p className="text-muted-foreground text-sm">{option.desc}</p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
       ),
@@ -356,22 +370,22 @@ export default function OnboardingPage() {
       component: (
         <div className="text-center">
           <div className="text-6xl mb-6">🎯</div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <h3 className="text-2xl font-bold text-foreground mb-4">
             Welcome to your coding journey!
           </h3>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Based on your preferences, we&apos;ve curated a personalized
             learning path. You&apos;ll start with challenges that match your
             experience level and interests.
           </p>
 
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg max-w-2xl mx-auto mb-8">
-            <h4 className="font-semibold text-gray-900 mb-4">
+            <h4 className="font-semibold text-foreground mb-4">
               Your Personalized Plan:
             </h4>
             <div className="grid md:grid-cols-2 gap-4 text-left">
               <div>
-                <h5 className="font-medium text-gray-800 mb-2">
+                <h5 className="font-medium text-card-foreground mb-2">
                   Experience Level:
                 </h5>
                 <Badge variant="info">
@@ -379,13 +393,13 @@ export default function OnboardingPage() {
                 </Badge>
               </div>
               <div>
-                <h5 className="font-medium text-gray-800 mb-2">
+                <h5 className="font-medium text-card-foreground mb-2">
                   Time Commitment:
                 </h5>
                 <Badge variant="success">{formData.timeCommitment}</Badge>
               </div>
               <div>
-                <h5 className="font-medium text-gray-800 mb-2">
+                <h5 className="font-medium text-card-foreground mb-2">
                   Primary Goals:
                 </h5>
                 <div className="flex flex-wrap gap-1">
@@ -397,7 +411,7 @@ export default function OnboardingPage() {
                 </div>
               </div>
               <div>
-                <h5 className="font-medium text-gray-800 mb-2">
+                <h5 className="font-medium text-card-foreground mb-2">
                   Focus Technologies:
                 </h5>
                 <div className="flex flex-wrap gap-1">
@@ -413,7 +427,7 @@ export default function OnboardingPage() {
             </div>
           </div>
 
-          <div className="bg-yellow-50 p-4 rounded-lg max-w-lg mx-auto">
+          <div className="bg-yellow-50 dark:bg-yellow-950 p-4 rounded-lg max-w-lg mx-auto">
             <p className="text-yellow-800 font-medium">
               🍪 Get ready for some celebration confetti when you complete
               challenges!
@@ -427,11 +441,11 @@ export default function OnboardingPage() {
   const currentStepData = steps[currentStep];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-background to-purple-50 dark:from-background dark:via-background dark:to-purple-900/20">
       <CookieConfetti isActive={showConfetti} />
 
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200">
+      <header className="bg-card/90 backdrop-blur-md shadow-sm border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -439,7 +453,7 @@ export default function OnboardingPage() {
                 Percept
               </h1>
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-muted-foreground">
               Step {currentStep + 1} of {totalSteps}
             </div>
           </div>
@@ -448,7 +462,7 @@ export default function OnboardingPage() {
 
       {/* Progress Bar */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-muted rounded-full h-2">
           <div
             className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-500"
             style={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
@@ -459,10 +473,10 @@ export default function OnboardingPage() {
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             {currentStepData.title}
           </h2>
-          <p className="text-xl text-gray-600">{currentStepData.subtitle}</p>
+          <p className="text-xl text-muted-foreground">{currentStepData.subtitle}</p>
         </div>
 
         <Card className="max-w-4xl mx-auto mb-8">

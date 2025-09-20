@@ -26,10 +26,10 @@ interface CardFooterProps {
 }
 
 const cardVariants = {
-  default: "bg-white border border-gray-200 shadow-sm",
-  elevated: "bg-white shadow-lg border border-gray-100",
-  outlined: "bg-white border-2 border-gray-300 shadow-none",
-  glass: "bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg",
+  default: "bg-card border border-border shadow-sm",
+  elevated: "bg-card shadow-lg border border-border",
+  outlined: "bg-card border-2 border-border shadow-none",
+  glass: "bg-card/80 backdrop-blur-sm border border-border shadow-lg",
 };
 
 const cardPaddings = {
@@ -74,7 +74,7 @@ export function CardContent({ children, className }: CardContentProps) {
 
 export function CardFooter({ children, className }: CardFooterProps) {
   return (
-    <div className={cn("mt-4 pt-4 border-t border-gray-200", className)}>
+    <div className={cn("mt-4 pt-4 border-t border-border", className)}>
       {children}
     </div>
   );
